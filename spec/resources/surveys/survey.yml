@@ -1,0 +1,199 @@
+survey:
+  name: "Encuesta Diversa"
+  size: 200
+  questions:
+    1:
+      title: "Seleccione cada restaurante y encierre los conceptos con los que esté de acuerdo"
+      type: "MOS"
+      items:
+        1: 
+          human_value: "Burger King"
+        2:
+          human_value: "Domino's Pizza"
+        3:
+          human_value: "Subway"
+      options:
+        A:
+          human_value: "Delicioso"
+        B:
+          human_value: "Saludable"
+        C:
+          human_value: "Completo"
+        D:
+          human_value: "Económico"
+
+    2:
+      title: "Considerando la opinión que tiene respecto al precio y desempeño de las siguientes marcas de automóviles, arrastre la imagen que aparece y colóquela en el siguiente mapa"  
+      type: "MOSM"
+      items:
+        1:
+          human_value: "Nissan"
+        2:
+          human_value: "Audi"
+        3:
+          human_value: "Dodge"
+        4:
+          human_value: "Renault"
+        5:
+          human_value: "Volkswagen"
+        6:
+          human_value: "BMW"
+        7:
+          human_value: "Mercedes-Benz"
+        8:
+          human_value: "Fiat"
+          
+    3:
+      title: "¿Qué opinión tiene usted acerca del voto nulo?"
+      type: "OQ"
+      items:
+        1:
+          human_value: "Open 1"
+
+    4:
+      title: "De las siguientes marcas de servicios financieros, arrastra hacia el círculo las que usas"
+      type: "MS"
+      items:
+        1:
+          human_value: "BBVA Bancomer"
+        2:
+          human_value: "MasterCard"
+        3:
+          human_value: "HSBC"
+        4:
+          human_value: "Banorte"
+        5:
+          human_value: "American Express"
+        6:
+          human_value: "Banamex"
+        7:
+          human_value: "Santander"
+        8:
+          human_value: "VISA"
+      options:
+        U: 
+          human_value: "Lo uso"
+        NU:
+          human_value: "No lo uso"
+    5:
+      title: "¿Usted fuma?"
+      type: "B"
+      items:
+        1:
+          human_value: "Selected"
+        2:
+          human_value: "Deselected"
+      options: 
+        A:
+          human_value: "Si"
+        B:
+          human_value: "No"
+
+    6:
+      title: "Califique la programación de los siguientes canales de televisión"
+      type: "LK"
+      items:
+        1:
+          human_value: "Canal 22"
+        2:
+          human_value: "Canal 13"
+        3:
+          human_value: "Canal 5"
+        4:
+          human_value: "Canal 7"
+        5:
+          human_value: "Canal 9"
+        6:
+          human_value: "Once TV"
+      options:
+        A:
+          human_value: "Muy Bueno"
+        B:
+          human_value: "Bueno"
+        C:
+          human_value: "Regular"
+        D:
+          human_value: "Mala"
+        E:
+          human_value: "Muy Mala"
+
+    7:
+      title: "Despues de ver el comercial, ¿Qué marcas le vienen a la mente?"
+      instruction: "Reproduzca el video y conteste la siguiente pregunta"
+      type: "MOQ"
+      items:
+        A:
+          human_value: "Open 1"
+        B:
+          human_value: "Open 2"
+        C:
+          human_value: "Open 3"
+        D:
+          human_value: "Open 4"
+        E:
+          human_value: "Open 5"
+
+    8:
+      title: "Deposita los lenguajes de programación en las canastas"
+      type: "SD"
+      items:
+        1:
+          human_value: "Scala"
+        2:
+          human_value: "Java"
+        3:
+          human_value: "PHP"
+        4:
+          human_value: "Python"
+        5:
+          human_value: "Ruby"
+      options:
+        A:
+          human_value: "Muy Escalable"
+        B:
+          human_value: "No lo conozco"
+        C:
+          human_value: "Poco Escalable"
+
+    9:
+      title: "Ordena de mayor a menor costo arrastrando al tubo cada elemento"
+      type: "PO"
+      items: 
+        1:
+          human_value: "Movistar"
+        2:
+          human_value: "Unefon"
+        3:
+          human_value: "Iusacell"
+        4:
+          human_value: "Telcel"
+    10:
+      title: "Al elegir una nueva casa, ¿qué valor tienen para usted los siguientes criterios? (el total debe sumar 100 puntos)"
+      type: "CS"
+      items:
+        1:
+          human_value: "Tamaño del Predio"
+        2:
+          human_value: "Esquema de Financiamiento"
+        3:
+          human_value: "Ubicación"
+        4:
+          human_value: "Precio Actual"
+        5:
+          human_value: "Servicios"
+    11:
+      title: "Considerando la siguiente escala, evalúa la etiqueta de la lata y responde conforme al calificativo"
+      type: "SD"
+      items:
+        1:
+          human_value: "Atractiva"
+        2:
+          human_value: "Cercana"
+        3:
+          human_value: "Fría"
+        4:
+          human_value: "Colorida"
+        5:
+          human_value: "Divertida"
+        6:
+          human_value: "Deseable"

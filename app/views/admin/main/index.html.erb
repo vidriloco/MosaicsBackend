@@ -1,0 +1,15 @@
+<% content_for(:notifications) do %>
+	<%= t('general.messages.welcome') %>
+<% end %>
+
+<% content_for(:header) do %>
+	<div class="administrable-items">
+		<%= link_to Pollster.model_name.human, '' %>
+		<%= link_to Organization.model_name.human, '' %>
+		<%= link_to MetaSurvey.model_name.human, admin_meta_surveys_path %>
+
+		<%= link_to Manager.model_name.human, '' %>
+	</div>
+<% end %>
+
+

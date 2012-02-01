@@ -1,0 +1,11 @@
+<% content_for :body do %>
+	<h2><%= t("#{I18n.t('general.sections.listing')} #{MetaSurvey.model_name.human.pluralize}") %></h2>
+	
+	<%= link_to t('general.actions.new'), admin_meta_surveys_new_path %>
+	
+	<% if @meta_surveys.empty? %>
+		<%= t('meta_survey.views.index.empty') %>
+	<% else %>
+		<%= render :partial => 'meta_survey', :collection => @meta_surveys %>
+	<% end %>
+<% end %>

@@ -1,0 +1,7 @@
+<%= semantic_form_for [:admin, @meta_survey], :html_options => {:multipart => true} do |f| %>
+  
+	<%= f.input :organization, :as => :select, :collection => Organization.all, :label => t('meta_survey.views.form.organization'), :input_html => { :id => "organization"} %>
+	<%= f.input :survey_descriptor_file, :as => :file, :label => t('meta_survey.views.form.descriptor_file'), :input_html => { :id => "descriptor_file"} %>
+
+  <%= f.submit t('general.actions.save') %>
+<% end %>
