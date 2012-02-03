@@ -71,9 +71,9 @@ survey:
         8:
           human_value: "VISA"
       options:
-        U: 
+        A: 
           human_value: "Lo uso"
-        NU:
+        B:
           human_value: "No lo uso"
     5:
       title: "¿Usted fuma?"

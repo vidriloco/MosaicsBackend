@@ -6,19 +6,20 @@ class Survey < ActiveRecord::Base
   
   def self.from_json(json)
     hash = JSON.parse(json)
-    questions = hash.delete("questions")
+    question_list = hash.delete("questions")
     survey=Survey.new(hash)
     
-    questions.each_pair do |meta_question, answerQuestion|
-      answers = answerQuestion.delete("answers")
+    question_list.each do |question|
+      meta_question = question.keys[0]
+      answer_question = question[meta_question]
       
-      question = Question.new(answerQuestion.merge(:meta_question_id => meta_question))
+      answers = answer_question.delete("answers")
+      question = Question.new(answer_question.merge(:meta_question_id => meta_question))
       
-      Answer.build_from(answers).each { |answer| question.answers << answer }
+      Answer.build_from(answers, meta_question).each { |answer| question.answers << answer }
       
       survey.questions << question
     end
-        
     survey
   end
 end

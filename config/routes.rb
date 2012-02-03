@@ -17,8 +17,10 @@ Backend::Application.routes.draw do
   
   end
 
-  match '/manager' => "welcome#index", :as => :manager_root
-  match '/admin' => "admin/main#index", :as => :admin_user_root
+  post 'collector/commit' => 'collector#commit', :as => :collect 
+
+  get '/manager' => "welcome#index", :as => :manager_root
+  get '/admin' => "admin/main#index", :as => :admin_user_root
 
   root :to => 'welcome#index'
 
