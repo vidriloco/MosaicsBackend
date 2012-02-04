@@ -22,7 +22,7 @@ describe Survey do
       answers = { @items[0].id => [@options[0].id, @options[1].id], @items[1].id => [@options[1].id]}
       question = {@meta_questions[0].id => {:start_time => "Dec 29, 2011 16:39", :end_time => "Dec 29, 2011 16:40", :answers => answers}} 
       
-      @pre_json[:questions] = [question]
+      @pre_json[:questions] = {}.merge(question)
       @survey = Survey.from_json(@pre_json.to_json)
     end
     
@@ -58,13 +58,13 @@ describe Survey do
   describe "Pushing a JSON with a Multiple-Select question" do
     
     before(:each) do
-      @options = @meta_questions[4].meta_answer_options
-      @items = @meta_questions[4].meta_answer_items
+      @options = @meta_questions[0].meta_answer_options
+      @items = @meta_questions[0].meta_answer_items
       
-      answers = { @items[0].id => [@options[0].id], @items[1].id => [@options[1].id] }
+      answers = { @items[0].id => [@options[0].id], @items[1].id => [@options[1].id], @items[2].id => [@options[3].id] }
       question = { @meta_questions[4].id => { :end_time => "Dec 30, 2011 16:34", :start_time => "Dec 30, 2011 16:31", :answers => answers } }
       
-      @pre_json[:questions] = [question]
+      @pre_json[:questions] = {}.merge(question)
       @survey = Survey.from_json(@pre_json.to_json)
     end
   
@@ -72,6 +72,7 @@ describe Survey do
       survey_meta_question = @survey.questions.last.meta_question
       survey_first_answer = @survey.questions.last.answers[0]
       survey_second_answer = @survey.questions.last.answers[1]
+      survey_third_answer = @survey.questions.last.answers[2]
       
       @survey.meta_survey.should == @meta_survey
       @survey.questions.size.should == 1
@@ -79,12 +80,13 @@ describe Survey do
       @survey.questions.last.end_time.should == Time.parse("Dec 30, 2011 16:34").to_s(:db)
       survey_meta_question.should == @meta_questions[4]
 
-      @survey.questions.last.answers.size.should == 2
+      @survey.questions.last.answers.size.should == 3
       survey_first_answer.meta_answer_item.should == @items[0]
       survey_first_answer.meta_answer_option.should == @options[0]
       survey_second_answer.meta_answer_item.should == @items[1]
       survey_second_answer.meta_answer_option.should == @options[1]
-      
+      survey_third_answer.meta_answer_item.should == @items[2]
+      survey_third_answer.meta_answer_option.should == @options[3]
     end
   end
   
@@ -97,7 +99,7 @@ describe Survey do
       answers = { @items[0].id => ["SNFC"], @items[1].id => ["RATP"] }
       question = {  @meta_questions[6].id => { :end_time => "Jan 30, 2012 8:34", :start_time => "Jan 30, 2012 8:31", :answers => answers } }
       
-      @pre_json[:questions] = [question]
+      @pre_json[:questions] = {}.merge(question)
       @survey = Survey.from_json(@pre_json.to_json)
     end
     

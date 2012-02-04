@@ -1,0 +1,24 @@
+<div id="meta-survey-<%= @meta_survey.id %>" class="survey">
+<%= form_tag '/api/collect' do |f| %>
+	<%= hidden_field_tag 'survey[meta_survey_id]', @meta_survey.id %>
+	
+	<% @meta_survey.meta_questions.each  do |meta_question| %>
+	<div id="meta-question-<%= meta_question.id %>" class="question">
+		<span class="number"><%= meta_question.order_identifier %>.</span>
+		<span class="title"><%= meta_question.title %></span>
+		
+		<div class="options">
+		<% meta_question.meta_answer_items.each do |meta_answer_item| %>
+			<div id="meta-answer-item-<%= meta_answer_item.id %>" class="answer-item">
+					<%= radio_button_tag "survey[questions[#{meta_question.id}[answers]]]", "#{meta_answer_item.id}" %>
+					<span class="value"><%= meta_answer_item.human_value %></span>
+					
+			</div>
+		<% end %>
+		</div>
+	</div>
+	<% end %>
+	
+	<%= submit_tag 'Enviar' %>
+<% end %>
+</div>

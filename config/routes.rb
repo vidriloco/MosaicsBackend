@@ -17,7 +17,11 @@ Backend::Application.routes.draw do
   
   end
 
-  post 'collector/commit' => 'collector#commit', :as => :collect 
+  namespace :api do
+    post :collect
+    get :whiteboard, :as => "test_whiteboard"
+  end
+  get "api/evaluation/:meta_survey_id/new" => "api#new", :as => :api_new_survey
 
   get '/manager' => "welcome#index", :as => :manager_root
   get '/admin' => "admin/main#index", :as => :admin_user_root

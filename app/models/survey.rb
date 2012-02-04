@@ -4,14 +4,14 @@ class Survey < ActiveRecord::Base
   belongs_to :device
   belongs_to :pollster
   
-  def self.from_json(json)
-    hash = JSON.parse(json)
+  def self.from_hash(hash)
+    
     question_list = hash.delete("questions")
+    
     survey=Survey.new(hash)
     
-    question_list.each do |question|
-      meta_question = question.keys[0]
-      answer_question = question[meta_question]
+    question_list.each_key do |meta_question|
+      answer_question = question_list[meta_question]
       
       answers = answer_question.delete("answers")
       question = Question.new(answer_question.merge(:meta_question_id => meta_question))
@@ -21,5 +21,9 @@ class Survey < ActiveRecord::Base
       survey.questions << question
     end
     survey
+  end
+  
+  def self.from_json(json)
+    self.from_hash(JSON.parse(json))
   end
 end

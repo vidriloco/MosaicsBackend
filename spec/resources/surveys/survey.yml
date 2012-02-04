@@ -77,16 +77,11 @@ survey:
           human_value: "No lo uso"
     5:
       title: "¿Usted fuma?"
-      type: "B"
+      type: "SC"
       items:
         1:
-          human_value: "Selected"
-        2:
-          human_value: "Deselected"
-      options: 
-        A:
           human_value: "Si"
-        B:
+        2:
           human_value: "No"
 
     6:

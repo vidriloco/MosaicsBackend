@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CollectorController do
+describe ApiController do
 
   before(:each) do
     @survey = Factory.build(:survey)
@@ -12,7 +12,7 @@ describe CollectorController do
       
       it "should assign the new survey to @survey" do
         Survey.should_receive(:from_json).and_return { @survey }
-        post :commit, :survey => "a json string"
+        post :collect, :survey => "a json string"
         assigns(:survey).should == @survey
       end
       
@@ -24,7 +24,7 @@ describe CollectorController do
         
         it "should return a success response" do
           Survey.should_receive(:from_json).and_return { @survey }
-          post :commit, :survey => "a valid json string"
+          post :collect, :survey => "a valid json string"
           response.should be_success
         end
         
@@ -38,13 +38,27 @@ describe CollectorController do
         
         it "should return a failure response" do
           Survey.should_receive(:from_json).and_return { @survey }
-          post :commit, :survey => "an invalid json string"
+          post :collect, :survey => "an invalid json string"
           response.should_not be_success
         end
         
       end
       
     end
+    
+  end
+  
+  describe "GET new:" do
+    
+    before(:each) do
+      @meta_survey = MetaSurvey.new
+    end
+    
+    it "should find the meta survey to be rendered" do
+      MetaSurvey.should_receive(:find).with("1").and_return(@meta_survey)
+      get :new, :meta_survey_id => "1"
+      assigns(:meta_survey).should == @meta_survey
+    end    
     
   end
 
