@@ -20,4 +20,16 @@ class Admin::MetaSurveysController < ApplicationController
       render :action => :new
     end
   end
+  
+  def show
+    @meta_survey = MetaSurvey.find(params[:id])
+    filename = @meta_survey.name.gsub(/\s+/, "_").downcase
+    
+    respond_to do |format|
+      format.plist do 
+        send_data @meta_survey.transform_to_plist, {:type => "text/plist; charset=iso-8859-1; header=present", 
+                    :disposition => "attachment; filename=#{filename}.plist" } 
+      end
+    end
+  end
 end

@@ -1,0 +1,5 @@
+es_MX:
+  administrators:
+    show_questions_loaded: "Mostrar preguntas"
+    download_plist: "Descargar lista de metadatos (.plist)"
+    

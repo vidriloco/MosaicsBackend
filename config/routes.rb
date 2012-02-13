@@ -13,6 +13,7 @@ Backend::Application.routes.draw do
       
       get '/meta_surveys' => 'meta_surveys#index'
       post '/meta_surveys' => 'meta_surveys#create'
+      get '/meta_surveys/:id.:format' => "meta_surveys#show", :format => "plist", :as => "meta_survey"
     end
   
   end
@@ -21,6 +22,9 @@ Backend::Application.routes.draw do
     post :collect
     get :whiteboard, :as => "test_whiteboard"
   end
+
+  get 'api/survey/:meta_survey_id/results.:format' => "api#results", :as => "download_results"
+  
   get "api/evaluation/:meta_survey_id/new" => "api#new", :as => :api_new_survey
 
   get '/manager' => "welcome#index", :as => :manager_root

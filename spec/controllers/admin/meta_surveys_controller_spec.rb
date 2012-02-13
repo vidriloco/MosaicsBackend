@@ -6,6 +6,28 @@ describe Admin::MetaSurveysController do
     @admin = Factory(:admin_user)
   end
 
+  describe "GET show" do
+    
+    before(:each) do
+      @meta_survey = MetaSurvey.new(:name => "Encuestita")
+    end
+    
+    describe "if logged-in" do
+      
+      before(:each) do
+        sign_in @admin
+      end
+    
+      it "should find the meta-survey to get it's meta-data from" do
+        MetaSurvey.should_receive(:find).with("1").and_return(@meta_survey)
+        @meta_survey.should_receive(:transform_to_plist)
+        get :show, :id => "1", :format => "plist"
+        assigns(:meta_survey).should == @meta_survey
+      end
+    end
+    
+  end
+
   describe "GET index" do
   
     before(:each) do

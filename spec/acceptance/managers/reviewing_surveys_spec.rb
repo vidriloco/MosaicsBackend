@@ -35,7 +35,6 @@ feature "A manager can review it's organization's surveys:" do
       end
       
       it "should be listed" do
-        
         common_contents_for(@organization, @manager)
 
         page.should have_content(@meta_survey.name)
@@ -47,12 +46,8 @@ feature "A manager can review it's organization's surveys:" do
       end
       
       it "should show me xls and csv formats for exporting the collected results", :js => true do
-        
         click_link I18n.t('organization.views.index.download.link')
 
-        page.should have_content I18n.t('organization.views.index.download.dialog_title')
-        
-        page.should have_content I18n.t('organization.views.index.download.dialog_message')
         find_link I18n.t('organization.views.index.download.formats.xls')
         find_link I18n.t('organization.views.index.download.formats.csv')
       end

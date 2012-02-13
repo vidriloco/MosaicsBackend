@@ -7,7 +7,8 @@
 	
 	<span class="questions_number"><%= t('meta_survey.views.show.fields.number_of_questions') %>: <%= meta_survey.meta_questions.size %></span><br/>
 	
-	<%= link_to t('general.actions.show_questions'), 'javascript:void(0);', :class => 'toggle-mquestions' %>
+	<%= link_to t('administrators.show_questions_loaded'), 'javascript:void(0);', :class => 'toggle-mquestions' %>
+	<%= link_to t('administrators.download_plist'), admin_meta_survey_path(meta_survey, :plist) %>
 	
 	<div class="mquestions hidden">
 		<%= render :partial => 'admin/meta_questions/listing', :collection => meta_survey.meta_questions, :as => :meta_question %>

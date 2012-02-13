@@ -16,7 +16,7 @@ feature "Management of meta surveys:" do
         @organization = Factory(:organization)
       end
     
-      scenario "should let me add a new meta-survey" do
+      scenario "should let me add a new meta-survey and should show it's questions and a link for downloading a plist of the survey data" do
         click_link MetaSurvey.model_name.human
         current_path.should == admin_meta_surveys_path
       
@@ -46,7 +46,8 @@ feature "Management of meta surveys:" do
           page.should have_content I18n.t('meta_survey.views.show.fields.number_of_questions')
           page.should have_content(11)
       
-          find_link I18n.t('general.actions.show_questions')
+          find_link I18n.t('administrators.show_questions_loaded')
+          find_link I18n.t('administrators.download_plist')
         end
       end
     end

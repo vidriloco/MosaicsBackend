@@ -18,6 +18,7 @@ feature "Semantic Differential questions display:" do
       click_on I18n.t('general.actions.save')
     end
   
+=begin    
     it "should show the evaluation form when visiting it", :js => true do
       visit api_test_whiteboard_path
       
@@ -35,6 +36,7 @@ feature "Semantic Differential questions display:" do
       
       
     end
+=end
   end
   
   def meta_survey_view(meta_survey)

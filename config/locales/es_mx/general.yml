@@ -13,43 +13,5 @@ es_MX:
     actions:
       save: "Guardar"
       new: "Nuevo"
-      show_questions: "Mostrar preguntas"
     messages:
       welcome: "Bienvenido"
-  users:
-    views:
-      index:
-        close_session: "Cerrar Sesión"
-        profile: "Perfil"
-      sessions:
-        new:
-          login_button: "Entrar"
-  meta_survey:
-    views:
-      show:
-        fields:
-          organization: "Nombre de la organización"
-          name: "Survey name"
-          size: "Tamaño de la muestra"
-          number_of_questions: "Número de preguntas"
-      form:
-        organization: "Organización"
-        descriptor_file: "Descriptor de la encuesta"
-      new:
-        title: "Nueva Meta-Encuesta"
-      index:
-        empty: "No hay definiciones de encuestas registradas en éste momento"
-  organization:
-    views:
-      index:
-        projects:
-          empty: "No hay proyectos activos"
-        new_project: "Nuevo Proyecto"
-        contact: "Contacto"
-        download:
-          link: "Descargar"
-          dialog_title: "Descargar datos"
-          dialog_message: "Selecciona el formato en el que quieras descargar los datos"
-          formats:
-            xls: "Excel (.xls)"
-            csv: "Valores separados por comas (.csv)"

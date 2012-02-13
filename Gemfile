@@ -8,6 +8,8 @@ gem 'rails', '3.1.3'
 gem 'pg'
 gem 'devise'
 gem 'formtastic'
+gem 'fastercsv'
+gem 'plist'
 
 group :test do
 	gem 'capybara'

@@ -1,3 +1,5 @@
 $(document).ready(function() {
-	$('.d-dialog-toggle').colorbox();
+	$('.d-toggle').click(function() {
+		$(this).siblings('.download-opts').toggle();
+	});
 });

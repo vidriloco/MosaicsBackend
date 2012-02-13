@@ -15,6 +15,11 @@ describe ApiController do
     it "should match /api/evaluation/1/new" do
       { :get => "/api/evaluation/1/new" }.should route_to(:controller => "api", :action => "new", :meta_survey_id => "1")
     end
+    
+    it "should match /api/survey/1/results.csv" do
+      { :get => "/api/survey/1/results.csv"}.should route_to(:controller => "api", :action => "results", :format => "csv", :meta_survey_id => "1")
+    end
+    
   end
   
 end

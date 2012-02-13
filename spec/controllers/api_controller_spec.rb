@@ -61,5 +61,35 @@ describe ApiController do
     end    
     
   end
+  
+  describe "GET results" do
+    
+    before(:each) do
+      @meta_survey = MetaSurvey.new
+    end
+    
+    describe "for csv files" do
+      
+      it "should send the file" do
+        MetaSurvey.should_receive(:find).with("1").and_return(@meta_survey)
+        @meta_survey.should_receive(:surveys_to_csv)
+        
+        get :results, :meta_survey_id => "1", :format => "csv"
+      end
+      
+    end
+    
+    describe "for xls files" do
+      
+      it "should send the file" do
+        MetaSurvey.should_receive(:find).with("1").and_return(@meta_survey)
+        @meta_survey.should_receive(:surveys_to_xls)
+        
+        get :results, :meta_survey_id => "1", :format => "xls"
+      end
+      
+    end
+    
+  end
 
 end

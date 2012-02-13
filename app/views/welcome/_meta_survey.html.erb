@@ -1,8 +1,8 @@
 <div id="ms-<%= meta_survey.id %>">
 	<span class="name"><%= meta_survey.name %></span><span class="date"><%= meta_survey.created_at.to_s(:long) %></span>
 	<span class="done"><%= meta_survey.surveys.count %></span>/<span class="total"><%= meta_survey.size %></span>
-	<%= link_to t('organization.views.index.download.link'), "#dialog-#{meta_survey.id}", :class => 'd-dialog-toggle' %>
+	<%= link_to t('organization.views.index.download.link'), "#dialog-#{meta_survey.id}", :class => 'd-toggle' %>
 	
-	<%= render :partial => 'download_dialog', :locals => {:meta_survey => meta_survey} %>
+	<%= render :partial => 'download_links', :locals => {:meta_survey => meta_survey} %>
 </div>
 

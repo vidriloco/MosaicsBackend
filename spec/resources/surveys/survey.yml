@@ -72,9 +72,9 @@ survey:
           human_value: "VISA"
       options:
         A: 
-          human_value: "Lo uso"
+          human_value: "Lo usa"
         B:
-          human_value: "No lo uso"
+          human_value: "No lo usa"
     5:
       title: "¿Usted fuma?"
       type: "SC"

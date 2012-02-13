@@ -53,16 +53,27 @@ describe Survey do
       survey_third_answer.meta_answer_option.should == @options[1]
       
     end
+    
+    it "should generate a valid csv string with the answers"
+    
   end
   
-  describe "Pushing a JSON with a Multiple-Select question" do
+  
+  describe "Pushing a JSON with answers for the Multiple-Select two options banks question" do
     
     before(:each) do
-      @options = @meta_questions[0].meta_answer_options
-      @items = @meta_questions[0].meta_answer_items
+      @options = @meta_questions[3].meta_answer_options
+      @items = @meta_questions[3].meta_answer_items
       
-      answers = { @items[0].id => [@options[0].id], @items[1].id => [@options[1].id], @items[2].id => [@options[3].id] }
-      question = { @meta_questions[4].id => { :end_time => "Dec 30, 2011 16:34", :start_time => "Dec 30, 2011 16:31", :answers => answers } }
+      answers = { @items[0].id => [@options[0].id], 
+                  @items[1].id => [@options[1].id], 
+                  @items[2].id => [@options[0].id],
+                  @items[3].id => [@options[1].id],
+                  @items[4].id => [@options[0].id],
+                  @items[5].id => [@options[1].id],
+                  @items[6].id => [@options[0].id],
+                  @items[7].id => [@options[1].id], }
+      question = { @meta_questions[3].id => { :end_time => "Dec 30, 2011 16:34", :start_time => "Dec 30, 2011 16:31", :answers => answers } }
       
       @pre_json[:questions] = {}.merge(question)
       @survey = Survey.from_json(@pre_json.to_json)
@@ -73,20 +84,23 @@ describe Survey do
       survey_first_answer = @survey.questions.last.answers[0]
       survey_second_answer = @survey.questions.last.answers[1]
       survey_third_answer = @survey.questions.last.answers[2]
+      survey_fourth_answer = @survey.questions.last.answers[3]
       
       @survey.meta_survey.should == @meta_survey
       @survey.questions.size.should == 1
       @survey.questions.last.start_time.should == Time.parse("Dec 30, 2011 16:31").to_s(:db)
       @survey.questions.last.end_time.should == Time.parse("Dec 30, 2011 16:34").to_s(:db)
-      survey_meta_question.should == @meta_questions[4]
+      survey_meta_question.should == @meta_questions[3]
 
-      @survey.questions.last.answers.size.should == 3
+      @survey.questions.last.answers.size.should == 8
       survey_first_answer.meta_answer_item.should == @items[0]
       survey_first_answer.meta_answer_option.should == @options[0]
       survey_second_answer.meta_answer_item.should == @items[1]
       survey_second_answer.meta_answer_option.should == @options[1]
       survey_third_answer.meta_answer_item.should == @items[2]
-      survey_third_answer.meta_answer_option.should == @options[3]
+      survey_third_answer.meta_answer_option.should == @options[0]
+      survey_fourth_answer.meta_answer_item.should == @items[3]
+      survey_fourth_answer.meta_answer_option.should == @options[1]
     end
   end
   

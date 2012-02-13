@@ -1,0 +1,15 @@
+es_MX:
+  organization:
+    views:
+      index:
+        projects:
+          empty: "No hay proyectos activos"
+        new_project: "Nuevo Proyecto"
+        contact: "Contacto"
+        download:
+          link: "Opciones de descarga"
+          dialog_title: "Descargar datos"
+          dialog_message: "Selecciona el formato en el que quieras descargar los datos"
+          formats:
+            xls: "Excel (.xls)"
+            csv: "Valores separados por comas (.csv)"
