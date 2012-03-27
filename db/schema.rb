@@ -67,7 +67,8 @@ ActiveRecord::Schema.define(:version => 20120201061605) do
     t.integer  "meta_survey_id"
     t.string   "title"
     t.string   "instruction"
-    t.string   "order_identifier"
+    t.integer  "order_identifier"
+    t.string   "group"
     t.string   "type_of"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -115,8 +116,9 @@ ActiveRecord::Schema.define(:version => 20120201061605) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "full_name"
-    t.string   "username"
+    t.string   "uid"
+    t.string   "full_name",                                             :null => false
+    t.string   "username",                                              :null => false
     t.date     "birthday"
     t.integer  "job"
     t.string   "phone"

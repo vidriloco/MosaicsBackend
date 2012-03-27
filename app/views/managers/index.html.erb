@@ -1,0 +1,28 @@
+<% content_for :header do %>
+	<div class="image"></div>
+	<%= @manager.organization.name %>
+	
+	<%= @manager.full_name %>
+	
+	<%= link_to t('users.views.index.close_session'), '' %>
+	<%= link_to t('users.views.index.profile'), '' %>
+<% end %>
+
+<% content_for :notifications do %>
+	<%= t('general.messages.welcome') %>
+<% end %>
+
+<% content_for :body do %>
+	
+	<%= link_to t('organization.views.index.new_project'), '' %>
+	
+	<% if @manager.organization.meta_surveys.empty? %>
+		<h3><%= t('organization.views.index.projects.empty') %></h3>
+	<% else %>
+		<%= render :partial => 'meta_survey', :collection => @manager.organization.meta_surveys, :as => :meta_survey %>
+	<% end %>
+<% end %>
+
+<% content_for :footer do %>
+	<%= link_to t('organization.views.index.contact'), '' %>
+<% end %>

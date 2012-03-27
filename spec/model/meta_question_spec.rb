@@ -57,7 +57,7 @@ describe MetaQuestion do
       end
     
       it "should render a prepared hash with it's answer results" do
-        @meta_question.prepare_answers_results.should == { "1" => {:title => "Un titulo cualquiera", :total => 3, "Elemento cualquiera" => { "Opción alternativa" => 2, "Opción cualquiera" => 1} }}
+        @meta_question.prepare_answers_results.should == { 1 => {:title => "Un titulo cualquiera", :total => 3, "Elemento cualquiera" => { "Opción alternativa" => 2, "Opción cualquiera" => 1} }}
       end
     end
   end

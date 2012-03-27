@@ -5,7 +5,8 @@ class CreateMetaQuestions < ActiveRecord::Migration
       t.integer :meta_survey_id
       t.string :title
       t.string :instruction
-      t.string :order_identifier
+      t.integer :order_identifier
+      t.string :group
       t.string :type_of
       t.timestamps
     end

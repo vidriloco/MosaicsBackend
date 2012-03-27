@@ -1,4 +1,15 @@
 es_MX:
+  app:
+    name: "Quantus"
+    sections: 
+      start: "Inicio"
+      identity: "Identidad"
+      services: "Servicios"
+      cases: "Casos de Éxito"
+      access: "Acceso"
+      blog: "Blog"
+      contact: "Contacto"
+      careers: "Empleo"
   activerecord:
     models:
       pollster: "Encuestador"

@@ -1,0 +1,24 @@
+answers:
+  comida_rapida:
+    1:
+      # Burger King - Delicioso
+      question: "1"
+      item: "1"
+      option: "A"
+    2:
+      # Domino's Pizza - Saludable
+      question: "1"
+      item: "2"
+      option: "B"
+    3:
+      # Subway - Completo
+      question: "1"
+      item: "3"
+      option: "C"
+    4:
+      # Subway - Económico
+      question: "1"
+      item: "3"
+      option: "D"
+        
+        

@@ -5,9 +5,9 @@ class CreateUsers < ActiveRecord::Migration
       t.recoverable
       t.rememberable
       t.trackable
-      
-      t.string :full_name
-      t.string :username
+      t.string :uid
+      t.string :full_name, :null => false
+      t.string :username, :null => false
       
       t.date :birthday
       t.integer :job
@@ -17,7 +17,6 @@ class CreateUsers < ActiveRecord::Migration
       
       t.integer :organization_id
       t.string :type
-      
       t.timestamps
     end
     

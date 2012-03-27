@@ -2,9 +2,10 @@ survey:
   name: "Encuesta Diversa"
   size: 200
   questions:
-    1:
-      title: "Seleccione cada restaurante y encierre los conceptos con los que esté de acuerdo"
+    9:
+      title: "Para cada uno de los siguientes restaurantes, encierre los conceptos con los que esté de acuerdo"
       type: "MOS"
+      group: "Comida Rapida"
       items:
         1: 
           human_value: "Burger King"
@@ -22,9 +23,10 @@ survey:
         D:
           human_value: "Económico"
 
-    2:
+    7:
       title: "Considerando la opinión que tiene respecto al precio y desempeño de las siguientes marcas de automóviles, arrastre la imagen que aparece y colóquela en el siguiente mapa"  
       type: "MOSM"
+      group: "Autos"
       items:
         1:
           human_value: "Nissan"
@@ -43,21 +45,23 @@ survey:
         8:
           human_value: "Fiat"
           
-    3:
+    10:
       title: "¿Qué opinión tiene usted acerca del voto nulo?"
       type: "OQ"
+      group: "Voto Nulo"
       items:
-        1:
-          human_value: "Open 1"
+        A:
+          human_value: "Opinión"
 
-    4:
-      title: "De las siguientes marcas de servicios financieros, arrastra hacia el círculo las que usas"
+    11:
+      title: "De las siguientes marcas de servicios financieros, arrastre hacia el círculo las que use"
       type: "MS"
+      group: "Banca"
       items:
         1:
           human_value: "BBVA Bancomer"
         2:
-          human_value: "MasterCard"
+          human_value: "Master Card"
         3:
           human_value: "HSBC"
         4:
@@ -72,21 +76,26 @@ survey:
           human_value: "VISA"
       options:
         A: 
-          human_value: "Lo usa"
+          human_value: "kSelected"
         B:
-          human_value: "No lo usa"
-    5:
-      title: "¿Usted fuma?"
+          human_value: "kDeselected"
+    1:
+      title: "Revele su sexo arrastrando la línea de división"
       type: "SC"
+      group: "Género"
       items:
         1:
-          human_value: "Si"
+          human_value: "Sexo"
+      options:
+        1:
+          human_value: "Masculino"
         2:
-          human_value: "No"
+          human_value: "Femenino"
 
-    6:
+    5:
       title: "Califique la programación de los siguientes canales de televisión"
       type: "LK"
+      group: "Medios Televisión"
       items:
         1:
           human_value: "Canal 22"
@@ -102,9 +111,9 @@ survey:
           human_value: "Once TV"
       options:
         A:
-          human_value: "Muy Bueno"
+          human_value: "Muy Buena"
         B:
-          human_value: "Bueno"
+          human_value: "Buena"
         C:
           human_value: "Regular"
         D:
@@ -112,47 +121,51 @@ survey:
         E:
           human_value: "Muy Mala"
 
-    7:
-      title: "Despues de ver el comercial, ¿Qué marcas le vienen a la mente?"
-      instruction: "Reproduzca el video y conteste la siguiente pregunta"
+    3:
+      title: "Reproduzca el video y conteste a la siguiente pregunta"
       type: "MOQ"
+      group: "Transporte"
       items:
         A:
-          human_value: "Open 1"
+          human_value: "Marca 1"
         B:
-          human_value: "Open 2"
+          human_value: "Marca 2"
         C:
-          human_value: "Open 3"
+          human_value: "Marca 3"
         D:
-          human_value: "Open 4"
+          human_value: "Marca 4"
         E:
-          human_value: "Open 5"
+          human_value: "Marca 5"
 
-    8:
-      title: "Deposita los lenguajes de programación en las canastas"
-      type: "SD"
+    4:
+      title: "Deposite cada equipo de fútbol en el círculo que corresponda con su opinión"
+      type: "MS"
+      group: "Fútbol"
       items:
         1:
-          human_value: "Scala"
+          human_value: "PSV"
         2:
-          human_value: "Java"
+          human_value: "Ajax"
         3:
-          human_value: "PHP"
+          human_value: "Chivas"
         4:
-          human_value: "Python"
+          human_value: "Liverpool"
         5:
-          human_value: "Ruby"
+          human_value: "Manchester"
+        6:
+          human_value: "Pumas"
       options:
         A:
-          human_value: "Muy Escalable"
+          human_value: "No sé"
         B:
-          human_value: "No lo conozco"
+          human_value: "Bueno"
         C:
-          human_value: "Poco Escalable"
+          human_value: "Malo"
 
-    9:
-      title: "Ordena de mayor a menor costo arrastrando al tubo cada elemento"
+    6:
+      title: "Ordene los elementos por altura a partir de su calidad de servicio"
       type: "PO"
+      group: "Telefonía Móvil"
       items: 
         1:
           human_value: "Movistar"
@@ -162,9 +175,10 @@ survey:
           human_value: "Iusacell"
         4:
           human_value: "Telcel"
-    10:
+    8:
       title: "Al elegir una nueva casa, ¿qué valor tienen para usted los siguientes criterios? (el total debe sumar 100 puntos)"
       type: "CS"
+      group: "Inmobiliarias"
       items:
         1:
           human_value: "Tamaño del Predio"
@@ -176,19 +190,47 @@ survey:
           human_value: "Precio Actual"
         5:
           human_value: "Servicios"
-    11:
-      title: "Considerando la siguiente escala, evalúa la etiqueta de la lata y responde conforme al calificativo"
+    12:
+      title: "Considerando la siguiente escala, evalúe la etiqueta de la lata y responda conforme al calificativo"
       type: "SD"
+      group: "Envases"
       items:
         1:
-          human_value: "Atractiva"
+          human_value: "Atractiva-No atractiva"
         2:
-          human_value: "Cercana"
+          human_value: "Cercana-Distante"
         3:
-          human_value: "Fría"
+          human_value: "Colorida-Descolorida"
         4:
-          human_value: "Colorida"
+          human_value: "Deseable-Indeseable"
         5:
-          human_value: "Divertida"
+          human_value: "Divertida-Aburrida"
         6:
-          human_value: "Deseable"
+          human_value: "Fría-Cálida"
+    2:
+      title: "Indique qué tan de acuerdo está con los siguientes conceptos"
+      type: "LK"
+      group: "Bici"
+      items:
+        1:
+          human_value: "Deben construirse más avenidas para más autos"
+        2:
+          human_value: "Salir en bicicleta es peligroso"
+        3:
+          human_value: "Debe promoverse el uso de medios de transporte alternativos"
+        4:
+          human_value: "El transporte público es de buena calidad"
+        5:
+          human_value: "La bicicleta es un medio de transporte eficiente"
+      options:
+        1:
+          human_value: "Muy de acuerdo"
+        2:
+          human_value: "De acuerdo"
+        3:
+          human_value: "Neutral"
+        4:
+          human_value: "En desacuerdo"
+        5:
+          human_value: "Muy en desacuerdo"
+          

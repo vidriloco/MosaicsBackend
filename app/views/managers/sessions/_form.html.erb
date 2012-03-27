@@ -1,0 +1,9 @@
+<%= form_for(Manager.new, :as => :manager, :url => session_path(:manager)) do |f| %>
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email %></div>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.submit t('users.views.sessions.new.login_button') %></div>
+<% end %>

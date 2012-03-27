@@ -39,7 +39,7 @@ class MetaSurvey < ActiveRecord::Base
   #                    }
   #                 }
   def preprocess_to_plist
-    preprocessed = {:meta_survey_id => id, :meta_questions => {}}
+    preprocessed = {:meta_survey_id => id.to_s, :meta_questions => {}}
     
     meta_questions.each do |mq|
       preprocessed[:meta_questions].merge!(mq.preprocess_to_plist)
@@ -50,7 +50,7 @@ class MetaSurvey < ActiveRecord::Base
   protected
   def merge_questions(questions)
     questions.each do |q|
-      main_fields = {:order_identifier => q[0], :title => q[1]["title"], :type_of => q[1]["type"]}
+      main_fields = {:order_identifier => q[0], :title => q[1]["title"], :type_of => q[1]["type"], :group => q[1]["group"]}
       main_fields[:instruction] = q[1]["instruction"] if q[1].has_key? "instruction"
       meta_question = MetaQuestion.register_with(main_fields, q[1]["items"], q[1]["options"])
       self.meta_questions << meta_question

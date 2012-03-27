@@ -1,16 +1,16 @@
 class ApiController < ApplicationController
-  protect_from_forgery :except => :commit
+  protect_from_forgery :except => [:collect]
   
   before_filter :find_meta_survey, :except => [:collect]
   
-  def collect
-    @survey = params[:survey].is_a?(String) ? Survey.from_json(params[:survey]) : Survey.from_hash(params[:survey])
-    
-    if @survey.save
+  def collect    
+    @survey=Pollster.digest_survey_from(params[:survey])
+      
+    if @survey && @survey.save
       render(:nothing => true)
     else
       render(:nothing => true, :status => :unprocessable_entity)
-    end
+    end    
   end
   
   def whiteboard

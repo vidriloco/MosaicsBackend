@@ -3,7 +3,7 @@ module Quantus
   # Here we set the identifiers for meta questions with open answers as used in YML descriptor files 
   # or internally in the application meta questions representations
   #
-  @@question_types =  {:open => [], :binary => ["SC"] }
+  @@question_types =  {:open => [], :binary => ["SC"], :perceptual_map => [] }
   @@authenticity_application_path_ref = nil
   
   # Example: 
@@ -16,20 +16,12 @@ module Quantus
     yield self
   end
   
-  def self.open_question_types=(question_types)
-    @@question_types[:open] = question_types
+  def self.register_question_type(type, question_types)
+    @@question_types[type.to_sym] = question_types
   end
   
-  def self.open_question_types
-    return @@question_types[:open]
-  end
-  
-  def self.binary_question_types=(question_types)
-    @@question_types[:binary] = question_types
-  end
-  
-  def self.binary_question_types
-    return @@question_types[:binary]
+  def self.registered_question_types_for(type)
+    return @@question_types[type.to_sym]
   end
   
   def self.authenticity_application_path

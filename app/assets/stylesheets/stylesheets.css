@@ -1,0 +1,14 @@
+/* Reset */
+/*@import url("reset.css");*/
+/* Normalize */
+@import url("normalize.css");
+/* Font-face */
+@import @import url(http://fonts.googleapis.com/css?family=Open+Sans:700,600,800);
+/* Phone */
+@import url("phone.css") only screen and (max-width:320px);
+/* Tablet */
+@import url("tablet.css") only screen and (min-width:321px) and (max-width:768px);
+/* Desktop */
+@import url("desktop.css") only screen and (min-width:769px);
+
+

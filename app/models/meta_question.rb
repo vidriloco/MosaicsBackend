@@ -25,28 +25,48 @@ class MetaQuestion < ActiveRecord::Base
       plist_hash=plist_hash.merge(preprocess_end_chain_with(assoc))
     end
     
-    {order_identifier => plist_hash.merge(:meta_question_id => id)}
+    {order_identifier => plist_hash.merge(:meta_question_id => id.to_s)}
   end
   
   def prepare_answers_results
     answer_hash={}
     questions.each do |question|
       question.answers.each do |answer|
-        answer_hash[answer.meta_answer_item.human_value] ||= {}
-        answer_hash[answer.meta_answer_item.human_value][answer.meta_answer_option.human_value] ||= 0
-
-        answer_hash[answer.meta_answer_item.human_value][answer.meta_answer_option.human_value] += 1
+        p "Item: #{answer.humanized_item}"
+        
+        if answer.has_humanized_option?
+          p "Option: #{answer.humanized_option}"
+          
+          answer_hash[answer.humanized_item] ||= {}
+          answer_hash[answer.humanized_item][answer.humanized_option] ||= 0
+          answer_hash[answer.humanized_item][answer.humanized_option] += 1
+        else
+          p "Open Value: #{answer.open_value}"
+          answer_hash[answer.humanized_item] ||= []
+          answer_hash[answer.humanized_item] = answer.open_value
+        end
       end
     end
     
-    {order_identifier => {:title => title, :total => questions.count}.merge(answer_hash)}
+    {order_identifier => {:title => title}.merge(answer_hash)}
+  end
+  
+  #extractor methods
+  
+  def question_type
+    return :perceptual_map if(self.type_of == Quantus.registered_question_types_for(:perceptual_map))
+    return :open_value if(Quantus.registered_question_types_for(:open).include? self.type_of)
+  end
+  
+  def self.answers_for(meta_question_id)
+    self.find(meta_question_id).prepare_answers_results
   end
   
   protected
   
   def preprocess_end_chain_with(items_or_options)
     preprocessed_chain = self.send(items_or_options).each.inject({}) do |last, item_or_option|
-      last[item_or_option.id] = { :human_value => item_or_option.human_value, :identifier => item_or_option.identifier }
+      last[item_or_option.human_value] = { :id => item_or_option.id.to_s, :order_number => item_or_option.identifier }
       last
     end
     {items_or_options.to_sym => preprocessed_chain}

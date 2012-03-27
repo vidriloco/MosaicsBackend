@@ -1,9 +1,17 @@
 class WelcomeController < ApplicationController
   layout 'welcome'
-  
-  before_filter :authenticate_manager!
+  before_filter :redirect_if_logged_in, :only => [:access]
   
   def index
-    @manager = current_manager  
+    
+  end
+  
+  def access
+    
+  end
+  
+  private
+  def redirect_if_logged_in
+    
   end
 end

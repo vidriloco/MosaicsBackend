@@ -1,25 +1,36 @@
-<!DOCTYPE html>
-<html>
-	<head>
-	  <title>Backend</title>
-	  <%= stylesheet_link_tag    "application" %>
-	  <%= javascript_include_tag "application" %>
-	  <%= csrf_meta_tags %>
-	</head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title><%= t('app.name') %></title>
+<%= stylesheet_link_tag    "application" %>
+<%= javascript_include_tag "application" %>
+</head>
+
 <body>
-
-	<div id="header">
-		<%= yield :header %>
-	</div>
-	<div id="notifications"><%= yield :notifications %></div>
-
-	<div id="content">
-		<%= yield :body %>
-	</div>
-
-	<div id="footer">
-		<%= yield :footer %>
-	</div>
-
+<div id="headerback">
+	<%= render 'layouts/shared/top_menu' %>
+</div>
+<%= yield :banner %>
+<div id="contentback">
+  <div id="content">
+    <%= yield %>
+  </div>
+</div>
+<div id="footerback">
+  <div id="footer">
+    <%= render 'layouts/shared/low_menu' %>
+    <div class="clear"></div>
+    <p class="legal">Quantus © 2012 |<a href="#"> Política de Privacidad</a> | <a href="#">Propiedad Intelectual</a></p>
+    <div id="social">
+      <p>Síguenos:</p>
+      <ul>
+        <li><a class="twitter" href="#">Twitter</a></li>
+        <li><a class="facebook" href="#">Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
 </body>
 </html>

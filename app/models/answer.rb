@@ -6,34 +6,62 @@ class Answer < ActiveRecord::Base
   
   def self.build_from(answers, meta_question)
     collected = Array.new
+    question_type = get_question_type_for(meta_question)
     
-    if answers.is_a?(Hash)
-      answers.each_pair do |answer_item, option_values|
-        if MetaAnswerItem.exists?(answer_item.to_i)
+    answers.each_pair do |answer_item, option_values|
+      if MetaAnswerItem.exists?(answer_item.to_i)
+        # differentiate from differential map and other question through types
+        if question_type.eql?(:perceptual_map)
+          collected << Answer.register_as_perceptual_map(option_values, answer_item)
+        else
           option_values.each do |option_value|
-            if !self.corresponds_to_open_value_question?(meta_question)
-              if MetaAnswerOption.exists?(option_value)
-                collected << Answer.new(:meta_answer_option_id => option_value, :meta_answer_item_id => answer_item)
-              end
+            if question_type.eql?(:open_value)
+              collected << Answer.register_as_open_value(option_value, answer_item)
             else
-              collected << Answer.new(:open_value => option_value, :meta_answer_item_id => answer_item)
+              collected << Answer.register_as_normal(option_value, answer_item) if(MetaAnswerOption.exists?(option_value))
             end 
           end
         end
-      end  
-    else
-      if self.corresponds_to_binary_value_question?(meta_question)
-        collected << Answer.new(:meta_answer_item_id => answers)
       end
-    end
+    end  
     collected
   end
   
-  def self.corresponds_to_open_value_question?(meta_question)
-    MetaQuestion.find(:first, :conditions => [ "type_of IN (?) AND id = ?", Quantus.open_question_types, meta_question])
+  def self.find_by_column_components(question_id, components)
+    opts = components.size == 3 ? {:meta_answer_option_id => components[2].id} : {}
+    self.first(:conditions => opts.merge({ :question_id => question_id, :meta_answer_item_id => components[1].id }))
   end
   
-  def self.corresponds_to_binary_value_question?(meta_question)
-    MetaQuestion.find(:first, :conditions => [ "type_of IN (?) AND id = ?", Quantus.binary_question_types, meta_question])
+  # Extractor methods
+  
+  def humanized_item
+    meta_answer_item.human_value
+  end
+  
+  def has_humanized_option?
+    !meta_answer_option.nil?
+  end
+  
+  def humanized_option
+    meta_answer_option.human_value
+  end
+  
+  def self.register_as_perceptual_map(options, item)
+    # the options parameter is of the form [x,y]
+    self.register_as_open_value(options.to_s, item)
+  end
+  
+  def self.register_as_open_value(option, item)
+    Answer.new(:open_value => option, :meta_answer_item_id => item.to_i)
+  end
+  
+  def self.register_as_normal(option, item)
+    Answer.new(:meta_answer_option_id => option.to_i, :meta_answer_item_id => item.to_i)
+  end
+  
+  private
+  def self.get_question_type_for(meta_question_id)
+    meta_question=MetaQuestion.find(meta_question_id)
+    meta_question.question_type
   end
 end

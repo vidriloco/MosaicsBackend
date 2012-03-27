@@ -1,28 +1,16 @@
-<% content_for :header do %>
-	<div class="image"></div>
-	<%= @manager.organization.name %>
-	
-	<%= @manager.full_name %>
-	
-	<%= link_to t('users.views.index.close_session'), '' %>
-	<%= link_to t('users.views.index.profile'), '' %>
-<% end %>
+<div class="box1">
+	<h1>Header One</h1>
+  
+  <p>Lorem ipsum <em>emphasised text</em> dolor sit amet, <strong>strong text</strong> 
+    consectetur adipisicing elit, <abbr title="">abbreviated text</abbr> sed do eiusmod tempor 
+    <acronym title="">acronym text</acronym> incididunt ut labore et dolore magna aliqua. Ut 
+    <q>quoted text</q> enim ad minim veniam, quis nostrud exercitation <a href="/">link text</a> 
+    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute <del>deleted text</del> 
+    <ins>inserted text</ins> irure dolor in reprehenderit in voluptate velit esse cillum 
+    dolore eu fugiat nulla pariatur. Excepteur sint occaecat <code>code text</code> cupidatat 
+    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
 
-<% content_for :notifications do %>
-	<%= t('general.messages.welcome') %>
-<% end %>
-
-<% content_for :body do %>
-	
-	<%= link_to t('organization.views.index.new_project'), '' %>
-	
-	<% if @manager.organization.meta_surveys.empty? %>
-		<h3><%= t('organization.views.index.projects.empty') %></h3>
-	<% else %>
-		<%= render :partial => 'meta_survey', :collection => @manager.organization.meta_surveys, :as => :meta_survey %>
-	<% end %>
-<% end %>
-
-<% content_for :footer do %>
-	<%= link_to t('organization.views.index.contact'), '' %>
+<%= content_for :banner do %>
+	<div id="banner"></div>
 <% end %>
