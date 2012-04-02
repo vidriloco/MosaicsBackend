@@ -1,4 +1,6 @@
 class MetaSurvey < ActiveRecord::Base
+  include Results::MetaSurveys
+  
   belongs_to :organization
   
   has_many :meta_questions, :dependent => :destroy
@@ -17,13 +19,6 @@ class MetaSurvey < ActiveRecord::Base
     self.size=contents["size"]
     self.merge_questions(contents["questions"])
   end
-  
-  def surveys_to_csv
-  end
-  
-  def surveys_to_xls
-  end
-  
   
   def transform_to_plist
     preprocess_to_plist.to_plist

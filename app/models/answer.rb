@@ -1,4 +1,5 @@
 class Answer < ActiveRecord::Base
+  include Results::Answers
   belongs_to :question
   belongs_to :meta_answer_item
   belongs_to :meta_answer_option
@@ -30,20 +31,6 @@ class Answer < ActiveRecord::Base
   def self.find_by_column_components(question_id, components)
     opts = components.size == 3 ? {:meta_answer_option_id => components[2].id} : {}
     self.first(:conditions => opts.merge({ :question_id => question_id, :meta_answer_item_id => components[1].id }))
-  end
-  
-  # Extractor methods
-  
-  def humanized_item
-    meta_answer_item.human_value
-  end
-  
-  def has_humanized_option?
-    !meta_answer_option.nil?
-  end
-  
-  def humanized_option
-    meta_answer_option.human_value
   end
   
   def self.register_as_perceptual_map(options, item)

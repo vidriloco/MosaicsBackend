@@ -17,8 +17,8 @@ class Pollster < User
   end
   
   def self.digest_survey_from(params)
-    if self.find_by_uid(params.delete(:pollster_uid))
-      return Survey.from_hash(params)
+    if pollster=self.find_by_uid(params.delete(:pollster_uid))
+      return Survey.from_hash(params, pollster)
     end
     return nil
   end

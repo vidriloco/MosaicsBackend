@@ -1,14 +1,16 @@
 class Survey < ActiveRecord::Base  
+  include Results::Surveys
+  
   has_many :questions, :dependent => :destroy
   belongs_to :meta_survey
   belongs_to :device
   belongs_to :pollster
   
-  def self.from_hash(hash)
+  def self.from_hash(hash, pollster)
     
     question_list = hash.delete("questions")
     
-    survey=Survey.new(hash)
+    survey=Survey.new(hash.merge(:pollster_id => pollster.id))
     
     question_list.each_key do |meta_question|
       answer_question = question_list[meta_question]

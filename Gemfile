@@ -18,7 +18,7 @@ group :test do
 	  gem 'steak'
 	  gem 'gherkin'
 	  gem 'autotest'
-		gem 'capybara-webkit'
+	#gem 'capybara-webkit'
 	gem 'delorean'
 	  gem 'ZenTest', "~> 4.4.2"
 	# macos

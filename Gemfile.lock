@@ -48,9 +48,6 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    capybara-webkit (0.8.0)
-      capybara (>= 1.0.0, < 1.2)
-      json
     childprocess (0.3.0)
       ffi (~> 1.0.6)
     chronic (0.6.6)
@@ -200,7 +197,6 @@ DEPENDENCIES
   autotest-growl
   autotest-rails
   capybara
-  capybara-webkit
   coffee-rails (~> 3.1.1)
   database_cleaner
   delorean
