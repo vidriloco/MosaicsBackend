@@ -1,34 +1,13 @@
 class Survey < ActiveRecord::Base  
   include Results::Surveys
-  
+  include Commits::Surveys
   has_many :questions, :dependent => :destroy
   belongs_to :meta_survey
   belongs_to :device
   belongs_to :pollster
   
-  def self.from_hash(hash, pollster)
-    
-    question_list = hash.delete("questions")
-    
-    survey=Survey.new(hash.merge(:pollster_id => pollster.id))
-    
-    question_list.each_key do |meta_question|
-      answer_question = question_list[meta_question]
-      
-      answers = answer_question.delete("answers")
-      question = Question.new(answer_question.merge(:meta_question_id => meta_question))
-      
-      Answer.build_from(answers, meta_question).each { |answer| question.answers << answer }
-      
-      survey.questions << question
-    end
-    survey
-  end
   
-  def self.from_json(json)
-    self.from_hash(JSON.parse(json))
-  end
-  
+  # Probably the following methods will be DELETED
   def humanized_columns(conditions={})
     keyed_columns=keyed_columns(conditions)
     keyed_columns.map { |column| Survey.humanize_column_key(column) }

@@ -1,4 +1,6 @@
 class MetaQuestion < ActiveRecord::Base
+  include Exports::MetaQuestions
+  
   has_many :meta_answer_options, :dependent => :destroy
   has_many :meta_answer_items, :dependent => :destroy
   has_many :questions
@@ -40,20 +42,6 @@ class MetaQuestion < ActiveRecord::Base
     end
   end
   
-  # Recovers the data of this meta question for postprocessing to plist
-  def preprocess_to_plist
-    plist_hash = %w(title instruction type_of).each.inject({}) do |last, attr|
-      last[attr.to_sym] = self.send(attr)
-      last
-    end
-    
-    %w(meta_answer_items meta_answer_options).each do |assoc|
-      plist_hash=plist_hash.merge(preprocess_end_chain_with(assoc))
-    end
-    
-    {order_identifier => plist_hash.merge(:meta_question_id => id.to_s)}
-  end
-  
   # retrieves the question type for this meta_question
   def question_type
     return :perceptual_map if(Quantus.registered_question_types_for(:perceptual_map).include? type_of)
@@ -61,15 +49,6 @@ class MetaQuestion < ActiveRecord::Base
   end
   
   protected
-  
-  # continues execution of tasks for the method: preprocess_to_plist
-  def preprocess_end_chain_with(items_or_options)
-    preprocessed_chain = self.send(items_or_options).each.inject({}) do |last, item_or_option|
-      last[item_or_option.human_value] = { :id => item_or_option.id.to_s, :order_number => item_or_option.identifier }
-      last
-    end
-    {items_or_options.to_sym => preprocessed_chain}
-  end
   
   # extracts the structure of the collected questions & answers for this type of meta_question
   def prepare_answer_representation

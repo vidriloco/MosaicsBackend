@@ -1,5 +1,5 @@
 class Manager::MainController < ApplicationController
-  
+  layout 'welcome'
   before_filter :authenticate_manager!
   
   def index
