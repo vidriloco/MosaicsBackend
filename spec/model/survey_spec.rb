@@ -1,142 +1,252 @@
 require 'spec_helper'
+require 'survey_helper'
+include SurveyHelper
 
 describe Survey do
   
   before(:each) do
+    @hashed_results = JSON.parse(survey_results)
+    
     @meta_survey = Factory.build(:meta_survey)
     @meta_survey.merge_descriptor_from File.open(File.join(Rails.root, "spec", "resources", "surveys", "survey.yml"))
     @meta_survey.save
-    @pollster = Factory(:pollster)
-    @device = Factory(:device)
-    
-    @meta_questions = @meta_survey.meta_questions
-    @pre_json = {:meta_survey_id => @meta_survey.id, :pollster_id => @pollster.id, :device_id => @device.id}
   end
   
-  describe "Pushing a JSON with a Multiple-Option-Select question" do
+  describe "Given both pollster uid and device identifier are registered" do
     
     before(:each) do
-      @options = @meta_questions[0].meta_answer_options
-      @items = @meta_questions[0].meta_answer_items
+      @pollster = Factory(:pollster)
+      @pollster.update_attribute(:uid, @hashed_results["survey"]["pollster_uid"])
+      @device = Factory(:device, :identifier => @hashed_results["survey"]["device_id"])
+    end
+    
+    it "should persist a new survey result" do
+      survey=Survey.build_from_json(survey_results)
+      survey.should_not be_nil
+      survey.pollster.should == @pollster
+      survey.device.should == @device
+      survey.meta_survey.should == @meta_survey
+      Question.count.should == @hashed_results["survey"]["questions"].size
+    end
+    
+    describe "and a survey is commited" do
+      
+      before(:each) do
+        Survey.build_from_json(survey_results)
+      end
+      
+      it "should generate the results table for this survey" do
+        survey = Survey.first
 
-      answers = { @items[0].id => [@options[0].id, @options[1].id], @items[1].id => [@options[1].id]}
-      question = {@meta_questions[0].id => {:start_time => "Dec 29, 2011 16:39", :end_time => "Dec 29, 2011 16:40", :answers => answers}} 
+        survey.bare_results[0].should == {
+          :title => I18n.t('surveys.columns.survey.title'),
+          :value => survey.id
+        }
+        
+        survey.bare_results[1].should == {
+          :title => I18n.t('surveys.columns.pollster.title'),
+          :value => @pollster.username
+        }
+        
+        survey.bare_results[2].should == {
+          :title => I18n.t('surveys.columns.device.title'),
+          :value => @device.identifier
+        }
+        
+        survey.bare_results.should include({
+          :title => "P1_1",
+          :answer => MetaAnswerOption.find_by_identifier("11o1").order_identifier
+        }) 
       
-      @pre_json[:questions] = {}.merge(question)
-      @survey = Survey.from_json(@pre_json.to_json)
-    end
-    
-    it "should persist the survey metadata together with it's answers" do
-      survey_meta_question = @survey.questions.first.meta_question
-      survey_first_answer = @survey.questions.first.answers[0]
-      survey_second_answer = @survey.questions.first.answers[1]
-      survey_third_answer = @survey.questions.first.answers[2]
+        survey.bare_results.should include({
+          :title => "P2_1",
+          :answer => MetaAnswerOption.find_by_identifier("12o2").order_identifier
+        })
       
-      @survey.pollster.should == @pollster
-      @survey.device.should == @device
+        survey.bare_results.should include({
+          :title => "P2_2",
+          :answer => MetaAnswerOption.find_by_identifier("12o4").order_identifier
+        })
       
-      @survey.meta_survey.should == @meta_survey
-      @survey.questions.size.should == 1
-      @survey.questions.first.start_time.should == Time.parse("Dec 29, 2011 16:39").to_s(:db)
-      @survey.questions.first.end_time.should == Time.parse("Dec 29, 2011 16:40").to_s(:db)
-      survey_meta_question.should == @meta_questions.first
+        survey.bare_results.should include({
+          :title => "P2_3",
+          :answer => MetaAnswerOption.find_by_identifier("12o5").order_identifier
+        })
       
-      # For every answer JSON dictionary received the number of records in the database follow the rule: #keys x #items_in_value
-      # { key: [val1, val2] } => 2 records on the answers table 
-      @survey.questions.first.answers.size.should == 3
-      survey_first_answer.meta_answer_item.should == @items[0]
-      survey_first_answer.meta_answer_option.should == @options[0]
-      survey_second_answer.meta_answer_item.should == @items[0]
-      survey_second_answer.meta_answer_option.should == @options[1]
+        survey.bare_results.should include({
+          :title => "P2_4",
+          :answer => MetaAnswerOption.find_by_identifier("12o1").order_identifier
+        })
       
-      survey_third_answer.meta_answer_item.should == @items[1]
-      survey_third_answer.meta_answer_option.should == @options[1]
-      
-    end
-    
-    it "should generate a valid csv string with the answers"
-    
-  end
-  
-  
-  describe "Pushing a JSON with answers for the Multiple-Select two options banks question" do
-    
-    before(:each) do
-      @options = @meta_questions[3].meta_answer_options
-      @items = @meta_questions[3].meta_answer_items
-      
-      answers = { @items[0].id => [@options[0].id], 
-                  @items[1].id => [@options[1].id], 
-                  @items[2].id => [@options[0].id],
-                  @items[3].id => [@options[1].id],
-                  @items[4].id => [@options[0].id],
-                  @items[5].id => [@options[1].id],
-                  @items[6].id => [@options[0].id],
-                  @items[7].id => [@options[1].id], }
-      question = { @meta_questions[3].id => { :end_time => "Dec 30, 2011 16:34", :start_time => "Dec 30, 2011 16:31", :answers => answers } }
-      
-      @pre_json[:questions] = {}.merge(question)
-      @survey = Survey.from_json(@pre_json.to_json)
-    end
-  
-    it "should persist the survey metadata together with it's answers" do
-      survey_meta_question = @survey.questions.last.meta_question
-      survey_first_answer = @survey.questions.last.answers[0]
-      survey_second_answer = @survey.questions.last.answers[1]
-      survey_third_answer = @survey.questions.last.answers[2]
-      survey_fourth_answer = @survey.questions.last.answers[3]
-      
-      @survey.meta_survey.should == @meta_survey
-      @survey.questions.size.should == 1
-      @survey.questions.last.start_time.should == Time.parse("Dec 30, 2011 16:31").to_s(:db)
-      @survey.questions.last.end_time.should == Time.parse("Dec 30, 2011 16:34").to_s(:db)
-      survey_meta_question.should == @meta_questions[3]
+        survey.bare_results.should include({
+          :title => "P2_5",
+          :answer => MetaAnswerOption.find_by_identifier("12o3").order_identifier
+        })
 
-      @survey.questions.last.answers.size.should == 8
-      survey_first_answer.meta_answer_item.should == @items[0]
-      survey_first_answer.meta_answer_option.should == @options[0]
-      survey_second_answer.meta_answer_item.should == @items[1]
-      survey_second_answer.meta_answer_option.should == @options[1]
-      survey_third_answer.meta_answer_item.should == @items[2]
-      survey_third_answer.meta_answer_option.should == @options[0]
-      survey_fourth_answer.meta_answer_item.should == @items[3]
-      survey_fourth_answer.meta_answer_option.should == @options[1]
+
+        survey.bare_results.should include({
+          :title => "P7_1",
+          :answer => ["0.4596774","-0.216129"].to_s
+        })
+      
+        survey.bare_results.should include({
+          :title => "P7_2",
+          :answer => ["-0.8709677","-0.8967742"].to_s
+        })
+      
+        survey.bare_results.should include({
+          :title => "P7_3",
+          :answer => ["-0.5629032","0.4693548"].to_s
+        })
+      
+        survey.bare_results.should include({
+          :title => "P7_4",
+          :answer => ["0.5306451","0.9370968"].to_s
+        })
+      
+        survey.bare_results.should include({
+          :title => "P7_5",
+          :answer => ["0.1387097","-0.6096774"].to_s
+        })
+      
+        survey.bare_results.should include({
+          :title => "P7_6",
+          :answer => ["-0.2096774","0.1532258"].to_s
+        })
+      
+        survey.bare_results.should include({
+          :title => "P7_7",
+          :answer => ["-0.533871","-0.5209677"].to_s
+        })
+      
+        survey.bare_results.should include({
+          :title => "P7_8",
+          :answer => ["0.5177419","0.4693548"].to_s
+        })
+      
+      
+        survey.bare_results.should include({
+          :title => "P3_A",
+          :answer => "TGV"
+        })
+      
+        survey.bare_results.should include({
+          :title => "P3_B",
+          :answer => "SNFC"
+        })
+        
+        survey.bare_results.should include({
+          :title => "P3_C",
+          :answer => ""
+        })
+        
+        survey.bare_results.should include({
+          :title => "P3_D",
+          :answer => ""
+        })
+        
+        survey.bare_results.should include({
+          :title => "P3_E",
+          :answer => ""
+        })
+      end
+      
+      it "should generate translated results for this survey" do
+        survey = Survey.first
+        
+        survey.bare_results(:translated).should include({
+          :title => "P8_1",
+          :answer => "C"
+        })
+        
+        survey.bare_results(:translated).should include({
+          :title => "P8_2",
+          :answer => "A"
+        })
+      
+        survey.bare_results(:translated).should include({
+          :title => "P8_3",
+          :answer => "D"
+        })
+      
+        survey.bare_results(:translated).should include({
+          :title => "P8_4",
+          :answer => "A"
+        })
+      
+        survey.bare_results(:translated).should include({
+          :title => "P8_5",
+          :answer => "D"
+        })
+        
+        
+        survey.bare_results(:translated).should include({
+          :title => "P9_1A",
+          :answer => 1
+        })
+        
+        survey.bare_results(:translated).should include({
+          :title => "P9_1B",
+          :answer => 1
+        })
+      
+        survey.bare_results(:translated).should include({
+          :title => "P9_1C",
+          :answer => 2
+        })
+        
+        survey.bare_results(:translated).should include({
+          :title => "P9_1D",
+          :answer => 1
+        })
+      
+        survey.bare_results(:translated).should include({
+          :title => "P9_2A",
+          :answer => 1
+        })
+      
+        survey.bare_results(:translated).should include({
+          :title => "P9_2B",
+          :answer => 1
+        })
+        
+        survey.bare_results(:translated).should include({
+          :title => "P9_2C",
+          :answer => 2
+        })
+        
+        survey.bare_results(:translated).should include({
+          :title => "P9_2D",
+          :answer => 2
+        })
+
+      end
+      
     end
+        
   end
   
-  describe "Pushing a JSON with open answers for a question" do
+  describe "Given only the device identifier was provided" do
+  
+    before(:each) do
+      @device = Factory(:device, :identifier => @hashed_results["survey"]["device_id"])
+    end
+  
+    it "should not persist a survey results when the pollster uid is not provided" do
+      Survey.build_from_json(survey_results).should be_nil
+    end
+  
+  end
+  
+  describe "Given only the pollster uid was provided" do
     
     before(:each) do
-      @options = @meta_questions[6].meta_answer_options
-      @items = @meta_questions[6].meta_answer_items
-      
-      answers = { @items[0].id => ["SNFC"], @items[1].id => ["RATP"] }
-      question = {  @meta_questions[6].id => { :end_time => "Jan 30, 2012 8:34", :start_time => "Jan 30, 2012 8:31", :answers => answers } }
-      
-      @pre_json[:questions] = {}.merge(question)
-      @survey = Survey.from_json(@pre_json.to_json)
+      @pollster = Factory(:pollster)
+      @pollster.update_attribute(:uid, @hashed_results["survey"]["pollster_uid"])
     end
     
-    it "should persist the survey answers " do
-      survey_meta_question = @survey.questions.last.meta_question
-      survey_first_answer = @survey.questions.last.answers[0]
-      survey_second_answer = @survey.questions.last.answers[1]
-      
-      @survey.meta_survey.should == @meta_survey
-      
-      @survey.questions.size.should == 1
-      
-      @survey.questions.last.start_time.should == Time.parse("Jan 30, 2012 8:31").to_s(:db)
-      @survey.questions.last.end_time.should == Time.parse("Jan 30, 2012 8:34").to_s(:db)
-      survey_meta_question.should == @meta_questions[6]
-      
-      @survey.questions.last.answers.size.should == 2
-      
-      survey_first_answer.open_value.should == "SNFC"
-      survey_first_answer.meta_answer_item.should == @items[0]
-      
-      survey_second_answer.open_value.should == "RATP"
-      survey_second_answer.meta_answer_item.should == @items[1]
+    it "should not persist a survey results when the device identifier is not provided" do
+      Survey.build_from_json(survey_results).should be_nil
     end
     
   end

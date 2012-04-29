@@ -5,6 +5,7 @@ class CreateMetaQuestions < ActiveRecord::Migration
       t.integer :meta_survey_id
       t.string :title
       t.string :instruction
+      t.string :identifier
       t.integer :order_identifier
       t.string :group
       t.string :type_of
@@ -13,6 +14,8 @@ class CreateMetaQuestions < ActiveRecord::Migration
     
     execute 'CREATE SEQUENCE idGenMetaQuestions START 10000;'
     execute "ALTER TABLE \"meta_questions\" ALTER COLUMN \"id\" set DEFAULT NEXTVAL('idGenMetaQuestions');"
+    
+    add_index(:meta_questions, :identifier, :unique => true, :name => "meta_questions_identifier_idx")
   end
 
   def self.down

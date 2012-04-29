@@ -3,9 +3,7 @@ class CreateSurveys < ActiveRecord::Migration
     create_table :surveys do |t|
       t.integer :meta_survey_id
       t.integer :pollster_id
-      t.integer :device_id
-      
-      t.timestamps
+      t.integer :device_id      
     end
   end
 end

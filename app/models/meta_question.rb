@@ -1,45 +1,20 @@
 class MetaQuestion < ActiveRecord::Base
   include Exports::MetaQuestions
+  include Results::MetaQuestions
   
   has_many :meta_answer_options, :dependent => :destroy
   has_many :meta_answer_items, :dependent => :destroy
   has_many :questions
+  has_many :answers, :dependent => :destroy
   belongs_to :meta_survey
+  
+  validates_uniqueness_of :identifier
   
   def self.register_with(fields, items, options)
     ms=self.new(fields)
-    ms.merge_items_and_options(items, options)
+    ms.merge_items(items) unless items.nil?
+    ms.merge_options(options) unless options.nil?
     ms
-  end
-  
-  def merge_items_and_options(items, options)
-    self.merge_items(items) unless items.nil?
-    self.merge_options(options) unless options.nil?
-  end
-  
-  def collect_answers(opts=nil)
-    answers = translate_representation
-    return answers if opts.nil?
-    
-    if opts[:report_statistics]
-      stats = {}
-      answers.each_pair do |key, answers|
-        answers.each do |answer|
-          if answer.has_key?(:category)
-            stats[answer[:item]] ||= 0
-            stats[answer[:item]] += 1
-          elsif answer.has_key?(:open_value)
-            stats[answer[:item]] ||= []
-            if question_type.eql?(:perceptual_map)
-              stats[answer[:item]] << answer[:open_value].scan(/[-]*[\d.]+/)
-            else
-              stats[answer[:item]] << answer[:open_value]
-            end
-          end
-        end
-      end
-      {:answers => stats, :title => title, :total_questions => answers.count}
-    end
   end
   
   # retrieves the question type for this meta_question
@@ -48,41 +23,21 @@ class MetaQuestion < ActiveRecord::Base
     return :open_value if(Quantus.registered_question_types_for(:open).include? type_of)
   end
   
-  protected
-  
-  # extracts the structure of the collected questions & answers for this type of meta_question
-  def prepare_answer_representation
-    equivalence=questions.each.inject({}) do |collected, question| 
-      collected.merge!({ question.id => question.answers.map(&:id) })
-      collected
-    end
-    { :mq_id => id, :q_and_a => equivalence }
-  end
-  
-  # translates to human representation
-  def translate_representation
-    collected = {}
-    representation = prepare_answer_representation[:q_and_a]
-    representation.keys.map do |question_id|
-      representation[question_id].each do |answer_id|
-        collected[question_id] ||= []
-        collected[question_id] << Answer.generate_result_for(answer_id)
-      end
-    end
-    collected
+  def with_options_column_components?
+    Quantus.question_types_with_full_include.include? type_of
   end
   
   # builds the response from the client for items
   def merge_items(items)
     items.each_pair do |key, val|
-      self.meta_answer_items << MetaAnswerItem.new(:human_value => val["human_value"], :identifier => key)
+      self.meta_answer_items << MetaAnswerItem.new(:human_value => val["human_value"], :order_identifier => key, :identifier => "#{self.identifier}i#{key}")
     end
   end
   
   # builds the response from the client for options
   def merge_options(options)
     options.each_pair do |key, val|
-      self.meta_answer_options << MetaAnswerOption.new(:human_value => val["human_value"], :identifier => key)
+      self.meta_answer_options << MetaAnswerOption.new(:human_value => val["human_value"], :order_identifier => key, :identifier => "#{self.identifier}o#{key}")
     end
   end
 end

@@ -1,5 +1,4 @@
-module Results::Answers
-  
+module Results::MetaQuestions
   module ClassMethods
     
   end

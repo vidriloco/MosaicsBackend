@@ -1,0 +1,123 @@
+survey:
+  identifier: "1"
+  name: "Encuesta Diversa"
+  size: 200
+  questions:
+    9:
+      title: "Para cada uno de los siguientes restaurantes, encierre los conceptos con los que esté de acuerdo"
+      type: "MOS"
+      group: "Comida Rapida"
+      items:
+        1: 
+          human_value: "Burger King"
+        2:
+          human_value: "Domino's Pizza"
+        3:
+          human_value: "Subway"
+      options:
+        A:
+          human_value: "Delicioso"
+        B:
+          human_value: "Saludable"
+        C:
+          human_value: "Completo"
+        D:
+          human_value: "Económico"
+
+    9:
+      title: "Considerando la opinión que tiene respecto al precio y desempeño de las siguientes marcas de automóviles, arrastre la imagen que aparece y colóquela en el siguiente mapa"  
+      type: "MOSM"
+      group: "Autos"
+      items:
+        1:
+          human_value: "Nissan"
+        2:
+          human_value: "Audi"
+        3:
+          human_value: "Dodge"
+        4:
+          human_value: "Renault"
+        5:
+          human_value: "Volkswagen"
+        6:
+          human_value: "BMW"
+        7:
+          human_value: "Mercedes-Benz"
+        8:
+          human_value: "Fiat"
+          
+    10:
+      title: "¿Qué opinión tiene usted acerca del voto nulo?"
+      type: "OQ"
+      group: "Voto Nulo"
+      items:
+        A:
+          human_value: "Opinión"
+
+    11:
+      title: "De las siguientes marcas de servicios financieros, arrastre hacia el círculo las que use"
+      type: "MS"
+      group: "Banca"
+      items:
+        1:
+          human_value: "BBVA Bancomer"
+        1:
+          human_value: "Master Card"
+        3:
+          human_value: "HSBC"
+        4:
+          human_value: "Banorte"
+        5:
+          human_value: "American Express"
+        6:
+          human_value: "Banamex"
+        7:
+          human_value: "Santander"
+        8:
+          human_value: "VISA"
+      options:
+        A: 
+          human_value: "kSelected"
+        B:
+          human_value: "kDeselected"
+    1:
+      title: "Revele su sexo arrastrando la línea de división"
+      type: "SC"
+      group: "Género"
+      items:
+        1:
+          human_value: "Sexo"
+      options:
+        1:
+          human_value: "Masculino"
+        1:
+          human_value: "Femenino"
+
+    5:
+      title: "Califique la programación de los siguientes canales de televisión"
+      type: "LK"
+      group: "Medios Televisión"
+      items:
+        1:
+          human_value: "Canal 22"
+        2:
+          human_value: "Canal 13"
+        3:
+          human_value: "Canal 5"
+        4:
+          human_value: "Canal 7"
+        5:
+          human_value: "Canal 9"
+        6:
+          human_value: "Once TV"
+      options:
+        A:
+          human_value: "Muy Buena"
+        B:
+          human_value: "Buena"
+        C:
+          human_value: "Regular"
+        D:
+          human_value: "Mala"
+        E:
+          human_value: "Muy Mala"

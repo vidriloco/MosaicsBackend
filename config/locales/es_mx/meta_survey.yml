@@ -1,5 +1,7 @@
 es_MX:
   meta_survey:
+    validations:
+      identifier: "El identificador para esta encuesta ya ha sido tomado"
     views:
       show:
         fields:

@@ -1,4 +1,8 @@
+#encoding: utf-8
+
 require 'spec_helper'
+require 'survey_helper'
+include SurveyHelper
 
 describe Answer do
   
@@ -7,121 +11,198 @@ describe Answer do
     @meta_survey.merge_descriptor_from File.open(File.join(Rails.root, "spec", "resources", "surveys", "survey.yml"))
     @meta_survey.save
     
+    @results = JSON.parse(survey_results)
+    @pollster = Factory(:pollster)
+    @pollster.update_attribute(:uid, @results["survey"]["pollster_uid"])
+    @device = Factory(:device, :identifier => @results["survey"]["device_id"])
   end
   
-  it "should correctly parse an answer for a multiple option question" do
-    items = @meta_survey.meta_questions[0].meta_answer_items
-    options = @meta_survey.meta_questions[0].meta_answer_options
-    answers = {items[0].id => [options[0].id, options[1].id], items[1].id => [options[1].id]}
-    
-    loaded_answers=Answer.build_from(answers, @meta_survey.meta_questions[0].id)
-    
-    loaded_answers.size.should == 3
-    loaded_answers[0].meta_answer_item.should == items[0]
-    loaded_answers[0].meta_answer_option.should == options[0]
-    
-    loaded_answers[1].meta_answer_item.should == items[0]
-    loaded_answers[1].meta_answer_option.should == options[1]
-    
-    loaded_answers[2].meta_answer_item.should == items[1]
-    loaded_answers[2].meta_answer_option.should == options[1]
-  end
-  
-  it "should correctly parse an answer for a binary question" do
-    items = @meta_survey.meta_questions[4].meta_answer_items
-    options = @meta_survey.meta_questions[4].meta_answer_options
-    answers = items[0].id
-    
-    loaded_answers=Answer.build_from(answers, @meta_survey.meta_questions[4].id)
-    loaded_answers.size.should == 1
-    loaded_answers[0].meta_answer_item.should == items[0]
-    loaded_answers[0].meta_answer_option.should be_nil
-  end
-  
-  it "should correctly parse an answer for an open valued numeric question" do
-    items = @meta_survey.meta_questions[1].meta_answer_items
-    answers = {items[0].id => ["10.32"], items[1].id => ["49.01"], items[2].id => ["32.55"], items[3].id => ["12.99"]}
-    
-    loaded_answers=Answer.build_from(answers, @meta_survey.meta_questions[1].id)
-
-    loaded_answers.size.should == 4
-    loaded_answers[0].meta_answer_item.should == items[0]
-    loaded_answers[0].open_value.should == "10.32"
-    loaded_answers[1].meta_answer_item.should == items[1]
-    loaded_answers[1].open_value.should == "49.01"
-    loaded_answers[2].meta_answer_item.should == items[2]
-    loaded_answers[2].open_value.should == "32.55"
-    loaded_answers[3].meta_answer_item.should == items[3]
-    loaded_answers[3].open_value.should == "12.99"
-    
-  end
-
-  describe "having loaded the answers definitions from survey.yml" do
+  describe "having uploaded a set of survey answers" do
     
     before(:each) do
-      @survey = Survey.create(:meta_survey_id => @meta_survey.id)
+      Survey.build_from_hash(@results["survey"])
     end
     
-    describe "for question 1" do
-    
-      it "should retrieve it's main column components" do
-        keyed_columns = Survey.first.keyed_columns(:order_identifier => 1)
-        keyed_columns.size.should == 12
-        table_columns = Survey.first.humanized_columns(:order_identifier => 1)
-        table_columns.should include("1-Comida Rapida-Burger King-Delicioso")
-        table_columns.should include("1-Comida Rapida-Burger King-Saludable")
-        table_columns.should include("1-Comida Rapida-Subway-Completo")
-        table_columns.should include("1-Comida Rapida-Domino's Pizza-Delicioso")
-      end
-    
-      describe "with mocked answers" do
-        
-        before(:each) do
-          @answers = [mock_answer_for(1, @survey), mock_answer_for(1, @survey), mock_answer_for(1, @survey)].each.inject({}) do |collected, last|
-            collected.merge! last
-            collected
-          end
-        end
-        
-        # {"10592-22837-7" => [set, no set, set ... ]}
-        it "should retrieve it's results" do
-          expected = {}
-          keyed_columns = Survey.first.keyed_columns(:order_identifier => 1)
-          keyed_columns.each do |key_col|
-            key_column = Survey.humanize_column_key(key_col)
-            expected[key_column] ||= []
-            @answers.each_pair do |key, val|
-              answer = Answer.find_by_column_components(key, Survey.column_components(key_col))
-              expected[key_column] << (answer.nil? ? 0 : 1)
-            end
-          end
-        end
-       
-      end
-    
+    it "should have persisted an answer for a binary question" do
+      survey_question_number="11"
+      meta_question = MetaQuestion.find_by_identifier(survey_question_number)
+
+      meta_survey = MetaSurvey.first
+      survey = Survey.first
+      survey.device.should == @device
+      survey.pollster.should == @pollster
+      
+      spec_for_normal_answer(1,1, { 
+        :survey_question_number => survey_question_number,
+        :meta_question => meta_question, 
+        :meta_survey => meta_survey, 
+        :survey => survey })
     end
+        
+    it "should have persisted answers for a multiple answer options for items question" do
+      survey_question_number="12"
+      meta_question = MetaQuestion.find_by_identifier(survey_question_number)
+      
+      survey = Survey.first
+      survey.device.should == @device
+      survey.pollster.should == @pollster
+      meta_survey = MetaSurvey.first
+      
+      params = {
+        :survey_question_number => survey_question_number, 
+        :meta_question => meta_question, 
+        :meta_survey => meta_survey, 
+        :survey => survey}
+        
+      spec_for_normal_answer(1,2, params)
+      spec_for_normal_answer(4,1, params)
+      spec_for_normal_answer(2,4, params)
+      spec_for_normal_answer(5,3, params)
+      spec_for_normal_answer(3,5, params)
+    end
+
+    it "should have persisted an open value answer for a question with open answers" do
+      
+      survey_question_number="110"
+      meta_question = MetaQuestion.find_by_identifier(survey_question_number)
+      
+      survey = Survey.first
+      survey.device.should == @device
+      survey.pollster.should == @pollster
+      meta_survey = MetaSurvey.first
+      
+      params = {
+        :survey_question_number => survey_question_number, 
+        :meta_question => meta_question, 
+        :meta_survey => meta_survey, 
+        :survey => survey}
+      
+      spec_for_open_answer("A",  "Puede ser una buena idea, aunque dificilmente lo será", params)      
+    end
+    
+    it "should have persisted multiple open value answers for a perception map question" do
+      
+      survey_question_number="17"
+      meta_question = MetaQuestion.find_by_identifier(survey_question_number)
+      
+      survey = Survey.first
+      survey.device.should == @device
+      survey.pollster.should == @pollster
+      meta_survey = MetaSurvey.first
+      
+      params = {
+        :survey_question_number => survey_question_number, 
+        :meta_question => meta_question, 
+        :meta_survey => meta_survey, 
+        :survey => survey}
+
+      spec_for_open_answer(7,  ["-0.533871","-0.5209677"].to_s, params)
+      spec_for_open_answer(4,  ["0.5306451","0.9370968"].to_s, params)
+      spec_for_open_answer(1,  ["0.4596774","-0.216129"].to_s, params)
+      spec_for_open_answer(8,  ["0.5177419","0.4693548"].to_s, params)
+      spec_for_open_answer(5,  ["0.1387097","-0.6096774"].to_s, params)
+      spec_for_open_answer(2,  ["-0.8709677","-0.8967742"].to_s, params)
+      spec_for_open_answer(6,  ["-0.2096774","0.1532258"].to_s, params)
+      spec_for_open_answer(3,  ["-0.5629032","0.4693548"].to_s, params)
+    end
+    
+    it "should have persisted multiple open value answers for a multiple open value question" do
+      
+      survey_question_number="13"
+      meta_question = MetaQuestion.find_by_identifier(survey_question_number)
+      
+      survey = Survey.first
+      survey.device.should == @device
+      survey.pollster.should == @pollster
+      meta_survey = MetaSurvey.first
+      
+      params = {
+        :survey_question_number => survey_question_number, 
+        :meta_question => meta_question, 
+        :meta_survey => meta_survey, 
+        :survey => survey}
+
+      spec_for_open_answer("B",  "SNFC", params)
+      spec_for_open_answer("A",  "TGV", params)
+    end
+    
+    it "should have persisted multiple answers with ordering for an ordering question" do
+      survey_question_number="16"
+      meta_question = MetaQuestion.find_by_identifier(survey_question_number)
+      
+      survey = Survey.first
+      survey.device.should == @device
+      survey.pollster.should == @pollster
+      meta_survey = MetaSurvey.first
+      
+      params = {
+        :survey_question_number => survey_question_number, 
+        :meta_question => meta_question, 
+        :meta_survey => meta_survey, 
+        :survey => survey}
+
+      spec_for_open_answer(4,  "0", params)
+      spec_for_open_answer(2,  "2", params)
+      spec_for_open_answer(3,  "1", params)
+      spec_for_open_answer(1,  "3", params)
+    end
+
+    it "should have persisted multiple answers with percentages for a ponderation question" do
+      survey_question_number="18"
+      meta_question = MetaQuestion.find_by_identifier(survey_question_number)
+      
+      survey = Survey.first
+      survey.device.should == @device
+      survey.pollster.should == @pollster
+      meta_survey = MetaSurvey.first
+      
+      params = {
+        :survey_question_number => survey_question_number, 
+        :meta_question => meta_question, 
+        :meta_survey => meta_survey, 
+        :survey => survey}
+
+      spec_for_open_answer(5,  "35", params)
+      spec_for_open_answer(3,  "35", params)
+      spec_for_open_answer(1,  "25", params)
+      spec_for_open_answer(4,  "5", params)
+      spec_for_open_answer(2,  "0", params)
+    end
+    
+  end
+  
+  it "should order a typical array of column names" do
+    sorted=["P10_2", "P10_1", "P1_2", "P1_1", "P0_B", "P0_A", "P0_C", "P5_AB", "P5_AC"].sort_as_quantus_header
+    sorted.should == ["P0_A", "P0_B", "P0_C", "P1_1", "P1_2", "P5_AB", "P5_AC", "P10_1", "P10_2"]
   end
   
 end
 
-def mock_answer_for(question_number, survey)
-  answers_created=[]
-  meta_question=MetaQuestion.first(:conditions => {:order_identifier => question_number})
-  meta_answer_items = meta_question.meta_answer_items
-  meta_answer_options = meta_question.meta_answer_options
+def spec_for_open_answer(answer_item_id, open_value, params)
+  meta_answer_item = MetaAnswerItem.find_by_identifier("#{params[:survey_question_number]}i#{answer_item_id}")
   
-  question=Question.create(:survey_id => survey.id, :meta_question_id => meta_question.id)
-    
-  mao = {}
-  meta_answer_items.each do |mai|
-    unless meta_answer_options.empty?
-      meta_answer_options.sort_by! { rand } 
-      mao = {:meta_answer_option_id => meta_answer_options[0].id}
-    end
-    
-    answer = Answer.create(mao.merge(:question_id => question.id, :meta_answer_item_id => mai.id))
-    answers_created << answer.id
-  end  
+  answer=Answer.find(:first, :conditions => {
+    :meta_question_id => params[:meta_question].id,
+    :meta_answer_item_id => meta_answer_item.id
+  }) 
   
-  {question.id => answers_created}
+  answer.open_value.should == open_value
+  answer.survey.should == params[:survey]
+  answer.meta_survey.should == params[:meta_survey]
+  answer.question.should_not be_nil
+end
+
+def spec_for_normal_answer(answer_item_id, answer_option_id, params)
+  meta_answer_item = MetaAnswerItem.find_by_identifier("#{params[:survey_question_number]}i#{answer_item_id}")
+  meta_answer_option = MetaAnswerOption.find_by_identifier("#{params[:survey_question_number]}o#{answer_option_id}")
+  
+  answer=Answer.find(:first, :conditions => {
+    :meta_question_id => params[:meta_question].id,
+    :meta_answer_option_id => meta_answer_option.id,
+    :meta_answer_item_id => meta_answer_item.id
+  }) 
+
+  answer.survey.should == params[:survey]
+  answer.meta_survey.should == params[:meta_survey]
+  answer.question.should_not be_nil
 end

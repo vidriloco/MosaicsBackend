@@ -1,0 +1,36 @@
+translators:
+  presence:
+    yes: 1
+    no:  2
+  CS:
+    ranges:
+      A:
+        min: [0]
+        max: [10]
+      B:
+        min: [11]
+        max: [20]
+      C:
+        min: [21]
+        max: [30]
+      D:
+        min: [31]
+        max: [40]
+      E:
+        min: [41]
+        max: [50]
+      F:
+        min: [51]
+        max: [60]
+      G:
+        min: [61]
+        max: [70]
+      H:
+        min: [71]
+        max: [80]
+      I:
+        min: [81]
+        max: [90]
+      J:
+        min: [91]
+        max: [100]

@@ -7,5 +7,5 @@ class MetaSurvey < ActiveRecord::Base
   
   has_many :meta_questions, :dependent => :destroy
   has_many :surveys, :dependent => :destroy
-  
+  has_many :answers, :dependent => :destroy
 end

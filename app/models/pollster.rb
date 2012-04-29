@@ -16,13 +16,6 @@ class Pollster < User
     }
   end
   
-  def self.digest_survey_from(params)
-    if pollster=self.find_by_uid(params.delete(:pollster_uid))
-      return Survey.from_hash(params, pollster)
-    end
-    return nil
-  end
-  
   def self.check_credentials(pollster_credentials)
     pollster = self.find_for_database_authentication(pollster_credentials[:username])
     return pollster if pollster.valid_password?(pollster_credentials[:password])

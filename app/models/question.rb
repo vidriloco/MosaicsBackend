@@ -2,6 +2,8 @@ class Question < ActiveRecord::Base
   include Results::Questions
   
   has_many :answers, :dependent => :destroy
-  belongs_to :survey
-  belongs_to :meta_question
+  
+  # This class stores the start_time and end_time of each question applied
+  # The storage of this two datetime fields is on UTC. Conversion required 
+  # according to time-zone 
 end

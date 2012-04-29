@@ -1,0 +1,10 @@
+es_MX:
+  surveys:
+    columns:
+      survey:
+        title: "No. de Encuesta"
+      pollster:
+        title: "Encuestador"
+      device:
+        title: "Dispositivo"
+      

@@ -4,7 +4,7 @@ class ApiController < ApplicationController
   before_filter :find_meta_survey, :except => [:collect]
   
   def collect    
-    @survey=Pollster.digest_survey_from(params[:survey])
+    @survey=Survey.build_from_hash(params[:survey])
       
     if @survey && @survey.save
       render(:nothing => true)

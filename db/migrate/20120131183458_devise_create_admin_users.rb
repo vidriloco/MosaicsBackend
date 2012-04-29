@@ -20,7 +20,6 @@ class DeviseCreateAdminUsers < ActiveRecord::Migration
     # add_index :admin_users, :confirmation_token,   :unique => true
     # add_index :admin_users, :unlock_token,         :unique => true
     # add_index :admin_users, :authentication_token, :unique => true
-    AdminUser.create(:email => "admin@quantus.com", :password_confirmation => "password", :password => "password")
   end
 
 end

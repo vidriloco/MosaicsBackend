@@ -35,8 +35,11 @@ ActiveRecord::Schema.define(:version => 20120201061605) do
   create_table "answers", :force => true do |t|
     t.integer  "meta_answer_option_id"
     t.integer  "meta_answer_item_id"
+    t.integer  "meta_question_id"
+    t.integer  "meta_survey_id"
     t.string   "open_value"
     t.integer  "question_id"
+    t.integer  "survey_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -50,23 +53,30 @@ ActiveRecord::Schema.define(:version => 20120201061605) do
   create_table "meta_answer_items", :force => true do |t|
     t.integer  "meta_question_id"
     t.string   "human_value"
+    t.string   "order_identifier"
     t.string   "identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "meta_answer_items", ["identifier"], :name => "meta_answer_items_identifier_idx", :unique => true
+
   create_table "meta_answer_options", :force => true do |t|
     t.integer  "meta_question_id"
     t.string   "human_value"
+    t.string   "order_identifier"
     t.string   "identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "meta_answer_options", ["identifier"], :name => "meta_answer_options_identifier_idx", :unique => true
 
   create_table "meta_questions", :force => true do |t|
     t.integer  "meta_survey_id"
     t.string   "title"
     t.string   "instruction"
+    t.string   "identifier"
     t.integer  "order_identifier"
     t.string   "group"
     t.string   "type_of"
@@ -74,8 +84,11 @@ ActiveRecord::Schema.define(:version => 20120201061605) do
     t.datetime "updated_at"
   end
 
+  add_index "meta_questions", ["identifier"], :name => "meta_questions_identifier_idx", :unique => true
+
   create_table "meta_surveys", :force => true do |t|
     t.string   "name"
+    t.string   "identifier"
     t.integer  "size"
     t.integer  "organization_id"
     t.datetime "created_at"
@@ -89,20 +102,14 @@ ActiveRecord::Schema.define(:version => 20120201061605) do
   end
 
   create_table "questions", :force => true do |t|
-    t.integer  "meta_question_id"
-    t.integer  "survey_id"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "surveys", :force => true do |t|
-    t.integer  "meta_survey_id"
-    t.integer  "pollster_id"
-    t.integer  "device_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "meta_survey_id"
+    t.integer "pollster_id"
+    t.integer "device_id"
   end
 
   create_table "users", :force => true do |t|
