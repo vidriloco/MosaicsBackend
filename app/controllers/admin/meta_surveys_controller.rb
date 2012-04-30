@@ -1,5 +1,4 @@
-class Admin::MetaSurveysController < ApplicationController
-  layout 'admin'
+class Admin::MetaSurveysController < Admin::BaseController
   
   before_filter :authenticate_admin_user!
   

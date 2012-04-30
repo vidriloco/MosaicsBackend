@@ -1,5 +1,9 @@
 Backend::Application.routes.draw do
   
+  namespace :admin do
+    resources :organizations
+  end
+  
   devise_for :managers
 
   devise_for :admin_users do

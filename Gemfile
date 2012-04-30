@@ -10,6 +10,8 @@ gem 'devise'
 gem 'formtastic'
 gem 'fastercsv'
 gem 'plist'
+gem 'twitter-bootstrap-rails'
+gem 'therubyracer'
 
 group :test do
 	gem 'capybara'
@@ -22,7 +24,7 @@ group :test do
 	gem 'delorean'
 	  gem 'ZenTest', "~> 4.4.2"
 	# macos
-	gem 'autotest-fsevent'
+	# gem 'autotest-fsevent'
 	  gem 'autotest-rails'
 	  gem 'autotest-growl'
 	gem "factory_girl_rails", :require => false
