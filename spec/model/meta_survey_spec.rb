@@ -77,7 +77,7 @@ describe MetaSurvey do
     
     it "should generate a header for the table results" do
       meta_survey = MetaSurvey.first
-      
+
       meta_survey.results_frame.should include({
         :title => "P1_1", 
         :meta_question => MetaQuestion.find_by_identifier("11"), 
@@ -130,24 +130,24 @@ describe MetaSurvey do
         meta_survey.merged_results["P2_3"].should == [MetaAnswerOption.find_by_identifier("12o5").order_identifier, MetaAnswerOption.find_by_identifier("12o1").order_identifier]
         meta_survey.merged_results["P2_4"].should == [MetaAnswerOption.find_by_identifier("12o1").order_identifier, MetaAnswerOption.find_by_identifier("12o1").order_identifier]
         meta_survey.merged_results["P2_5"].should == [MetaAnswerOption.find_by_identifier("12o3").order_identifier, MetaAnswerOption.find_by_identifier("12o4").order_identifier]
-        meta_survey.merged_results["P3_A"].should == ["TGV", "Audi"]
-        meta_survey.merged_results["P3_B"].should == ["SNFC", "Renault"]
-        meta_survey.merged_results["P3_C"].should == ["", ""]
-        meta_survey.merged_results["P3_D"].should == ["", ""]
-        meta_survey.merged_results["P3_E"].should == ["", ""]
+        meta_survey.merged_results["P3_1"].should == ["TGV", "Audi"]
+        meta_survey.merged_results["P3_2"].should == ["SNFC", "Renault"]
+        meta_survey.merged_results["P3_3"].should == ["", ""]
+        meta_survey.merged_results["P3_4"].should == ["", ""]
+        meta_survey.merged_results["P3_5"].should == ["", ""]
 
-        meta_survey.merged_results(:translated)["P9_1A"].should == [1, 2]
-        meta_survey.merged_results(:translated)["P9_1B"].should == [1, 2]
-        meta_survey.merged_results(:translated)["P9_1C"].should == [2, 2]
-        meta_survey.merged_results(:translated)["P9_1D"].should == [1, 1]
-        meta_survey.merged_results(:translated)["P9_2A"].should == [1, 1]
-        meta_survey.merged_results(:translated)["P9_2B"].should == [1, 2]
-        meta_survey.merged_results(:translated)["P9_2C"].should == [2, 2]
-        meta_survey.merged_results(:translated)["P9_2D"].should == [2, 1]
-        meta_survey.merged_results(:translated)["P9_3A"].should == [1, 2]
-        meta_survey.merged_results(:translated)["P9_3B"].should == [1, 1]
-        meta_survey.merged_results(:translated)["P9_3C"].should == [2, 2]
-        meta_survey.merged_results(:translated)["P9_3D"].should == [2, 2]
+        meta_survey.merged_results(:translated)["P9_11"].should == [1, 2]
+        meta_survey.merged_results(:translated)["P9_12"].should == [1, 2]
+        meta_survey.merged_results(:translated)["P9_13"].should == [2, 2]
+        meta_survey.merged_results(:translated)["P9_14"].should == [1, 1]
+        meta_survey.merged_results(:translated)["P9_21"].should == [1, 1]
+        meta_survey.merged_results(:translated)["P9_22"].should == [1, 2]
+        meta_survey.merged_results(:translated)["P9_23"].should == [2, 2]
+        meta_survey.merged_results(:translated)["P9_24"].should == [2, 1]
+        meta_survey.merged_results(:translated)["P9_31"].should == [1, 2]
+        meta_survey.merged_results(:translated)["P9_32"].should == [1, 1]
+        meta_survey.merged_results(:translated)["P9_33"].should == [2, 2]
+        meta_survey.merged_results(:translated)["P9_34"].should == [2, 2]
       end
       
       it "should generate rows for exporting to CSV" do

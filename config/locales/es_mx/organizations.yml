@@ -1,0 +1,35 @@
+es_MX:
+  activerecord:
+    models:
+      place: "Organización"
+    attributes:
+      organization: 
+        name: "Nombre"
+        surveys: "Encuestas"
+  organization:
+    messages:
+      create: 
+        success: "Organización registrada con éxito"
+      update:
+        success: "Organización actualizada con éxito"
+      delete:
+        success: "Organización dada de baja correctamente"
+      confirmation:
+        delete: "¿Eliminar esta organización junto con todos sus datos y encuestas?"
+    views:
+      edit: 
+        title: "Modificar una organización"
+      new:
+        title: "Registrar una nueva organización"
+      index:
+        projects:
+          empty: "No hay proyectos activos"
+        new_project: "Nuevo Proyecto"
+        contact: "Contacto"
+        download:
+          link: "Opciones de descarga"
+          dialog_title: "Descargar datos"
+          dialog_message: "Selecciona el formato en el que quieras descargar los datos"
+          formats:
+            xls: "Excel (.xls)"
+            csv: "Valores separados por comas (.csv)"

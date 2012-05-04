@@ -1,0 +1,18 @@
+es_MX:
+  activerecord:
+    attributes:
+      admin_user:
+        email: "Correo electrónico"
+        name: "Nombre"
+        organization: "Organización"
+  admin_user:
+    messages:
+      confirmation:
+        delete: "¿Eliminar a este superusuario?"
+    views:
+      index:
+        title: "Superusuarios"
+      new:
+        title: "Registrar nuevo superusuario"
+      edit:
+        title: "Modificar superusuario"

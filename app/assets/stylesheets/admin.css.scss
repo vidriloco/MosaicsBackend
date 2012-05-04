@@ -1,0 +1,32 @@
+/*
+ *= require_self
+ *= require bootstrap_and_overrides
+*/
+
+.navbar {
+	a.highlighted {
+		color: #E2827D !important;
+	}
+	a.highlighted:hover {
+		color: #E22C2C !important;
+	}
+}
+
+.centered {
+	margin: 20px 50px !important;
+}
+
+.container {
+	width: 800px !important;
+}
+
+.mquestions {
+	margin-top: 10px;
+	display: none;
+}
+
+.actions {
+	a {
+		margin-right: 15px;
+	}
+}

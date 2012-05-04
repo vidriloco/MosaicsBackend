@@ -24,5 +24,12 @@ es_MX:
     actions:
       save: "Guardar"
       new: "Nuevo"
+      edit: "Modificar"
+      delete: "Eliminar"
+      show: "Ver detalles"
+      back: "Atrás"
     messages:
+      error:
+        one: "Un error impidió que Quantus guardara este objeto"
+        other: "%{count} errores impidieron que Quantus guardara este objeto"
       welcome: "Bienvenido"

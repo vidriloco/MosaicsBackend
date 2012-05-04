@@ -77,7 +77,7 @@ describe Answer do
         :meta_survey => meta_survey, 
         :survey => survey}
       
-      spec_for_open_answer("A",  "Puede ser una buena idea, aunque dificilmente lo será", params)      
+      spec_for_open_answer("1",  "Puede ser una buena idea, aunque dificilmente lo será", params)      
     end
     
     it "should have persisted multiple open value answers for a perception map question" do
@@ -122,8 +122,8 @@ describe Answer do
         :meta_survey => meta_survey, 
         :survey => survey}
 
-      spec_for_open_answer("B",  "SNFC", params)
-      spec_for_open_answer("A",  "TGV", params)
+      spec_for_open_answer("1",  "TGV", params)
+      spec_for_open_answer("2",  "SNFC", params)
     end
     
     it "should have persisted multiple answers with ordering for an ordering question" do
@@ -172,8 +172,8 @@ describe Answer do
   end
   
   it "should order a typical array of column names" do
-    sorted=["P10_2", "P10_1", "P1_2", "P1_1", "P0_B", "P0_A", "P0_C", "P5_AB", "P5_AC"].sort_as_quantus_header
-    sorted.should == ["P0_A", "P0_B", "P0_C", "P1_1", "P1_2", "P5_AB", "P5_AC", "P10_1", "P10_2"]
+    sorted=["P10_2", "P10_1", "P1_2", "P1_1", "P0_2", "P0_1", "P0_3", "P5_12", "P5_13"].sort_as_quantus_header
+    sorted.should == ["P0_1", "P0_2", "P0_3", "P1_1", "P1_2", "P5_12", "P5_13", "P10_1", "P10_2"]
   end
   
 end

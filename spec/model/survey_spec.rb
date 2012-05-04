@@ -126,27 +126,27 @@ describe Survey do
       
       
         survey.bare_results.should include({
-          :title => "P3_A",
+          :title => "P3_1",
           :answer => "TGV"
         })
       
         survey.bare_results.should include({
-          :title => "P3_B",
+          :title => "P3_2",
           :answer => "SNFC"
         })
         
         survey.bare_results.should include({
-          :title => "P3_C",
+          :title => "P3_3",
           :answer => ""
         })
         
         survey.bare_results.should include({
-          :title => "P3_D",
+          :title => "P3_4",
           :answer => ""
         })
         
         survey.bare_results.should include({
-          :title => "P3_E",
+          :title => "P3_5",
           :answer => ""
         })
       end
@@ -156,7 +156,7 @@ describe Survey do
         
         survey.bare_results(:translated).should include({
           :title => "P8_1",
-          :answer => "C"
+          :answer => "D"
         })
         
         survey.bare_results(:translated).should include({
@@ -166,57 +166,57 @@ describe Survey do
       
         survey.bare_results(:translated).should include({
           :title => "P8_3",
-          :answer => "D"
+          :answer => "E"
         })
       
         survey.bare_results(:translated).should include({
           :title => "P8_4",
-          :answer => "A"
+          :answer => "B"
         })
       
         survey.bare_results(:translated).should include({
           :title => "P8_5",
-          :answer => "D"
+          :answer => "E"
         })
         
         
         survey.bare_results(:translated).should include({
-          :title => "P9_1A",
+          :title => "P9_11",
           :answer => 1
         })
         
         survey.bare_results(:translated).should include({
-          :title => "P9_1B",
+          :title => "P9_12",
           :answer => 1
         })
       
         survey.bare_results(:translated).should include({
-          :title => "P9_1C",
+          :title => "P9_13",
           :answer => 2
         })
         
         survey.bare_results(:translated).should include({
-          :title => "P9_1D",
+          :title => "P9_14",
           :answer => 1
         })
       
         survey.bare_results(:translated).should include({
-          :title => "P9_2A",
+          :title => "P9_21",
           :answer => 1
         })
       
         survey.bare_results(:translated).should include({
-          :title => "P9_2B",
+          :title => "P9_22",
           :answer => 1
         })
         
         survey.bare_results(:translated).should include({
-          :title => "P9_2C",
+          :title => "P9_23",
           :answer => 2
         })
         
         survey.bare_results(:translated).should include({
-          :title => "P9_2D",
+          :title => "P9_24",
           :answer => 2
         })
 

@@ -1,0 +1,22 @@
+es_MX:
+  activerecord:
+    attributes:
+      device:
+        identifier: "Identificador"
+  device:
+    messages:
+      create:
+        success: "Dispositivo registrado con éxito"
+      update:
+        success: "Dispositivo actualizado con éxito"
+      delete:
+        success: "Dispositivo eliminado con éxito"
+      confirmation:
+        delete: "¿Eliminar este dispositivo? Ya no podrá ser usado para levantar encuestas"
+    views:
+      index:
+        title: "Dispositivos"
+      new:
+        title: "Registro de dispositivo"
+      edit:
+        title: "Modificar dispositivo"

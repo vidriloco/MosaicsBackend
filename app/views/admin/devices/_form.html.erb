@@ -1,0 +1,11 @@
+<%= form_for([:admin, @device]) do |f| %>
+	<%= render :partial => 'shared/errors', :locals => {:model => @device} %>
+	<br/>
+  <div class="field">
+    <%= f.label :identifier %>
+    <%= f.text_field :identifier %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

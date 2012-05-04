@@ -1,5 +1,6 @@
 class Admin::MetaSurveysController < Admin::BaseController
   
+  before_filter :find_meta_survey, :only => [:destroy, :show]
   before_filter :authenticate_admin_user!
   
   def index
@@ -14,14 +15,13 @@ class Admin::MetaSurveysController < Admin::BaseController
     @meta_survey = MetaSurvey.register_with(params[:meta_survey])
     
     if @meta_survey.save
-      redirect_to admin_meta_surveys_path
+      redirect_to admin_meta_surveys_path, :notice => t('meta_survey.messages.create.success')
     else
       render :action => :new
     end
   end
   
   def show
-    @meta_survey = MetaSurvey.find(params[:id])
     filename = @meta_survey.name.gsub(/\s+/, "_").downcase
     
     respond_to do |format|
@@ -30,5 +30,15 @@ class Admin::MetaSurveysController < Admin::BaseController
                     :disposition => "attachment; filename=#{filename}.plist" } 
       end
     end
+  end
+  
+  def destroy
+    @meta_survey.destroy
+    redirect_to admin_meta_surveys_path, :notice => t('meta_survey.messages.delete.success')
+  end
+  
+  private
+  def find_meta_survey
+    @meta_survey = MetaSurvey.find(params[:id])
   end
 end

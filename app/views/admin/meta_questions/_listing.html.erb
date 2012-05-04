@@ -1,9 +1,7 @@
 <div id="<%= meta_question.id %>">
 	<p>
-		<i><%= meta_question.type_of %></i><br/>
-		<b><%= meta_question.order_identifier %>. <%= meta_question.title %></b>
+			<b><span class="label label-success"><%= meta_question.type_of %></span>&nbsp;&nbsp;<%= meta_question.order_identifier %>. <%= meta_question.title %></b>
 		<br/>
-		
 	</p>
 	<div class="catalog-list">
 		<% if meta_question.meta_answer_options.size > 0 %>

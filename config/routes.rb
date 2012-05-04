@@ -1,27 +1,19 @@
 Backend::Application.routes.draw do
   
+  devise_for :admin_users
+  resources :admin_users
+  
   namespace :admin do
-    resources :organizations
+    get '/' => 'main#index', :as => :index
+    resources :organizations, :except => [:show]
+    resources :devices, :except => [:show]
+    resources :meta_surveys, :except => [:edit, :update]
+    resources :admin_users
+    resources :pollsters, :except => [:show]
   end
   
   devise_for :managers
-
-  devise_for :admin_users do
-
-    namespace :admin do
-      get '/' => 'main#index', :as => :index
-    
-      namespace :meta_surveys do
-        get 'new'
-      end
-      
-      get '/meta_surveys' => 'meta_surveys#index'
-      post '/meta_surveys' => 'meta_surveys#create'
-      get '/meta_surveys/:id.:format' => "meta_surveys#show", :format => "plist", :as => "meta_survey"
-    end
   
-  end
-
   namespace :api do
     post :collect
     get :whiteboard, :as => "test_whiteboard"

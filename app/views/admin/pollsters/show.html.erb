@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Email:</b>
+  <%= @pollster.email %>
+</p>
+
+<p>
+  <b>Full name:</b>
+  <%= @pollster.full_name %>
+</p>
+
+<p>
+  <b>Uid:</b>
+  <%= @pollster.uid %>
+</p>
+
+<p>
+  <b>Username:</b>
+  <%= @pollster.username %>
+</p>
+
+<p>
+  <b>Birthday:</b>
+  <%= @pollster.birthday %>
+</p>
+
+<p>
+  <b>Job:</b>
+  <%= @pollster.job %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @pollster.phone %>
+</p>
+
+<p>
+  <b>Extension:</b>
+  <%= @pollster.extension %>
+</p>
+
+<p>
+  <b>Cell phone:</b>
+  <%= @pollster.cell_phone %>
+</p>
+
+<p>
+  <b>Organization:</b>
+  <%= @pollster.organization_id %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @pollster.type %>
+</p>
+
+
+<%= link_to 'Edit', edit_pollster_path(@pollster) %> |
+<%= link_to 'Back', pollsters_path %>

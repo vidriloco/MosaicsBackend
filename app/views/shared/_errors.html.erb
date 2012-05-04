@@ -1,0 +1,15 @@
+<% if model.errors.any? %>
+  <div id="error_explanation">
+		<% if model.errors.count == 1 %>
+			<h2><%= t('general.messages.error.one') %></h2>
+		<% else%>
+			<h2><%= t('general.messages.error.other', :count => model.errors.count) %></h2>
+		<% end %>
+
+    <ul>
+    <% model.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

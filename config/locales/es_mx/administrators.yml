@@ -1,4 +1,11 @@
 es_MX:
+  administration:
+    sections:
+      organizations: "Organizaciones"
+      devices: "Dispositivos"
+      admins: "Superusuarios"
+      managers: "Administradores"
+      meta_surveys: "Descriptores de encuestas"
   administrators:
     show_questions_loaded: "Mostrar preguntas"
     download_plist: "Descargar lista de metadatos (.plist)"

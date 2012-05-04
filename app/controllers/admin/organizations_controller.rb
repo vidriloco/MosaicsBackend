@@ -1,36 +1,16 @@
 class Admin::OrganizationsController < Admin::BaseController
   
+  respond_to :html
+  before_filter :authenticate_admin_user!
+  
   # GET /organizations
-  # GET /organizations.json
   def index
     @organizations = Organization.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @organizations }
-    end
-  end
-
-  # GET /organizations/1
-  # GET /organizations/1.json
-  def show
-    @organization = Organization.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @organization }
-    end
   end
 
   # GET /organizations/new
-  # GET /organizations/new.json
   def new
     @organization = Organization.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @organization }
-    end
   end
 
   # GET /organizations/1/edit
@@ -39,18 +19,13 @@ class Admin::OrganizationsController < Admin::BaseController
   end
 
   # POST /organizations
-  # POST /organizations.json
   def create
     @organization = Organization.new(params[:organization])
 
-    respond_to do |format|
-      if @organization.save
-        format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
-        format.json { render json: @organization, status: :created, location: @organization }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @organization.errors, status: :unprocessable_entity }
-      end
+    if @organization.save
+      redirect_to admin_organizations_url, :notice => t('organization.messages.create.success')
+    else
+      render action: "new"
     end
   end
 
@@ -59,14 +34,10 @@ class Admin::OrganizationsController < Admin::BaseController
   def update
     @organization = Organization.find(params[:id])
 
-    respond_to do |format|
-      if @organization.update_attributes(params[:organization])
-        format.html { redirect_to @organization, notice: 'Organization was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @organization.errors, status: :unprocessable_entity }
-      end
+    if @organization.update_attributes(params[:organization])
+      redirect_to admin_organizations_url, :notice => t('organization.messages.update.success')
+    else
+      render action: "edit"
     end
   end
 
@@ -75,10 +46,7 @@ class Admin::OrganizationsController < Admin::BaseController
   def destroy
     @organization = Organization.find(params[:id])
     @organization.destroy
-
-    respond_to do |format|
-      format.html { redirect_to organizations_url }
-      format.json { head :ok }
-    end
+    
+    redirect_to admin_organizations_url, notice: t('organization.messages.delete.success')
   end
 end

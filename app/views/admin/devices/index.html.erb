@@ -1,0 +1,32 @@
+<div class="centered container">
+
+	<h1><%= t('device.views.index.title') %></h1>
+	<br/>
+	<table class="table table-striped table-bordered">
+	  <tr>
+	    <th><%= t('activerecord.attributes.device.identifier') %></th>
+	    <th></th>
+	  </tr>
+
+	<% @devices.each do |device| %>
+	  <tr>
+	    <td><%= device.identifier %></td>
+	    <td>
+				<a href="<%= edit_admin_device_path(device) %>" class="btn">
+				<i class="icon-edit"></i>  <%= t('general.actions.edit') %>
+				</a>
+				<a href="<%= admin_device_path(device) %>" data-method="delete" data-confirm="<%= t('device.messages.confirmation.delete') %>" class="btn btn-danger">
+				<i class="icon-remove"></i>  <%= t('general.actions.delete') %>
+				</a>
+			</td>
+	  </tr>
+	<% end %>
+	</table>
+
+	<br />
+
+	<a href="<%= new_admin_device_path %>" class="btn btn-primary">
+	<i class="icon-plus"></i>  <%= t('general.actions.new') %>
+	</a>
+
+</div>

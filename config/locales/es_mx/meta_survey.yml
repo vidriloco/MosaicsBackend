@@ -1,5 +1,19 @@
 es_MX:
+  activerecord:
+    attributes:
+      meta_survey:
+        organization: "Organización"
+        survey_descriptor_file: "Descriptor de la encuesta"
+        sample_size: "Tamaño de la muestra"
+        questions_number: "Número de preguntas"
   meta_survey:
+    messages:
+      create:
+        success: "Descripción de encuesta cargada correctamente"
+      delete:
+        success: "Descripción de encuesta eliminada"
+      confirmation:
+        delete: "¿Eliminar esta descripción de encuesta? Los resultados de encuestas levantadas se eliminarán también"
     validations:
       identifier: "El identificador para esta encuesta ya ha sido tomado"
     views:
@@ -15,4 +29,5 @@ es_MX:
       new:
         title: "Nueva Meta-Encuesta"
       index:
+        title: "Descriptor de encuestas cargadas"
         empty: "No hay definiciones de encuestas registradas en éste momento"
