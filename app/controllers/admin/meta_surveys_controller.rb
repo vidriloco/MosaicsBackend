@@ -1,6 +1,6 @@
 class Admin::MetaSurveysController < Admin::BaseController
   
-  before_filter :find_meta_survey, :only => [:destroy, :show]
+  before_filter :find_meta_survey, :only => [:destroy, :show, :download]
   before_filter :authenticate_admin_user!
   
   def index
@@ -35,6 +35,11 @@ class Admin::MetaSurveysController < Admin::BaseController
   def destroy
     @meta_survey.destroy
     redirect_to admin_meta_surveys_path, :notice => t('meta_survey.messages.delete.success')
+  end
+  
+  def download
+    send_data @meta_survey.render_as_csv, {:type => "text/csv; charset=iso-8859-1; header=present",
+      :disposition => "attachment; filename=#{@meta_survey.name}.csv" }
   end
   
   private

@@ -1,59 +1,34 @@
-<%= form_for(@pollster) do |f| %>
-  <% if @pollster.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@pollster.errors.count, "error") %> prohibited this pollster from being saved:</h2>
-
-      <ul>
-      <% @pollster.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_for([:admin, @pollster]) do |f| %>
+	<%= render :partial => 'shared/errors', :locals => {:model => @pollster} %>
+	
+	<br/>
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email %>
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :full_name %><br />
+    <%= f.label :full_name %>
     <%= f.text_field :full_name %>
   </div>
   <div class="field">
-    <%= f.label :uid %><br />
-    <%= f.text_field :uid %>
-  </div>
-  <div class="field">
-    <%= f.label :username %><br />
+    <%= f.label :username %>
     <%= f.text_field :username %>
   </div>
   <div class="field">
-    <%= f.label :birthday %><br />
+    <%= f.label :birthday %>
     <%= f.date_select :birthday %>
   </div>
   <div class="field">
-    <%= f.label :job %><br />
-    <%= f.number_field :job %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br />
+    <%= f.label :phone %>
     <%= f.text_field :phone %>
   </div>
   <div class="field">
-    <%= f.label :extension %><br />
+    <%= f.label :extension %>
     <%= f.number_field :extension %>
   </div>
   <div class="field">
-    <%= f.label :cell_phone %><br />
+    <%= f.label :cell_phone %>
     <%= f.text_field :cell_phone %>
-  </div>
-  <div class="field">
-    <%= f.label :organization_id %><br />
-    <%= f.number_field :organization_id %>
-  </div>
-  <div class="field">
-    <%= f.label :type %><br />
-    <%= f.text_field :type %>
   </div>
   <div class="actions">
     <%= f.submit %>

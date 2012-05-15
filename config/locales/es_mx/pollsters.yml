@@ -1,0 +1,26 @@
+es_MX:
+  activerecord:
+      models:
+        pollster: "Encuestador"
+      attributes:
+        pollster: 
+          username: "Nombre de usuario"
+          email: "Correo electrónico"
+          full_name: "Nombre"
+          uid: "UID"
+          birthday: "Cumpleaños"
+          job: "Ocupación"
+          phone: "Teléfono"
+          extension: "Extensión"
+          cell_phone: "Teléfono celular"
+  
+  pollster:
+    messages:
+      confirmation:
+        delete: "¿Eliminar este encuestador?"  
+    
+    views:
+      new:
+        title: "Registro de encuestador"
+      edit:
+        title: "Modificar encuestador"      

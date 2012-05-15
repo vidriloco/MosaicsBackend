@@ -1,60 +1,51 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <b>Email:</b>
+  <b><%= t('activerecord.attributes.pollster.email') %>:</b>
   <%= @pollster.email %>
 </p>
 
 <p>
-  <b>Full name:</b>
+  <b><%= t('activerecord.attributes.pollster.full_name') %>:</b>
   <%= @pollster.full_name %>
 </p>
 
 <p>
-  <b>Uid:</b>
+  <b><%= t('activerecord.attributes.pollster.uid') %>:</b>
   <%= @pollster.uid %>
 </p>
 
 <p>
-  <b>Username:</b>
+  <b><%= t('activerecord.attributes.pollster.username') %>:</b>
   <%= @pollster.username %>
 </p>
 
 <p>
-  <b>Birthday:</b>
+  <b><%= t('activerecord.attributes.pollster.birthday') %>:</b>
   <%= @pollster.birthday %>
 </p>
 
 <p>
-  <b>Job:</b>
-  <%= @pollster.job %>
+  <b><%= t('activerecord.attributes.pollster.phone') %>:</b>
+  <% if @pollster.phone.blank? %>
+		<%= "---" %>
+	<% else %>
+		<%= @pollster.phone %>
+	<% end %>
 </p>
 
 <p>
-  <b>Phone:</b>
-  <%= @pollster.phone %>
+  <b><%= t('activerecord.attributes.pollster.extension') %>:</b>
+  <%= @pollster.extension || "---" %>
 </p>
 
 <p>
-  <b>Extension:</b>
-  <%= @pollster.extension %>
-</p>
-
-<p>
-  <b>Cell phone:</b>
-  <%= @pollster.cell_phone %>
-</p>
-
-<p>
-  <b>Organization:</b>
-  <%= @pollster.organization_id %>
-</p>
-
-<p>
-  <b>Type:</b>
-  <%= @pollster.type %>
+  <b><%= t('activerecord.attributes.pollster.cell_phone') %>:</b>
+  <% if @pollster.cell_phone.blank? %>
+		<%= "---" %>
+	<% else %>
+		<%= @pollster.cell_phone %>
+	<% end %>
 </p>
 
 
-<%= link_to 'Edit', edit_pollster_path(@pollster) %> |
-<%= link_to 'Back', pollsters_path %>
+<%= link_to t('general.actions.edit'), edit_admin_pollster_path(@pollster) %> |
+<%= link_to t('general.actions.back'), admin_pollsters_path %>

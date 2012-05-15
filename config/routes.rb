@@ -7,9 +7,13 @@ Backend::Application.routes.draw do
     get '/' => 'main#index', :as => :index
     resources :organizations, :except => [:show]
     resources :devices, :except => [:show]
-    resources :meta_surveys, :except => [:edit, :update]
+    resources :meta_surveys, :except => [:edit, :update] do
+      member do
+        get :download
+      end
+    end
     resources :admin_users
-    resources :pollsters, :except => [:show]
+    resources :pollsters
   end
   
   devise_for :managers

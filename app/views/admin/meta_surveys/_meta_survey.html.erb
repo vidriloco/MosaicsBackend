@@ -17,14 +17,29 @@
 	</table>
 	
 	<div class="actions">
-		<%= link_to t('administrators.show_questions_loaded'), 'javascript:void(0);', :class => 'toggle-mquestions' %>
+		<%= link_to t('administrators.show_questions_loaded'), "##{meta_survey.id}-mq", "data-toggle"=>"modal" %>
 		<%= link_to t('administrators.download_plist'), admin_meta_survey_path(meta_survey, :plist) %>
 		<a href="<%= admin_meta_survey_path(meta_survey) %>" data-method="delete" data-confirm="<%= t('meta_survey.messages.confirmation.delete') %>" class="btn btn-danger">
 			<i class="icon-remove"></i>  <%= t('general.actions.delete') %>
 		</a>
+		
+		<% if meta_survey.surveys.count > 0 %>
+			<a href="<%= download_admin_meta_survey_path(meta_survey) %>" class="btn btn-inverse">
+				<i class="icon-download"></i>  <%= t('meta_survey.views.index.download') %>
+			</a>
+		<% end %>
 	</div>
-	
-	<div class="mquestions">
-		<%= render :partial => 'admin/meta_questions/listing', :collection => meta_survey.meta_questions.sort! { |f, n| f.order_identifier <=> n.order_identifier }, :as => :meta_question %>
+</div>
+
+<div id="<%= meta_survey.id %>-mq" class="fade modal">
+	<div class="modal-header">
+		<button class="close" data-dismiss="modal">×</button>
+		<h3>Preguntas cargadas</h3>
 	</div>
+	<div class="modal-body">
+		<%= render :partial => 'admin/meta_questions/listing', 
+						 	 :collection => meta_survey.meta_questions.sort! { |f, n| f.order_identifier <=> n.order_identifier }, 
+						 	 :as => :meta_question %>
+	</div>
+	<div class="modal-footer"></div>
 </div>

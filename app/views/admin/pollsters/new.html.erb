@@ -1,5 +1,5 @@
-<h1>New pollster</h1>
+<h1><%= t('pollster.views.new.title') %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', pollsters_path %>
+<%= link_to t('general.actions.back'), admin_pollsters_path %>

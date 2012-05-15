@@ -1,41 +1,39 @@
-<h1>Listing pollsters</h1>
+<h1><%= t('administration.sections.pollsters') %></h1>
 <br/>
 <table class="table table-striped table-bordered">
   <tr>
-		<th>Username</th>
-    <th>Email</th>
-    <th>Full name</th>
-    <th>Uid</th>
-    <th>Birthday</th>
-    <th>Job</th>
-    <th>Phone</th>
-    <th>Extension</th>
-    <th>Cell phone</th>
-    <th>Organization</th>
-    <th>Type</th>
-    <th></th>
+		<th><%= t('activerecord.attributes.pollster.username') %></th>
+    <th><%= t('activerecord.attributes.pollster.email') %></th>
+    <th><%= t('activerecord.attributes.pollster.full_name') %></th>
+    <th><%= t('activerecord.attributes.pollster.phone') %></th>
+    <th><%= t('activerecord.attributes.pollster.extension') %></th>
+    <th><%= t('activerecord.attributes.pollster.cell_phone') %></th>
     <th></th>
   </tr>
 
 <% @pollsters.each do |pollster| %>
   <tr>
-	  <td><%= pollster.username %></td>
+	<td><%= pollster.username %></td>
     <td><%= pollster.email %></td>
     <td><%= pollster.full_name %></td>
-    <td><%= pollster.uid %></td>
-    <td><%= pollster.birthday %></td>
-    <td><%= pollster.job %></td>
     <td><%= pollster.phone %></td>
     <td><%= pollster.extension %></td>
     <td><%= pollster.cell_phone %></td>
-    <td><%= pollster.organization_id %></td>
-    <td><%= pollster.type %></td>
-    <td><%= link_to 'Edit', edit_admin_pollster_path(pollster) %></td>
-    <td><%= link_to 'Destroy', admin_pollster_path(pollster), confirm: 'Are you sure?', method: :delete %></td>
+
+	<td>
+		<a href="<%= edit_admin_pollster_path(pollster) %>" class="btn">
+		<i class="icon-edit"></i>  <%= t('general.actions.edit') %>
+		</a>
+		<a href="<%= admin_pollster_path(pollster) %>" data-method="delete" data-confirm="<%= t('pollster.messages.confirmation.delete') %>" class="btn btn-danger">
+		<i class="icon-remove"></i>  <%= t('general.actions.delete') %>
+		</a>
+	</td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Pollster', new_admin_pollster_path %>
+<a href="<%= new_admin_pollster_path %>" class="btn btn-primary">
+<i class="icon-plus"></i>  <%= t('general.actions.new') %>
+</a>

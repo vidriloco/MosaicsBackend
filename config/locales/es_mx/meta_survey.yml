@@ -30,4 +30,5 @@ es_MX:
         title: "Nueva Meta-Encuesta"
       index:
         title: "Descriptor de encuestas cargadas"
+        download: "Descargar resultados"
         empty: "No hay definiciones de encuestas registradas en éste momento"

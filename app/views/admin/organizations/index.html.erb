@@ -13,16 +13,15 @@
 	<% @organizations.each do |organization| %>
 	  <tr>
 	    <td><%= organization.name %></td>
-			<td><%= organization.meta_surveys.count %></td>
-			<td>
-
-				<a href="<%= edit_admin_organization_path(organization) %>" class="btn">
-				<i class="icon-edit"></i>  <%= t('general.actions.edit') %>
-				</a>
-				<a href="<%= admin_organization_path(organization) %>" data-method="delete" data-confirm="<%= t('organization.messages.confirmation.delete') %>" class="btn btn-danger">
-				<i class="icon-remove"></i>  <%= t('general.actions.delete') %>
-				</a>
-			</td>
+		<td><%= organization.meta_surveys.count %></td>
+		<td>
+			<a href="<%= edit_admin_organization_path(organization) %>" class="btn">
+			<i class="icon-edit"></i>  <%= t('general.actions.edit') %>
+			</a>
+			<a href="<%= admin_organization_path(organization) %>" data-method="delete" data-confirm="<%= t('organization.messages.confirmation.delete') %>" class="btn btn-danger">
+			<i class="icon-remove"></i>  <%= t('general.actions.delete') %>
+			</a>
+		</td>
 	  </tr>
 	<% end %>
 	</table>
