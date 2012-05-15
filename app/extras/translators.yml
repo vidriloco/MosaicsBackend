@@ -1,39 +1,54 @@
 translators:
-  presence:
+  fillable_when_empty:
     yes: 1
     no:  2
   CS:
-    ranges:
-      A:
+    translation:
+      1:
         min: [0]
         max: [0]
-      B:
+      2:
         min: [1]
         max: [10]
-      C:
+      3:
         min: [11]
         max: [20]
-      D:
+      4:
         min: [21]
         max: [30]
-      E:
+      5:
         min: [31]
         max: [40]
-      F:
+      6:
         min: [41]
         max: [50]
-      G:
+      7:
         min: [51]
         max: [60]
-      H:
+      8:
         min: [61]
         max: [70]
-      I:
+      9:
         min: [71]
         max: [80]
-      J:
+      10:
         min: [81]
         max: [90]
-      K:
+      11:
         min: [91]
         max: [100]
+  SD:
+    translation:
+      value: 3
+  PO:
+    translation:
+      value: 1
+  MOSM:
+    translation:
+      1:
+        min: [0]
+        max: [0]
+      2:
+        min: [1]
+        max: [2]
+      

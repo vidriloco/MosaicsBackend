@@ -83,47 +83,85 @@ describe Survey do
           :answer => MetaAnswerOption.find_by_identifier("12o3").order_identifier
         })
 
-
         survey.bare_results.should include({
-          :title => "P7_1",
-          :answer => ["0.4596774","-0.216129"].to_s
+          :title => "P7_1_1",
+          :answer => 0.4596774
+        })
+        
+        survey.bare_results.should include({
+          :title => "P7_1_2",
+          :answer => -0.216129
         })
       
         survey.bare_results.should include({
-          :title => "P7_2",
-          :answer => ["-0.8709677","-0.8967742"].to_s
+          :title => "P7_2_1",
+          :answer => -0.8709677
+        })
+        
+        survey.bare_results.should include({
+          :title => "P7_2_2",
+          :answer => -0.8967742
+        })
+        
+        survey.bare_results.should include({
+          :title => "P7_3_1",
+          :answer => -0.5629032
+        })
+        
+        survey.bare_results.should include({
+          :title => "P7_3_2",
+          :answer => 0.4693548
         })
       
         survey.bare_results.should include({
-          :title => "P7_3",
-          :answer => ["-0.5629032","0.4693548"].to_s
+          :title => "P7_4_1",
+          :answer => 0.5306451
         })
       
         survey.bare_results.should include({
-          :title => "P7_4",
-          :answer => ["0.5306451","0.9370968"].to_s
+          :title => "P7_4_2",
+          :answer => 0.9370968
         })
       
         survey.bare_results.should include({
-          :title => "P7_5",
-          :answer => ["0.1387097","-0.6096774"].to_s
+          :title => "P7_5_1",
+          :answer => 0.1387097
+        })
+        
+        survey.bare_results.should include({
+          :title => "P7_5_2",
+          :answer => -0.6096774
         })
       
         survey.bare_results.should include({
-          :title => "P7_6",
-          :answer => ["-0.2096774","0.1532258"].to_s
+          :title => "P7_6_1",
+          :answer => -0.2096774
+        })
+        
+        survey.bare_results.should include({
+          :title => "P7_6_2",
+          :answer => 0.1532258
         })
       
         survey.bare_results.should include({
-          :title => "P7_7",
-          :answer => ["-0.533871","-0.5209677"].to_s
+          :title => "P7_7_1",
+          :answer => -0.533871
+        })
+        
+        survey.bare_results.should include({
+          :title => "P7_7_2",
+          :answer => -0.5209677
         })
       
         survey.bare_results.should include({
-          :title => "P7_8",
-          :answer => ["0.5177419","0.4693548"].to_s
+          :title => "P7_8_1",
+          :answer => 0.5177419
         })
-      
+        
+        survey.bare_results.should include({
+          :title => "P7_8_2",
+          :answer => 0.4693548
+        })
       
         survey.bare_results.should include({
           :title => "P3_1",
@@ -149,6 +187,7 @@ describe Survey do
           :title => "P3_5",
           :answer => ""
         })
+        
       end
       
       it "should generate translated results for this survey" do
@@ -156,70 +195,177 @@ describe Survey do
         
         survey.bare_results(:translated).should include({
           :title => "P8_1",
-          :answer => "D"
+          :answer => 4
         })
         
         survey.bare_results(:translated).should include({
           :title => "P8_2",
-          :answer => "A"
+          :answer => 1
         })
       
         survey.bare_results(:translated).should include({
           :title => "P8_3",
-          :answer => "E"
+          :answer => 5
         })
       
         survey.bare_results(:translated).should include({
           :title => "P8_4",
-          :answer => "B"
+          :answer => 2
         })
       
         survey.bare_results(:translated).should include({
           :title => "P8_5",
-          :answer => "E"
+          :answer => 5
         })
         
         
         survey.bare_results(:translated).should include({
-          :title => "P9_11",
+          :title => "P7_1_1",
+          :answer => 0.4596774
+        })
+        
+        survey.bare_results(:translated).should include({
+          :title => "P7_1_2",
+          :answer => -0.216129
+        })
+      
+        survey.bare_results(:translated).should include({
+          :title => "P7_2_1",
+          :answer => -0.8709677
+        })
+        
+        survey.bare_results(:translated).should include({
+          :title => "P7_2_2",
+          :answer => -0.8967742
+        })
+        
+        survey.bare_results(:translated).should include({
+          :title => "P7_3_1",
+          :answer => -0.5629032
+        })
+        
+        survey.bare_results(:translated).should include({
+          :title => "P7_3_2",
+          :answer => 0.4693548
+        })
+      
+        survey.bare_results(:translated).should include({
+          :title => "P7_4_1",
+          :answer => 0.5306451
+        })
+      
+        survey.bare_results(:translated).should include({
+          :title => "P7_4_2",
+          :answer => 0.9370968
+        })
+      
+        survey.bare_results(:translated).should include({
+          :title => "P7_5_1",
+          :answer => 0.1387097
+        })
+        
+        survey.bare_results(:translated).should include({
+          :title => "P7_5_2",
+          :answer => -0.6096774
+        })
+      
+        survey.bare_results(:translated).should include({
+          :title => "P7_6_1",
+          :answer => -0.2096774
+        })
+        
+        survey.bare_results(:translated).should include({
+          :title => "P7_6_2",
+          :answer => 0.1532258
+        })
+      
+        survey.bare_results(:translated).should include({
+          :title => "P7_7_1",
+          :answer => -0.533871
+        })
+        
+        survey.bare_results(:translated).should include({
+          :title => "P7_7_2",
+          :answer => -0.5209677
+        })
+      
+        survey.bare_results(:translated).should include({
+          :title => "P7_8_1",
+          :answer => 0.5177419
+        })
+        
+        survey.bare_results(:translated).should include({
+          :title => "P7_8_2",
+          :answer => 0.4693548
+        })
+        
+        
+        survey.bare_results(:translated).should include({
+          :title => "P9_1_1",
           :answer => 1
         })
         
         survey.bare_results(:translated).should include({
-          :title => "P9_12",
+          :title => "P9_1_2",
           :answer => 1
         })
       
         survey.bare_results(:translated).should include({
-          :title => "P9_13",
+          :title => "P9_1_3",
           :answer => 2
         })
         
         survey.bare_results(:translated).should include({
-          :title => "P9_14",
+          :title => "P9_1_4",
           :answer => 1
         })
       
         survey.bare_results(:translated).should include({
-          :title => "P9_21",
+          :title => "P9_2_1",
           :answer => 1
         })
       
         survey.bare_results(:translated).should include({
-          :title => "P9_22",
+          :title => "P9_2_2",
           :answer => 1
         })
         
         survey.bare_results(:translated).should include({
-          :title => "P9_23",
+          :title => "P9_2_3",
           :answer => 2
         })
         
         survey.bare_results(:translated).should include({
-          :title => "P9_24",
+          :title => "P9_2_4",
           :answer => 2
         })
 
+        # "112i2":["-2"],"112i5":["3"],"112i1":["-3"],"112i4":["1"],"112i3":["0"],"112i6":["-1"]}},"
+        survey.bare_results(:translated).should include({
+          :title => "P12_1",
+          :answer => 0
+        })
+        
+        survey.bare_results(:translated).should include({
+          :title => "P12_2",
+          :answer => 1
+        })
+      
+        survey.bare_results(:translated).should include({
+          :title => "P12_3",
+          :answer => 3
+        })
+        
+        survey.bare_results(:translated).should include({
+          :title => "P12_4",
+          :answer => 4
+        })
+      
+        survey.bare_results(:translated).should include({
+          :title => "P12_5",
+          :answer => 6
+        })
+        
       end
       
     end

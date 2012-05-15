@@ -16,8 +16,8 @@ module Results::MetaSurveys
         if mq.with_options_column_components?
           mq.meta_answer_options.each do |mao|
             collected << {
-              :title => "P#{mq.order_identifier}_#{mai.order_identifier}#{mao.order_identifier}",
-              :presence_response => true,
+              :title => "P#{mq.order_identifier}_#{mai.order_identifier}_#{mao.order_identifier}",
+              :empty_fill => Quantus.fill_empty?(mq.type_of),
               :meta_question => mq,
               :meta_answer_item => mai,
               :meta_answer_option => mao
@@ -26,6 +26,7 @@ module Results::MetaSurveys
         else
           collected << {
             :title => "P#{mq.order_identifier}_#{mai.order_identifier}",
+            :empty_fill => Quantus.fill_empty?(mq.type_of),
             :meta_question => mq,
             :meta_answer_item => mai
           }

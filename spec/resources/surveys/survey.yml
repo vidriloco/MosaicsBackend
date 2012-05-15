@@ -61,7 +61,7 @@ survey:
 
     11:
       title: "De las siguientes marcas de servicios financieros, arrastre hacia el círculo las que use"
-      type: "MS"
+      type: "MSB"
       group: "Banca"
       items:
         1:
@@ -162,11 +162,11 @@ survey:
           human_value: "Pumas"
       options:
         1:
-          human_value: "No sé"
-        2:
           human_value: "Bueno"
-        3:
+        2:
           human_value: "Malo"
+        3:
+          human_value: "No sé"
 
     6:
       title: "Ordene los elementos por altura a partir de su calidad de servicio"

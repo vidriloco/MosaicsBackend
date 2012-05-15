@@ -6,16 +6,22 @@ end
 
 class Array
   def sort_as_quantus_header
-    char_values = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-    regexp = /^P(\d+)_([[\d]|[a-zA-Z]]+)$/
-    transformer = Proc.new { |item| item.chars.each.inject(0) { |collected, ch| ch = ch.numeric? ? ch : char_values.index(ch.downcase) ; collected += ch.to_i } }
     self.sort! do |x,y| 
-      parts_of_x = x.scan(regexp) 
-      parts_of_y = y.scan(regexp)
+      x=x.delete "P" 
+      y=y.delete "P"
       
-      value_for_x = "#{parts_of_x[0][0]}#{transformer.call(parts_of_x[0][1])}"
-      value_for_y = "#{parts_of_y[0][0]}#{transformer.call(parts_of_y[0][1])}"
+      parts_of_x = x.split("_")
+      parts_of_y = y.split("_")
       
+      value_for_x = "#{parts_of_x[0]}#{parts_of_x[1]}"
+      value_for_y = "#{parts_of_y[0]}#{parts_of_y[1]}"
+            
+      value_for_x += parts_of_x[2] unless parts_of_x[2].nil?
+      value_for_y += parts_of_y[2] unless parts_of_y[2].nil?
+      
+      value_for_x += "0" if parts_of_x.length == 2
+      value_for_y += "0" if parts_of_y.length == 2
+        
       value_for_x.to_i <=> value_for_y.to_i
     end
   end

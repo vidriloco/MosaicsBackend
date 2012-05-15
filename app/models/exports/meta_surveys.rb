@@ -14,7 +14,7 @@ module Exports::MetaSurveys
   #                    }
   #                 }
   def preprocess_to_plist
-    preprocessed = {:meta_survey_id => id.to_s, :meta_questions => {}}
+    preprocessed = {:meta_survey_id => identifier.to_s, :meta_questions => {}}
     
     meta_questions.each do |mq|
       preprocessed[:meta_questions].merge!(mq.preprocess_to_plist)

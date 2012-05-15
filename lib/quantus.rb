@@ -6,7 +6,8 @@ module Quantus
   @@question_types =  {:open => [], :binary => ["SC"], :perceptual_map => [] }
   @@authenticity_application_path_ref = nil
   @@translators = {}
-  @@question_types_full_include = []
+  @@question_types_with_components = []
+  @@empty_fill = []
   # Example: 
   # Quantus.setup do |config|
   #
@@ -25,12 +26,24 @@ module Quantus
     return @@question_types[type.to_sym]
   end
   
-  def self.register_question_type_for_full_include(type)
-    return @@question_types_full_include << type
+  def self.register_question_types_with_components(type)
+    @@question_types_with_components += type
   end
   
-  def self.question_types_with_full_include
-    return @@question_types_full_include
+  def self.question_types_with_components
+    return @@question_types_with_components
+  end
+  
+  def self.register_question_for_empty_fill(type)
+    @@empty_fill << type
+  end
+  
+  def self.register_questions_for_empty_fill(array)
+    @@empty_fill += array
+  end
+  
+  def self.fill_empty?(type)
+    @@empty_fill.include?(type)
   end
   
   def self.authenticity_application_path

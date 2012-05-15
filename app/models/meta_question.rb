@@ -24,7 +24,7 @@ class MetaQuestion < ActiveRecord::Base
   end
   
   def with_options_column_components?
-    Quantus.question_types_with_full_include.include? type_of
+    Quantus.question_types_with_components.include? type_of
   end
   
   # builds the response from the client for items

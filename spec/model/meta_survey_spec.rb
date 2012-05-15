@@ -81,33 +81,40 @@ describe MetaSurvey do
       meta_survey.results_frame.should include({
         :title => "P1_1", 
         :meta_question => MetaQuestion.find_by_identifier("11"), 
-        :meta_answer_item => MetaAnswerItem.find_by_identifier("11i1") })
+        :meta_answer_item => MetaAnswerItem.find_by_identifier("11i1"),
+        :empty_fill => false })
 
       meta_survey.results_frame.should include({
         :title => "P2_1",
         :meta_question => MetaQuestion.find_by_identifier("12"), 
-        :meta_answer_item => MetaAnswerItem.find_by_identifier("12i1") })
+        :meta_answer_item => MetaAnswerItem.find_by_identifier("12i1"),
+        :empty_fill => false })
       meta_survey.results_frame.should include({
         :title => "P2_2",
         :meta_question => MetaQuestion.find_by_identifier("12"), 
-        :meta_answer_item => MetaAnswerItem.find_by_identifier("12i2") })
+        :meta_answer_item => MetaAnswerItem.find_by_identifier("12i2"),
+        :empty_fill => false })
       meta_survey.results_frame.should include({
         :title => "P2_3",
         :meta_question => MetaQuestion.find_by_identifier("12"), 
-        :meta_answer_item => MetaAnswerItem.find_by_identifier("12i3") })
+        :meta_answer_item => MetaAnswerItem.find_by_identifier("12i3"),
+        :empty_fill => false })
       meta_survey.results_frame.should include({
         :title => "P2_4",
         :meta_question => MetaQuestion.find_by_identifier("12"), 
-        :meta_answer_item => MetaAnswerItem.find_by_identifier("12i4") })
+        :meta_answer_item => MetaAnswerItem.find_by_identifier("12i4"),
+        :empty_fill => false })
       meta_survey.results_frame.should include({
         :title => "P2_5",
         :meta_question => MetaQuestion.find_by_identifier("12"), 
-        :meta_answer_item => MetaAnswerItem.find_by_identifier("12i5") })
+        :meta_answer_item => MetaAnswerItem.find_by_identifier("12i5"),
+        :empty_fill => false })
 
       meta_survey.results_frame.should_not include({
         :title => "P2_6",
         :meta_question => MetaQuestion.find_by_identifier("12"), 
-        :meta_answer_item => MetaAnswerItem.find_by_identifier("12i6") })
+        :meta_answer_item => MetaAnswerItem.find_by_identifier("12i6"),
+        :empty_fill => false })
     end
     
     describe "after commiting two survey results set" do
@@ -136,27 +143,27 @@ describe MetaSurvey do
         meta_survey.merged_results["P3_4"].should == ["", ""]
         meta_survey.merged_results["P3_5"].should == ["", ""]
 
-        meta_survey.merged_results(:translated)["P9_11"].should == [1, 2]
-        meta_survey.merged_results(:translated)["P9_12"].should == [1, 2]
-        meta_survey.merged_results(:translated)["P9_13"].should == [2, 2]
-        meta_survey.merged_results(:translated)["P9_14"].should == [1, 1]
-        meta_survey.merged_results(:translated)["P9_21"].should == [1, 1]
-        meta_survey.merged_results(:translated)["P9_22"].should == [1, 2]
-        meta_survey.merged_results(:translated)["P9_23"].should == [2, 2]
-        meta_survey.merged_results(:translated)["P9_24"].should == [2, 1]
-        meta_survey.merged_results(:translated)["P9_31"].should == [1, 2]
-        meta_survey.merged_results(:translated)["P9_32"].should == [1, 1]
-        meta_survey.merged_results(:translated)["P9_33"].should == [2, 2]
-        meta_survey.merged_results(:translated)["P9_34"].should == [2, 2]
+        meta_survey.merged_results(:translated)["P9_1_1"].should == [1, 2]
+        meta_survey.merged_results(:translated)["P9_1_2"].should == [1, 2]
+        meta_survey.merged_results(:translated)["P9_1_3"].should == [2, 2]
+        meta_survey.merged_results(:translated)["P9_1_4"].should == [1, 1]
+        meta_survey.merged_results(:translated)["P9_2_1"].should == [1, 1]
+        meta_survey.merged_results(:translated)["P9_2_2"].should == [1, 2]
+        meta_survey.merged_results(:translated)["P9_2_3"].should == [2, 2]
+        meta_survey.merged_results(:translated)["P9_2_4"].should == [2, 1]
+        meta_survey.merged_results(:translated)["P9_3_1"].should == [1, 2]
+        meta_survey.merged_results(:translated)["P9_3_2"].should == [1, 1]
+        meta_survey.merged_results(:translated)["P9_3_3"].should == [2, 2]
+        meta_survey.merged_results(:translated)["P9_3_4"].should == [2, 2]
       end
       
       it "should generate rows for exporting to CSV" do
         meta_survey = MetaSurvey.first
         csv_rows = meta_survey.rows_for_csv
         csv_rows.length.should == 3
-        csv_rows[0].length.should == 70
-        csv_rows[1].length.should == 70
-        csv_rows[2].length.should == 70
+        csv_rows[0].length.should == 78
+        csv_rows[1].length.should == 78
+        csv_rows[2].length.should == 78
       end
     end
         
