@@ -46,21 +46,33 @@ module Results::Surveys
     if opts[:empty_fill]
       return Quantus.translator_for("fillable_when_empty")[!value.blank?]
     elsif !value.blank? 
-      results=Quantus.translator_for(question_type)["translation"]
+      results=Quantus.translator_for(question_type)
       
       case question_type
       when "CS"
+        results = results["translation"]
         results.keys.each do |key|
           min=results[key]["min"][0]
           max=results[key]["max"][0]
           return key if(value.to_i.in? (min..max))
         end
       when "SD", "PO"
+        results = results["translation"]
         return value.to_i+results["value"].to_i
       when "MOSM"
-        return value
+        ranges = results["definition"]
+        old_range = 2 # 1 - (-1)
+        new_range = ranges["max"]-ranges["min"]
+        value = (((value+1) * new_range) / old_range) + ranges["min"]
+        value = value.round
+        
+        results = results["translation"]
+        results.keys.each do |key|
+          min=results[key]["min"][0]
+          max=results[key]["max"][0]
+          return key if(value <= max && value > min)
+        end
       else
-        # translate to range *10/2
         return value
       end
     end

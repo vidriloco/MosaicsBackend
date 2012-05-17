@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :full_name, :email, :cell_phone, :phone, :password, :password_confirmation, :remember_me
+  attr_accessible :username, :full_name, :email, :cell_phone, :phone, :password, :password_confirmation, :remember_me, :organization_id
   
   validates_format_of :cell_phone, :phone, :with => /^(\d)*$/
 

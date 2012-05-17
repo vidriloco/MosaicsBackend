@@ -5,7 +5,8 @@ es_MX:
     attributes:
       organization: 
         name: "Nombre"
-        surveys: "Encuestas"
+        surveys: "Encuestas por aplicar"
+        meta_surveys: "Encuestas aplicadas"
   organization:
     messages:
       create: 

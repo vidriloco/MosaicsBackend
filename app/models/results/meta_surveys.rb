@@ -9,6 +9,14 @@ module Results::MetaSurveys
     end
   end
   
+  def render_as_csv_string
+    CSV.generate do |csv|
+      self.rows_for_csv.each do |row|
+        csv << row
+      end
+    end
+  end
+  
   def results_frame
     collected = []
     self.meta_questions.each do |mq|

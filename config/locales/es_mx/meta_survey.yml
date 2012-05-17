@@ -13,6 +13,7 @@ es_MX:
       delete:
         success: "Descripción de encuesta eliminada"
       confirmation:
+        purge: "¿Eliminar todas las encuestas levantadas hasta ahora?"
         delete: "¿Eliminar esta descripción de encuesta? Los resultados de encuestas levantadas se eliminarán también"
     validations:
       identifier: "El identificador para esta encuesta ya ha sido tomado"
@@ -31,4 +32,5 @@ es_MX:
       index:
         title: "Descriptor de encuestas cargadas"
         download: "Descargar resultados"
+        purge: "Purgar resultados"
         empty: "No hay definiciones de encuestas registradas en éste momento"

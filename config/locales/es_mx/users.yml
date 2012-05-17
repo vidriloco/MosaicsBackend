@@ -1,9 +1,0 @@
-es_MX:
-  users:
-    views:
-      index:
-        close_session: "Cerrar Sesión"
-        profile: "Perfil"
-      sessions:
-        new:
-          login_button: "Entrar"

@@ -10,10 +10,12 @@ Backend::Application.routes.draw do
     resources :meta_surveys, :except => [:edit, :update] do
       member do
         get :download
+        post :purge
       end
     end
     resources :admin_users
     resources :pollsters
+    resources :managers
   end
   
   devise_for :managers

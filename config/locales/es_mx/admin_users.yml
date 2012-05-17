@@ -2,9 +2,11 @@ es_MX:
   activerecord:
     attributes:
       admin_user:
-        email: "Correo electrónico"
+        email: "Correo"
         name: "Nombre"
         organization: "Organización"
+        password: "Contraseña"
+        password_confirmation: "Confirmación de la contraseña"
   admin_user:
     messages:
       confirmation:

@@ -19,6 +19,8 @@ es_MX:
       organization: "Organización"
       admin_user: "Administrador"
   general:
+    field:
+      empty: "----"
     sections:
       listing: "Listando"
     actions:

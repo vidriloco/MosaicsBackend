@@ -8,7 +8,7 @@ es_MX:
           email: "Correo electrónico"
           full_name: "Nombre"
           uid: "UID"
-          birthday: "Cumpleaños"
+          birthday: "Fecha de Nacimiento"
           job: "Ocupación"
           phone: "Teléfono"
           extension: "Extensión"

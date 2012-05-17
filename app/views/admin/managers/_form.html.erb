@@ -1,26 +1,25 @@
-<%= form_for([:admin, @pollster]) do |f| %>
-	<%= render :partial => 'shared/errors', :locals => {:model => @pollster} %>
+<%= form_for([:admin, @manager]) do |f| %>
+	<%= render :partial =>  'shared/errors', :locals => {:model => @manager } %>
+
+	<div class="field">
+    <%= f.label :full_name %>
+    <%= f.text_field :full_name %>
+  </div>
 	
-	<br/>
   <div class="field">
     <%= f.label :email %>
     <%= f.text_field :email %>
   </div>
+
+	<div class="field">
+    <%= f.label :organization %>
+    <%= f.select :organization_id, Organization.all.collect {|p| [ p.name, p.id ] }, { :include_blank => true } %>
+  </div>
+
   <div class="field">
-    <%= f.label :full_name %>
-    <%= f.text_field :full_name %>
+    <%= f.label :job %>
+    <%= f.text_field :job %>
   </div>
-
-	<div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-	
-	<div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-
 
   <div class="field">
     <%= f.label :username %>
@@ -42,6 +41,17 @@
     <%= f.label :cell_phone %>
     <%= f.text_field :cell_phone %>
   </div>
+
+	<div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+	
+	<div class="field">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -221,82 +221,82 @@ describe Survey do
         
         survey.bare_results(:translated).should include({
           :title => "P7_1_1",
-          :answer => 0.4596774
+          :answer => 4
         })
         
         survey.bare_results(:translated).should include({
           :title => "P7_1_2",
-          :answer => -0.216129
+          :answer => 2
         })
       
         survey.bare_results(:translated).should include({
           :title => "P7_2_1",
-          :answer => -0.8709677
+          :answer => 1
         })
         
         survey.bare_results(:translated).should include({
           :title => "P7_2_2",
-          :answer => -0.8967742
+          :answer => 1
         })
         
         survey.bare_results(:translated).should include({
           :title => "P7_3_1",
-          :answer => -0.5629032
+          :answer => 2
         })
         
         survey.bare_results(:translated).should include({
           :title => "P7_3_2",
-          :answer => 0.4693548
+          :answer => 4
         })
       
         survey.bare_results(:translated).should include({
           :title => "P7_4_1",
-          :answer => 0.5306451
+          :answer => 4
         })
       
         survey.bare_results(:translated).should include({
           :title => "P7_4_2",
-          :answer => 0.9370968
+          :answer => 5
         })
       
         survey.bare_results(:translated).should include({
           :title => "P7_5_1",
-          :answer => 0.1387097
+          :answer => 3
         })
         
         survey.bare_results(:translated).should include({
           :title => "P7_5_2",
-          :answer => -0.6096774
+          :answer => 1
         })
       
         survey.bare_results(:translated).should include({
           :title => "P7_6_1",
-          :answer => -0.2096774
+          :answer => 2
         })
         
         survey.bare_results(:translated).should include({
           :title => "P7_6_2",
-          :answer => 0.1532258
+          :answer => 3
         })
       
         survey.bare_results(:translated).should include({
           :title => "P7_7_1",
-          :answer => -0.533871
+          :answer => 2
         })
         
         survey.bare_results(:translated).should include({
           :title => "P7_7_2",
-          :answer => -0.5209677
+          :answer => 2
         })
       
         survey.bare_results(:translated).should include({
           :title => "P7_8_1",
-          :answer => 0.5177419
+          :answer => 4
         })
         
         survey.bare_results(:translated).should include({
           :title => "P7_8_2",
-          :answer => 0.4693548
+          :answer => 4
         })
         
         

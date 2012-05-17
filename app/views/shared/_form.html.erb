@@ -1,9 +1,0 @@
-<div id="acceso" class="centered">	
-	<%= form_for(Manager.new, :as => :manager, :url => session_path(:manager)) do |f| %>
-	  <div><%= f.email_field :email %><%= f.label :email %></div>
-		<br/>
-	  <div><%= f.password_field :password %><%= f.label :password %></div>
-		<br/><br/>
-	  <p class="submit centered-text">  <%= f.submit t('users.views.sessions.new.login_button') %></p>
-	<% end %>
-</div>

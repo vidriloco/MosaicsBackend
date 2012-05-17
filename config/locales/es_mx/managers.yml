@@ -1,0 +1,31 @@
+es_MX:
+  activerecord:
+    attributes:
+      manager:
+        email: "Correo"
+        organization: "Organización"
+        password: "Contraseña"
+        password_confirmation: "Confirmación de la contraseña"
+        username: "Nombre de usuario"
+        full_name: "Nombre"
+        birthday: "Fecha de Nacimiento"
+        job: "Ocupación"
+        phone: "Teléfono"
+        extension: "Extensión"
+        cell_phone: "Teléfono celular"
+  manager:
+    messages:
+      confirmation:
+        delete: "¿Realmente deseas eliminar este administrador de campaña?"
+    views:
+      index:
+        title: "Administradores de campaña"
+        close_session: "Cerrar Sesión"
+        profile: "Perfil"
+      new:
+        title: "Nuevo administrador de campaña"
+      edit:
+        title: "Modificar administrador de campaña"
+      sessions:
+        new:
+          login_button: "Entrar"

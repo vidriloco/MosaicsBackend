@@ -1,15 +1,11 @@
-<h2>Sign up</h2>
+<h1 class="centered-text"><%= t('app.sections.access') %></h1>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
-
-  <div><%= f.submit t('users.views.sessions.new.login_button') %></div>
-<% end %>
+<div id="acceso" class="centered">	
+	<%= form_for(AdminUser.new, :as => :admin_user, :url => session_path(:admin_user)) do |f| %>
+	  <div><%= f.email_field :email %><%= f.label :email %></div>
+		<br/>
+	  <div><%= f.password_field :password %><%= f.label :password %></div>
+		<br/><br/>
+	  <p class="submit centered-text">  <%= f.submit t('users.views.sessions.new.login_button') %></p>
+	<% end %>
+</div>
