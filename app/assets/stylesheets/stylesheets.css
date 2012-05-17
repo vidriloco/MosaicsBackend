@@ -3,7 +3,7 @@
 /* Normalize */
 @import url("normalize.css");
 /* Font-face */
-@import @import url(http://fonts.googleapis.com/css?family=Open+Sans:700,600,800);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:700,600,800);
 /* Phone */
 @import url("phone.css") only screen and (max-width:320px);
 /* Tablet */
