@@ -18,6 +18,9 @@ class Admin::AdminUsersController < Admin::BaseController
   # GET /admin_users/1/edit
   def edit
   end
+  
+  def show
+  end
 
   # POST /admin_users
   def create

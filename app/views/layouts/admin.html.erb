@@ -38,6 +38,9 @@
               <li><%= link_to t('administration.sections.meta_surveys'), admin_meta_surveys_path  %></li>
               <li><%= link_to t('administration.sections.admins'), admin_admin_users_path, :class => "highlighted" %></li>
             </ul>
+						<ul class="nav pull-right">
+							<li><%= link_to t('general.actions.logout'), destroy_admin_user_session_path, :method => :delete, :class => "pull-right" %></li>
+						</ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>

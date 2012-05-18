@@ -30,6 +30,7 @@ es_MX:
       delete: "Eliminar"
       show: "Ver detalles"
       back: "Atrás"
+      logout: "Cerrar Sesión"
     messages:
       error:
         one: "Un error impidió que Quantus guardara este objeto"

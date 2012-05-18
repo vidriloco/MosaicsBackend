@@ -1,7 +1,6 @@
 Backend::Application.routes.draw do
   
   devise_for :admin_users
-  resources :admin_users
   
   namespace :admin do
     get '/' => 'main#index', :as => :index
@@ -13,6 +12,7 @@ Backend::Application.routes.draw do
         post :purge
       end
     end
+    
     resources :admin_users
     resources :pollsters
     resources :managers
