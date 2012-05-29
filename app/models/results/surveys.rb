@@ -60,18 +60,7 @@ module Results::Surveys
         results = results["translation"]
         return value.to_i+results["value"].to_i
       when "MOSM"
-        ranges = results["definition"]
-        old_range = 2 # 1 - (-1)
-        new_range = ranges["max"]-ranges["min"]
-        value = (((value+1) * new_range) / old_range) + ranges["min"]
-        value = value.round
-        
-        results = results["translation"]
-        results.keys.each do |key|
-          min=results[key]["min"][0]
-          max=results[key]["max"][0]
-          return key if(value <= max && value > min)
-        end
+        return (value*3+3).round
       else
         return value
       end
