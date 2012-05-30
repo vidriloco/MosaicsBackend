@@ -142,6 +142,11 @@ survey:
           human_value: "Mercedes-Benz"
         8:
           human_value: "Fiat"
+      options:
+        1:
+          human_value: "Precio"
+        2:
+          human_value: "Desempeño"
     8:
       title: "Al elegir una nueva casa, ¿qué valor tienen para usted los siguientes puntos? (el total debe sumar 100 puntos)"
       type: "CS"
