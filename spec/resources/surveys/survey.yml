@@ -2,91 +2,9 @@ survey:
   identifier: "1"
   name: "Encuesta Diversa"
   size: 200
-  questions:
-    9:
-      title: "Para cada uno de los siguientes restaurantes, encierre los conceptos con los que esté de acuerdo"
-      type: "MOS"
-      group: "Comida Rapida"
-      items:
-        1: 
-          human_value: "Burger King"
-        2:
-          human_value: "Domino's Pizza"
-        3:
-          human_value: "Subway"
-      options:
-        1:
-          human_value: "Delicioso"
-        2:
-          human_value: "Saludable"
-        3:
-          human_value: "Completo"
-        4:
-          human_value: "Económico"
-
-    7:
-      title: "Considerando la opinión que tiene respecto al precio y desempeño de las siguientes marcas de automóviles, arrastre la imagen que aparece y colóquela en el siguiente mapa"  
-      type: "MOSM"
-      group: "Autos"
-      items:
-        1:
-          human_value: "Nissan"
-        2:
-          human_value: "Audi"
-        3:
-          human_value: "Dodge"
-        4:
-          human_value: "Renault"
-        5:
-          human_value: "Volkswagen"
-        6:
-          human_value: "BMW"
-        7:
-          human_value: "Mercedes-Benz"
-        8:
-          human_value: "Fiat"
-      options:
-        1:
-          human_value: "Precio"
-        2:
-          human_value: "Desempeño"
-          
-    10:
-      title: "¿Qué opinión tiene usted acerca del voto nulo?"
-      type: "OQ"
-      group: "Voto Nulo"
-      items:
-        1:
-          human_value: "Opinión"
-
-    11:
-      title: "De las siguientes marcas de servicios financieros, arrastre hacia el círculo las que use"
-      type: "MSB"
-      group: "Banca"
-      items:
-        1:
-          human_value: "BBVA Bancomer"
-        2:
-          human_value: "Master Card"
-        3:
-          human_value: "HSBC"
-        4:
-          human_value: "Banorte"
-        5:
-          human_value: "American Express"
-        6:
-          human_value: "Banamex"
-        7:
-          human_value: "Santander"
-        8:
-          human_value: "VISA"
-      options:
-        1: 
-          human_value: "kSelected"
-        2:
-          human_value: "kDeselected"
+  questions:    
     1:
-      title: "Revele su sexo arrastrando la línea de división"
+      title: "Elija su género cubriendo la pantalla de un solo color según su sexo"
       type: "SC"
       group: "Género"
       items:
@@ -97,9 +15,73 @@ survey:
           human_value: "Masculino"
         2:
           human_value: "Femenino"
-
+    2:
+      title: "Indique qué tan de acuerdo o en desacuerdo está con los siguientes enunciados"
+      type: "LK"
+      group: "Bici"
+      items:
+        1:
+          human_value: "Deben construirse más avenidas para más autos"
+        2:
+          human_value: "Salir en bicicleta es peligroso"
+        3:
+          human_value: "Debe promoverse el uso de medios de transporte alternativos"
+        4:
+          human_value: "El transporte público es de buena calidad"
+        5:
+          human_value: "La bicicleta es un medio de transporte eficiente"
+      options:
+        1:
+          human_value: "Muy de acuerdo"
+        2:
+          human_value: "De acuerdo"
+        3:
+          human_value: "Neutral"
+        4:
+          human_value: "En desacuerdo"
+        5:
+          human_value: "Muy en desacuerdo"
+    3:
+      title: "Reproduzca el video y vea con atención"
+      type: "MOQ"
+      group: "Transporte"
+      items:
+        1:
+          human_value: "Marca 1"
+        2:
+          human_value: "Marca 2"
+        3:
+          human_value: "Marca 3"
+        4:
+          human_value: "Marca 4"
+        5:
+          human_value: "Marca 5"
+    4:
+      title: "Arrastre al círculo correspondiente, de acuerdo con su desempeño futbolístico, cada uno de los equipos de futbol"
+      type: "MS"
+      group: "Fútbol"
+      items:
+        1:
+          human_value: "PSV"
+        2:
+          human_value: "Ajax"
+        3:
+          human_value: "Chivas"
+        4:
+          human_value: "Liverpool"
+        5:
+          human_value: "Manchester"
+        6:
+          human_value: "Pumas"
+      options:
+        1:
+          human_value: "No sé"
+        2:
+          human_value: "Bueno"
+        3:
+          human_value: "Malo"
     5:
-      title: "Califique la programación de los siguientes canales de televisión"
+      title: "Califique la programación de los siguientes canales de televisión, arrastrando el punto blanco a la derecha o a la izquierda de cada barra, a la opción que mejor refleje su opinión"
       type: "LK"
       group: "Medios Televisión"
       items:
@@ -126,50 +108,8 @@ survey:
           human_value: "Mala"
         5:
           human_value: "Muy Mala"
-
-    3:
-      title: "Reproduzca el video y conteste a la siguiente pregunta"
-      type: "MOQ"
-      group: "Transporte"
-      items:
-        1:
-          human_value: "Marca 1"
-        2:
-          human_value: "Marca 2"
-        3:
-          human_value: "Marca 3"
-        4:
-          human_value: "Marca 4"
-        5:
-          human_value: "Marca 5"
-
-    4:
-      title: "Deposite cada equipo de fútbol en el círculo que corresponda con su opinión"
-      type: "MS"
-      group: "Fútbol"
-      items:
-        1:
-          human_value: "PSV"
-        2:
-          human_value: "Ajax"
-        3:
-          human_value: "Chivas"
-        4:
-          human_value: "Liverpool"
-        5:
-          human_value: "Manchester"
-        6:
-          human_value: "Pumas"
-      options:
-        1:
-          human_value: "Bueno"
-        2:
-          human_value: "Malo"
-        3:
-          human_value: "No sé"
-
     6:
-      title: "Ordene los elementos por altura a partir de su calidad de servicio"
+      title: "Ordene del 1 al 4 la calidad en el servicio de las siguientes compañías telefónicas"
       type: "PO"
       group: "Telefonía Móvil"
       items: 
@@ -181,8 +121,29 @@ survey:
           human_value: "Iusacell"
         4:
           human_value: "Telcel"
+    7:
+      title: "Coloque en el siguiente plano cada uno de los logotipos de las empresas automotrices que aparecerán, tomando en cuenta la relación precio-desempeño de cada marca"  
+      type: "MOSM"
+      group: "Autos"
+      items:
+        1:
+          human_value: "Nissan"
+        2:
+          human_value: "Audi"
+        3:
+          human_value: "Dodge"
+        4:
+          human_value: "Renault"
+        5:
+          human_value: "Volkswagen"
+        6:
+          human_value: "BMW"
+        7:
+          human_value: "Mercedes-Benz"
+        8:
+          human_value: "Fiat"
     8:
-      title: "Al elegir una nueva casa, ¿qué valor tienen para usted los siguientes criterios? (el total debe sumar 100 puntos)"
+      title: "Al elegir una nueva casa, ¿qué valor tienen para usted los siguientes puntos? (el total debe sumar 100 puntos)"
       type: "CS"
       group: "Inmobiliarias"
       items:
@@ -196,8 +157,61 @@ survey:
           human_value: "Precio Actual"
         5:
           human_value: "Servicios"
+    9:
+      title: "Toque cada uno de los restaurantes y califíquelos encerrando en un círculo los calificativos atributos con los que esté de acuerdo"
+      type: "MOS"
+      group: "Comida Rapida"
+      items:
+        1: 
+          human_value: "Burger King"
+        2:
+          human_value: "Domino's Pizza"
+        3:
+          human_value: "Subway"
+      options:
+        1:
+          human_value: "Delicioso"
+        2:
+          human_value: "Saludable"
+        3:
+          human_value: "Completo"
+        4:
+          human_value: "Económico"
+    10:
+      title: "¿Qué opina del voto nulo?"
+      type: "OQ"
+      group: "Voto Nulo"
+      items:
+        1:
+          human_value: "Opinión"
+    11:
+      title: "Arrastre hacia el círculo inferior solo los servicios financieros que actualmente esté utilizado"
+      type: "MS"
+      group: "Banca"
+      items:
+        1:
+          human_value: "BBVA Bancomer"
+        2:
+          human_value: "Master Card"
+        3:
+          human_value: "HSBC"
+        4:
+          human_value: "Banorte"
+        5:
+          human_value: "American Express"
+        6:
+          human_value: "Banamex"
+        7:
+          human_value: "Santander"
+        8:
+          human_value: "VISA"
+      options:
+        1: 
+          human_value: "kSelected"
+        2:
+          human_value: "kDeselected"
     12:
-      title: "Considerando la siguiente escala, evalúe la etiqueta de la lata y responda conforme al calificativo"
+      title: "Evalúe la etiqueta de la lata conforme a los siguientes atributos"
       type: "SD"
       group: "Envases"
       items:
@@ -212,31 +226,4 @@ survey:
         5:
           human_value: "Divertida-Aburrida"
         6:
-          human_value: "Fría-Cálida"
-    2:
-      title: "Indique qué tan de acuerdo está con los siguientes conceptos"
-      type: "LK"
-      group: "Bici"
-      items:
-        1:
-          human_value: "Deben construirse más avenidas para más autos"
-        2:
-          human_value: "Salir en bicicleta es peligroso"
-        3:
-          human_value: "Debe promoverse el uso de medios de transporte alternativos"
-        4:
-          human_value: "El transporte público es de buena calidad"
-        5:
-          human_value: "La bicicleta es un medio de transporte eficiente"
-      options:
-        1:
-          human_value: "Muy de acuerdo"
-        2:
-          human_value: "De acuerdo"
-        3:
-          human_value: "Neutral"
-        4:
-          human_value: "En desacuerdo"
-        5:
-          human_value: "Muy en desacuerdo"
-          
+          human_value: "Fresca-Caliente"

@@ -1,15 +1,15 @@
 <div id="header">
-  <h1><a href="#" class="logo"><%= t('app.name') %> ss</a></h1>
+  <h1><a href="<%= root_path %>" class="logo"><%= t('app.name') %></a></h1>
   <div id="nav">
     <ul>
-      <li><%= link_to t('app.sections.start'), root_path %></li>
-      <li><%= link_to t('app.sections.identity'), root_path %></li>
-      <li><%= link_to t('app.sections.services'), root_path %></li>
-      <li><%= link_to t('app.sections.cases'), root_path %></li>
-      <li><%= link_to t('app.sections.blog'), root_path %></li>
-      <li><%= link_to t('app.sections.contact'), root_path %></li>
-      <li><%= link_to t('app.sections.careers'), root_path %></li>
-      <li class="top"><%= link_to t('app.sections.access'), new_manager_session_path %></li>			
+      <li><%= link_to t('app.sections.start'), root_path, selected_if_section_is("index") %></li>
+      <li><%= link_to t('app.sections.identity'), identity_welcome_index_path, selected_if_section_is("identity") %></li>
+      <li><%= link_to t('app.sections.services'), services_welcome_index_path, selected_if_section_is("services") %></li>
+      <li><%= link_to t('app.sections.cases'), success_cases_welcome_index_path, selected_if_section_is("success_cases") %></li>
+      <li><%= link_to t('app.sections.blog'), blog_welcome_index_path, selected_if_section_is("blog") %></li>
+      <li><%= link_to t('app.sections.contact'), contact_welcome_index_path, selected_if_section_is("contact") %></li>
+      <li><%= link_to t('app.sections.careers'), careers_welcome_index_path, selected_if_section_is("careers") %></li>
+      <li class="top"><%= link_to t('app.sections.access'), new_manager_session_path, selected_if_section_is("new") %></li>			
     </ul>
   </div>
 </div>

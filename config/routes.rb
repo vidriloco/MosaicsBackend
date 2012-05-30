@@ -31,9 +31,21 @@ Backend::Application.routes.draw do
   
   get "api/evaluation/:meta_survey_id/new" => "api#new", :as => :api_new_survey
 
-  get '/access' => 'welcome#access', :as => :access
   get '/manager' => "manager/main#index", :as => :manager_root
   get '/admin' => "admin/main#index", :as => :admin_user_root
+
+  
+  resources :welcome, :only => [:index] do 
+    collection do 
+      get :access
+      get :identity
+      get :services
+      get :success_cases
+      get :blog
+      get :contact
+      get :careers
+    end
+  end
 
   root :to => 'welcome#index'
 end

@@ -87,8 +87,17 @@ body {
 	background-image: -webkit-linear-gradient(bottom, rgb(133,13,17) 34%, rgb(193,39,44) 67%);
 	background-image: -ms-linear-gradient(bottom, rgb(133,13,17) 34%, rgb(193,39,44) 67%);
 	background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.34, rgb(133,13,17)), color-stop(0.67, rgb(193,39,44)) );
-	color: #FFFFFF;
+	color: #FFFFFF !important;
 }
+
+#nav li a.selected {
+	color: #A00709;
+}
+
+#lownav li a.selected {
+	color: #A00709 !important;
+}
+
 #banner {
 	background-image: url(../assets/banner.png);
 	background-repeat: no-repeat;

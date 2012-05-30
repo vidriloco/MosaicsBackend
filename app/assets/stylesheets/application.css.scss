@@ -5,3 +5,10 @@
  *= require_self
  *= require stylesheets
 */
+
+.list-of-items {
+	li {
+		padding: 5px;
+		font-size: 14px;
+	}
+}
