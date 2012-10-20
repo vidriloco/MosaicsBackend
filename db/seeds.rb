@@ -7,5 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 AdminUser.create(:email => "admin@quantus.com", :password_confirmation => "quantus-ya", :password => "quantus-ya", :username => "quantusroot")
 Organization.create(:name => "Quantus")
+Manager.create(:email => "manager@sfe.com", :password_confirmation => "manager", :password => "manager", :username => "manager")
 Device.create(:identifier => "A4:67:06:82:D0:B5")
 Pollster.create(:email => "leiden@quantus.com", :password_confirmation => "leiden", :password => "leiden", :username => "leiden", :full_name => "Leiden City")

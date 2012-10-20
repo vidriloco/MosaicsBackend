@@ -11,22 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120504001141) do
+ActiveRecord::Schema.define(:version => 20121015150558) do
 
   create_table "admin_users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
@@ -40,14 +40,21 @@ ActiveRecord::Schema.define(:version => 20120504001141) do
     t.string   "open_value"
     t.integer  "question_id"
     t.integer  "survey_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
+  create_table "campaigns", :force => true do |t|
+    t.string   "name"
+    t.integer  "organization_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "devices", :force => true do |t|
     t.string   "identifier"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "meta_answer_items", :force => true do |t|
@@ -55,8 +62,8 @@ ActiveRecord::Schema.define(:version => 20120504001141) do
     t.string   "human_value"
     t.string   "order_identifier"
     t.string   "identifier"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   add_index "meta_answer_items", ["identifier"], :name => "meta_answer_items_identifier_idx", :unique => true
@@ -66,8 +73,8 @@ ActiveRecord::Schema.define(:version => 20120504001141) do
     t.string   "human_value"
     t.string   "order_identifier"
     t.string   "identifier"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   add_index "meta_answer_options", ["identifier"], :name => "meta_answer_options_identifier_idx", :unique => true
@@ -80,8 +87,8 @@ ActiveRecord::Schema.define(:version => 20120504001141) do
     t.integer  "order_identifier"
     t.string   "group"
     t.string   "type_of"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   add_index "meta_questions", ["identifier"], :name => "meta_questions_identifier_idx", :unique => true
@@ -90,15 +97,15 @@ ActiveRecord::Schema.define(:version => 20120504001141) do
     t.string   "name"
     t.string   "identifier"
     t.integer  "size"
-    t.integer  "organization_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "campaign_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "organizations", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "questions", :force => true do |t|
@@ -113,28 +120,29 @@ ActiveRecord::Schema.define(:version => 20120504001141) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "uid"
-    t.string   "full_name",                                             :null => false
-    t.string   "username",                                              :null => false
+    t.string   "full_name",                              :null => false
+    t.string   "username",                               :null => false
     t.date     "birthday"
-    t.integer  "job"
+    t.string   "job"
     t.string   "phone"
     t.integer  "extension"
     t.string   "cell_phone"
     t.integer  "organization_id"
+    t.integer  "campaign_id"
     t.string   "type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

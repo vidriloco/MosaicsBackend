@@ -5,14 +5,17 @@
 	<table class="table table-striped table-bordered">
 	  <tr>
 	    <th><%= t('activerecord.attributes.organization.name') %></th>
-	    <th><%= t('activerecord.attributes.organization.surveys') %></th>
+	    <th><%= t('activerecord.attributes.organization.campaigns') %></th>
+			<th><%= t('activerecord.attributes.organization.managers') %></th>
 	    <th></th>
 	  </tr>
 
 	<% @organizations.each do |organization| %>
 	  <tr>
 	  <td><%= organization.name %></td>
-		<td><%= organization.meta_surveys.count %></td>
+		<td><%= organization.campaigns.count %></td>
+		<td><%= organization.managers.count %> / <%= organization.general_managers.size %> </td>
+		
 		<td>
 			<a href="<%= edit_admin_organization_path(organization) %>" class="btn">
 			<i class="icon-edit"></i>  <%= t('general.actions.edit') %>

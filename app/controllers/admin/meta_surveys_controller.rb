@@ -12,7 +12,7 @@ class Admin::MetaSurveysController < Admin::BaseController
   end
   
   def create
-    @meta_survey = MetaSurvey.register_with(params[:meta_survey])
+    @meta_survey = MetaSurvey.register_with(params[:meta_survey], params[:campaign])
     
     if @meta_survey.save
       redirect_to admin_meta_surveys_path, :notice => t('meta_survey.messages.create.success')

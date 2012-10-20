@@ -21,12 +21,13 @@ class CreateUsers < ActiveRecord::Migration
       t.string :username, :null => false
       
       t.date :birthday
-      t.integer :job
+      t.string :job
       t.string :phone
       t.integer :extension
       t.string :cell_phone
       
       t.integer :organization_id
+      t.integer :campaign_id
       t.string :type
       t.timestamps
     end

@@ -1,9 +1,12 @@
 module Loads::MetaSurveys
   
   module ClassMethods
-    def register_with(params)
+    def register_with(params, campaign)
       file=params.delete(:survey_descriptor_file)
-      meta_survey = MetaSurvey.new(params)
+      
+      organization = Organization.find(campaign[:organization_id])
+      campaign = Campaign.create(:organization_id => organization.id, :name => "#{campaign[:name]} #{Time.now.to_s(:short)} #")
+      meta_survey = MetaSurvey.new(params.merge(:campaign_id => campaign.id))
       meta_survey.save if meta_survey.merge_descriptor_from(file.read)
       meta_survey
     end

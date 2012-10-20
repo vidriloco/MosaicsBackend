@@ -15,6 +15,8 @@ es_MX:
         cell_phone: "Teléfono celular"
   manager:
     messages:
+      creation: "Administrador de organización registrado correctamente"
+      modification: "Administrador de organización actualizado correctamente"
       confirmation:
         delete: "¿Realmente deseas eliminar este administrador de campaña?"
     views:
@@ -23,9 +25,9 @@ es_MX:
         close_session: "Cerrar Sesión"
         profile: "Perfil"
       new:
-        title: "Nuevo administrador de campaña"
+        title: "Nuevo administrador de organización"
       edit:
-        title: "Modificar administrador de campaña"
+        title: "Modificar administrador de organización"
       sessions:
         new:
           login_button: "Entrar"

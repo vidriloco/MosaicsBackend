@@ -4,7 +4,7 @@ es_MX:
       organizations: "Organizaciones"
       devices: "Dispositivos"
       admins: "Superusuarios"
-      managers: "Administradores"
+      managers: "Administradores de Organizaciones"
       meta_surveys: "Descriptores de encuestas"
       pollsters: "Encuestadores"
   administrators:

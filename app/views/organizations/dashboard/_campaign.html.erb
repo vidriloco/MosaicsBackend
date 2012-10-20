@@ -1,0 +1,50 @@
+<div class="accordion-group">
+	<div class="accordion-heading">
+		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= index %>">
+			<%= campaign.name %>
+		</a>
+	</div>
+	<div id="collapse<%= index %>" class="accordion-body collapse in">
+		
+		<div class="accordion-inner">
+			<div id="<%= campaign.meta_surveys.first.id %>-mq" class="fade modal">
+				
+				<div class="modal-header">
+					<button class="close" data-dismiss="modal">×</button>
+					<h3>Preguntas de encuesta: <i><%= campaign.meta_surveys.first.name %></i></h3>
+				</div>
+				<div class="modal-body">
+					<%= render :partial => 'admin/meta_questions/listing', 
+									 	 :collection => campaign.meta_surveys.first.meta_questions.sort! { |f, n| f.order_identifier <=> n.order_identifier }, 
+									 	 :as => :meta_question %>
+				</div>
+				<div class="modal-footer"></div>
+			</div>
+			<table class="table table-striped table-bordered">
+			  <tr>
+			    <th><%= t('activerecord.attributes.meta_survey.campaign') %></th>
+			    <th><%= t('activerecord.attributes.meta_survey.sample_size') %></th>
+			    <th><%= t('activerecord.attributes.meta_survey.questions_number') %></th>
+			  </tr>
+
+			  <tr>
+			    <td><%= campaign.meta_surveys.first.name %></td>
+					<td><%= campaign.meta_surveys.first.size %></td>
+					<td><%= campaign.meta_surveys.first.meta_questions.size %></td>
+			  </tr>
+			</table>
+			<%= link_to t('administrators.show_questions_loaded'), "##{campaign.meta_surveys.first.id}-mq", "data-toggle"=>"modal" %>
+			
+			
+			<% if campaign.meta_surveys.first.surveys.count > 0 %>
+				<a href="<%= download_admin_meta_survey_path(campaign.meta_surveys.first) %>" class="btn btn-inverse">
+					<i class="icon-download"></i>  <%= t('meta_survey.views.index.download') %>
+				</a>
+				<a href="<%= purge_admin_meta_survey_path(campaign.meta_surveys.first) %>" data-method="post" 
+					data-confirm="<%= t('meta_survey.messages.confirmation.purge') %>" class="btn btn-warning">
+					  <%= t('meta_survey.views.index.purge') %>
+				</a>
+			<% end %>
+		</div>
+	</div>
+</div>

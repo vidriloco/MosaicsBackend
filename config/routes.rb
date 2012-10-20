@@ -1,6 +1,9 @@
 Backend::Application.routes.draw do
   
   devise_for :admin_users
+  devise_for :managers, :controllers => { :sessions => "organizations/sessions" } do
+    get 'managers' => 'organizations/dashboard#index'
+  end
   
   namespace :admin do
     get '/' => 'main#index', :as => :index
@@ -17,23 +20,20 @@ Backend::Application.routes.draw do
     resources :pollsters
     resources :managers
   end
-  
-  devise_for :managers
-  
+    
   namespace :api do
     post :collect
     get :whiteboard, :as => "test_whiteboard"
   end
 
   post 'api/authenticate.:format' => 'api/sessions#authenticate'
-  
-  get 'api/survey/:meta_survey_id/results.:format' => "api#results", :as => "download_results"
-  
+  get 'api/survey/:meta_survey_id/results.:format' => "api#results", :as => "download_results"  
   get "api/evaluation/:meta_survey_id/new" => "api#new", :as => :api_new_survey
 
-  get '/manager' => "manager/main#index", :as => :manager_root
-  get '/admin' => "admin/main#index", :as => :admin_user_root
-
+  namespace :organizations do
+    resources :dashboard, :only => [:index]
+  end
+  
   
   resources :welcome, :only => [:index] do 
     collection do 

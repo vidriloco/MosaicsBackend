@@ -1,9 +1,15 @@
 <%= form_for([:admin, @meta_survey], :html_options => {:multipart => true}) do |f| %>
   
 	<div class="field">
-    <%= f.label :organization %>
-    <%= f.select :organization_id, Organization.all.collect {|p| [ p.name, p.id ] }, { :include_blank => true } %>
+    <%= label_tag :organization, t('activerecord.attributes.meta_survey.organization') %>
+    <%= select_tag 'campaign[organization_id]', options_from_collection_for_select(Organization.all, "id", "name"), { :include_blank => true } %>
   </div>
+	
+	<div class="field">
+    <%= label_tag :campaign, t('activerecord.attributes.meta_survey.campaign') %>
+    <%= text_field_tag 'campaign[name]'  %>
+  </div>
+
 	<div class="field">
     <%= f.label :survey_descriptor_file %>
     <%= f.file_field :survey_descriptor_file %>

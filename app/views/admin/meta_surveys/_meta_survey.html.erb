@@ -5,12 +5,15 @@
 	<table class="table table-striped table-bordered">
 	  <tr>
 	    <th><%= t('activerecord.attributes.meta_survey.organization') %></th>
+	    <th><%= t('activerecord.attributes.meta_survey.campaign') %></th>
+	
 	    <th><%= t('activerecord.attributes.meta_survey.sample_size') %></th>
 	    <th><%= t('activerecord.attributes.meta_survey.questions_number') %></th>
 	  </tr>
 
 	  <tr>
-	    <td><%= meta_survey.organization.name %></td>
+		  <td><%= meta_survey.campaign.organization.name %></td>
+	    <td><%= meta_survey.campaign.safe_name %></td>
 			<td><%= meta_survey.size %></td>
 			<td><%= meta_survey.meta_questions.size %></td>
 	  </tr>

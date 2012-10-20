@@ -3,6 +3,7 @@ es_MX:
     attributes:
       meta_survey:
         organization: "Organización"
+        campaign: "Nombre de la campaña"
         survey_descriptor_file: "Descriptor de la encuesta"
         sample_size: "Tamaño de la muestra"
         questions_number: "Número de preguntas"

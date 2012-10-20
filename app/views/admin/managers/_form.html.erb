@@ -5,10 +5,20 @@
     <%= f.label :full_name %>
     <%= f.text_field :full_name %>
   </div>
-	
+
+	<div class="field">
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </div>
+
   <div class="field">
     <%= f.label :email %>
     <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :job %>
+    <%= f.text_field :job %>
   </div>
 
 	<div class="field">
@@ -17,26 +27,10 @@
   </div>
 
   <div class="field">
-    <%= f.label :job %>
-    <%= f.text_field :job %>
-  </div>
-
-  <div class="field">
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-  </div>
-  <div class="field">
-    <%= f.label :birthday %>
-    <%= f.date_select :birthday, :start_year => 1930, :end_year => Date.today.year-18 %>
-  </div>
-  <div class="field">
     <%= f.label :phone %>
     <%= f.text_field :phone %>
   </div>
-  <div class="field">
-    <%= f.label :extension %>
-    <%= f.number_field :extension %>
-  </div>
+
   <div class="field">
     <%= f.label :cell_phone %>
     <%= f.text_field :cell_phone %>

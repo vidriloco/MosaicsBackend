@@ -6,7 +6,9 @@ es_MX:
       organization: 
         name: "Nombre"
         surveys: "Encuestas por aplicar"
+        campaigns: "Campañas"
         meta_surveys: "Encuestas aplicadas"
+        managers: "Administradores / Generales"
   organization:
     messages:
       create: 

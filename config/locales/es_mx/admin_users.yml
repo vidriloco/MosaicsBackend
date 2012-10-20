@@ -9,6 +9,8 @@ es_MX:
         password_confirmation: "Confirmación de la contraseña"
   admin_user:
     messages:
+      creation: "Administrador registrado correctamente"
+      modification: "Administrador registrado correctamente"
       confirmation:
         delete: "¿Eliminar a este superusuario?"
     views:

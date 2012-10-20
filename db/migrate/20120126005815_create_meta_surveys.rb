@@ -4,7 +4,7 @@ class CreateMetaSurveys < ActiveRecord::Migration
       t.string  :name
       t.string  :identifier
       t.integer :size
-      t.integer :organization_id
+      t.integer :campaign_id
       
       t.timestamps
     end

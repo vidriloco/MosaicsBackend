@@ -3,7 +3,7 @@ class MetaSurvey < ActiveRecord::Base
   include Loads::MetaSurveys
   include Exports::MetaSurveys
   
-  belongs_to :organization
+  belongs_to :campaign
   
   has_many :meta_questions, :dependent => :destroy
   has_many :surveys, :dependent => :destroy

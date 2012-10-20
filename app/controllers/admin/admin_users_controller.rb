@@ -27,7 +27,7 @@ class Admin::AdminUsersController < Admin::BaseController
     @admin_user = AdminUser.new(params[:admin_user])
 
     if @admin_user.save
-      redirect_to admin_admin_users_path, :notice => 'Admin user was successfully created.'
+      redirect_to admin_admin_users_path, :notice => I18n.t('admin_user.messages.creation')
     else
       render action: "new"
     end
@@ -37,7 +37,7 @@ class Admin::AdminUsersController < Admin::BaseController
   def update
 
     if @admin_user.update_attributes(params[:admin_user])
-      redirect_to admin_admin_users_path, notice: 'Admin user was successfully updated.'
+      redirect_to admin_admin_users_path, notice: I18n.t('admin_user.messages.modification')
     else
       render action: "edit"
     end

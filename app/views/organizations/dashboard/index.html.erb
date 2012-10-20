@@ -1,0 +1,18 @@
+<div class="block">
+	
+	<p>Hola <b><%= current_manager.username %></b>, estas son las campañas que supervisas.</p>
+	<h3>Campañas</h3>
+	<br/>
+	<% if current_manager.campaign.nil? %>
+		<div class="accordion" id="accordion2">
+			<% current_manager.organization.campaigns.each_with_index do |campaign, index| %>
+				<%= render :partial => 'organizations/dashboard/campaign', :locals => {:campaign => campaign, :index => index} %>
+			<% end %>
+		</div>
+	<% elsif current_manager.campaign %>
+		<%= render :partial => 'organizations/dashboard/campaign', :locals => {:campaign => current_manager.campaign, :index => 0} %>
+	<% end %>
+	
+	
+	
+</div>
