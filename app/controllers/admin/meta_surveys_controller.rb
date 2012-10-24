@@ -1,7 +1,7 @@
 class Admin::MetaSurveysController < Admin::BaseController
   
   before_filter :find_meta_survey, :only => [:destroy, :show, :download, :purge]
-  before_filter :authenticate_admin_user!
+  before_filter :authenticate_admin_user!, :except => [:download]
   
   def index
     @meta_surveys = MetaSurvey.all
@@ -40,10 +40,12 @@ class Admin::MetaSurveysController < Admin::BaseController
   end
   
   def download
-    send_data @meta_survey.render_as_csv_string, {
-      :type => "text/csv; charset=iso-8859-1; header=present",
-      :disposition => "attachment; filename=#{@meta_survey.name.gsub(' ', '_')}.csv" 
-      }
+    if admin_user_signed_in? || manager_signed_in?
+      send_data @meta_survey.render_as_csv_string, {
+        :type => "text/csv; charset=iso-8859-1; header=present",
+        :disposition => "attachment; filename=#{@meta_survey.name.gsub(' ', '_')}.csv" 
+        }
+    end
   end
   
   def purge
