@@ -26,15 +26,7 @@
 			<i class="icon-remove"></i>  <%= t('general.actions.delete') %>
 		</a>
 		
-		<% if meta_survey.surveys.count > 0 %>
-			<a href="<%= download_admin_meta_survey_path(meta_survey) %>" class="btn btn-inverse">
-				<i class="icon-download"></i>  <%= t('meta_survey.views.index.download') %>
-			</a>
-			<a href="<%= purge_admin_meta_survey_path(meta_survey) %>" data-method="post" data-confirm="<%= t('meta_survey.messages.confirmation.purge') %>" class="btn btn-warning">
-				  <%= t('meta_survey.views.index.purge') %>
-			</a>
-		<% end %>
-
+		<%= render :partial => 'shared/survey_download', :locals => { :meta_survey => meta_survey } %>
 	</div>
 </div>
 

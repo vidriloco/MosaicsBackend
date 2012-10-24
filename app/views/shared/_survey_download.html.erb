@@ -1,0 +1,8 @@
+<% if !meta_survey.surveys.empty? && meta_survey.surveys.count > 0 %>
+	<a href="<%= download_admin_meta_survey_path(meta_survey) %>" class="btn btn-inverse">
+		<i class="icon-download"></i>  <%= t('meta_survey.views.index.download') %>
+	</a>
+	<a href="<%= purge_admin_meta_survey_path(meta_survey) %>" data-method="post" data-confirm="<%= t('meta_survey.messages.confirmation.purge') %>" class="btn btn-warning">
+		  <%= t('meta_survey.views.index.purge') %>
+	</a>
+<% end %>
