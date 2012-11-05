@@ -1,0 +1,237 @@
+survey:
+  name: "Primer encuesta"
+  size: 200
+  questions:    
+    1:
+      title: "Recorra a la derecha o a la izquierda la cortina de color para indicarnos su sexo (azul-hombre; rosa-mujer)."
+      type: "SC"
+      group: "Género"
+      items:
+        1:
+          human_value: "Sexo"
+      options:
+        1:
+          human_value: "Masculino"
+        2:
+          human_value: "Femenino"
+    2:
+      title: "Indique qué tan de acuerdo o en desacuerdo está con los siguientes enunciados, desplazando el punto blanco hacia los lados."
+      type: "LK"
+      group: "Manchas Piel"
+      items:
+        1:
+          human_value: "Cuando un médico me prescribe una crema para las manchas de la piel, confío en que dará los mejores resultados"
+        2:
+          human_value: "Me da más confianza si la crema para las manchas en la piel me la recomienda una amiga"
+        3:
+          human_value: "Las manchas en la piel se pueden eliminar usando una crema anti-manchas"
+        4:
+          human_value: "Las cremas para las manchas en la piel fabricadas por un laboratorio farmacéutico son más efectivas que las cremas de marca cosmética"
+        5:
+          human_value: "Las manchas en la piel no tienen solución"
+      options:
+        1:
+          human_value: "Totalmente de acuerdo"
+        2:
+          human_value: "De acuerdo"
+        3:
+          human_value: "Ni en acuerdo, ni en desacuerdo"
+        4:
+          human_value: "En desacuerdo"
+        5:
+          human_value: "Totalmente en desacuerdo"
+    3:
+      title: "Reproduzca el video y véalo con atención. Escriba en cada recuadro la marca que recuerde después de ver el comercial."
+      type: "MOQ"
+      group: "Video"
+      items:
+        1:
+          human_value: "Marca 1"
+        2:
+          human_value: "Marca 2"
+        3:
+          human_value: "Marca 3"
+        4:
+          human_value: "Marca 4"
+        5:
+          human_value: "Marca 5"
+    4:
+      title: "Arrastre hacia el círculo las imágenes de los productos de la marca Avene que irán apareciendo, de acuerdo a la opinión que tenga sobre cada uno de ellos."
+      type: "MS"
+      group: "Avene"
+      items:
+        1:
+          human_value: "Edad eluage concentrado"
+        2:
+          human_value: "Facial cleanance crema"
+        3:
+          human_value: "Facial loción purificante"
+        4:
+          human_value: "Humectante hydrance ligera"
+        5:
+          human_value: "Humectante serum calmante"
+        6:
+          human_value: "Protector solar crema hidratante calmante"
+      options:
+        1:
+          human_value: "Buena"
+        2:
+          human_value: "Mala"
+        3:
+          human_value: "No sé"
+    5:
+      title: "Coloque su dedo sobre el punto blanco y desplácelo a los lados hasta la opción que mejor refleje su opinión sobre la calidad en el servicio que recibe por parte del visitador médico de las siguientes compañías farmacéuticas."
+      type: "LK"
+      group: "Servicios y visitadores"
+      items:
+        1:
+          human_value: "Roche"
+        2:
+          human_value: "Pfizer"
+        3:
+          human_value: "Pierre Fabre"
+        4:
+          human_value: ""
+        5:
+          human_value: "La Roche Posay"
+        6:
+          human_value: "Servicios Farmaceuticos Especializados"
+        7:
+          human_value: "Lilly"
+      options:
+        1:
+          human_value: "Muy Buena"
+        2:
+          human_value: "Buena"
+        3:
+          human_value: "Regular"
+        4:
+          human_value: "Mala"
+        5:
+          human_value: "Muy Mala"
+    6:
+      title: "Desplace hacia arriba cada uno de los iconos de las marcas dermatológicas, de acuerdo a la efectividad en el cuidado de la piel (1 es alta hidratación y 4 es baja hidratación)."
+      type: "PO"
+      group: "Dermatólógicas"
+      items: 
+        1:
+          human_value: "La Roche Posay"
+        2:
+          human_value: "Vichy"
+        3:
+          human_value: "Avene"
+        4:
+          human_value: "DDF"
+    7:
+      title: "Seleccione los productos que aparecerán y deslícelos dentro del cuadrante hasta colocarlos en el lugar que usted considere representan la relación precio-calidad."  
+      type: "MOSM"
+      group: "Mapa de productos"
+      items:
+        1:
+          human_value: "Desodorante antitranspirante cuerpo"
+        2:
+          human_value: "Facial agua termal"
+        3:
+          human_value: "Maquillaje dermablend bronze"
+        4:
+          human_value: "Cold cream barra dermolimpiadora"
+        5:
+          human_value: "Crema desmaquillante"
+        6:
+          human_value: "Crema autobronceadora"
+        7:
+          human_value: "Protector solar anthelios fluido"
+        8:
+          human_value: "Loción limpiadora"
+      options:
+        1:
+          human_value: "Precio"
+        2:
+          human_value: "Calidad"
+    8:
+      title: "Asigne un número tal que refleje el valor que usted le asigna a la compra de un bloqueador o foto-protector solar, desplazando las flechas de cada uno de los enunciados (la suma debe ser 100)."
+      type: "CS"
+      group: "Bloqueador solar"
+      items:
+        1:
+          human_value: "Presentación en gel"
+        2:
+          human_value: "Presentación con color"
+        3:
+          human_value: "Foto-protección para pieles sensibles"
+        4:
+          human_value: "Humectación a la piel"
+        5:
+          human_value: "Marca recomendada por los médicos"
+        6:
+          human_value: "Libre de perfume"
+    9:
+      title: " Toque la marca de crema para el contorno de ojos que aparecerá. Luego encierre en un círculo los atributos con los que la relaciona. Continúe de la misma manera con los siguientes marcas."
+      type: "MOS"
+      group: "Crema ojos"
+      items:
+        1: 
+          human_value: "Edad Ystheal contorno ojos"
+        2:
+          human_value: "Anti-edad liftactiv pro eyes"
+        3:
+          human_value: "Edad-active C contorno ojos"
+      options:
+        1:
+          human_value: "Difumina ojeras"
+        2:
+          human_value: "Sin fragancia"
+        3:
+          human_value: "Proporciona frescura"
+        4:
+          human_value: "Da luminosidad"
+    10:
+      title: "Escriba su opinión sobre la prescripción de medicamentos genéricos dermatológicos. "
+      type: "OQ"
+      group: "Medicamentos genéricos"
+      items:
+        1:
+          human_value: "Opinión"
+    11:
+      title: "Seleccione y arrastre hacia el círculo inferior las marcas de cremas que usa actualmente."
+      type: "MS"
+      group: "Cremas que uso"
+      items:
+        1:
+          human_value: "anti-edad liftactiv noche"
+        2:
+          human_value: "anti-edad neovadiol día"
+        3:
+          human_value: "anti-edad neovadiol noche"
+        4:
+          human_value: "facial gel cleanance"
+        5:
+          human_value: "humentante hydraphase tonic"
+        6:
+          human_value: "toleriane maquillaje fluido"
+        7:
+          human_value: "protector solar anthelios"
+        8:
+          human_value: "protector solar spray"
+      options:
+        1: 
+          human_value: "kSelected"
+        2:
+          human_value: "kDeselected"
+    12:
+      title: "Toque la imagen, podrá agrandarla o achicarla y obsérvela detenidamente. Califique los atributos del empaque, desplazando el botón blanco hacia los lados, según sea el caso."
+      type: "SD"
+      group: "Empaques"
+      items:
+        1:
+          human_value: "Cercano-Lejano"
+        2:
+          human_value: "Informativo-Desinformativo"
+        3:
+          human_value: "Claro-Difuso"
+        4:
+          human_value: "Reconocible-Irreconocible"
+        5:
+          human_value: "Atractivo-No Atractivo"
+        6:
+          human_value: "Aceptable-Inaceptable"

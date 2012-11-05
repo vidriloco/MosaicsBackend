@@ -2,6 +2,7 @@ module Loads::MetaSurveys
   
   module ClassMethods
     def register_with(params, campaign)
+      return false unless params.has_key?(:survey_descriptor_file)
       file=params.delete(:survey_descriptor_file)
       
       organization = Organization.find(campaign[:organization_id])
@@ -21,14 +22,7 @@ module Loads::MetaSurveys
     
     self.name=contents["name"]
     self.size=contents["size"]
-    
-    if MetaSurvey.find_by_identifier(contents["identifier"]).nil?
-      self.identifier=contents["identifier"]
-      self.merge_questions(contents["questions"])
-    else
-      self.errors.add(:identifier, I18n.t('meta_survey.validations.identifier'))
-      false
-    end
+    self.merge_questions(contents["questions"])
   end
   
   protected
