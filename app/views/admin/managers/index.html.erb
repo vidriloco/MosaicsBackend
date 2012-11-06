@@ -16,7 +16,7 @@
 		  <td><%= manager.username %></td>
 	    <td><%= manager.email %></td>
 	    <td><%= manager.full_name %></td>
-	    <td><%= manager.organization.name %></td>
+	    <td><%= manager.organization.name unless manager.organization.nil? %></td>
 	    <td><%= manager.job || t('general.field.empty') %></td>
 	
 	    <td>

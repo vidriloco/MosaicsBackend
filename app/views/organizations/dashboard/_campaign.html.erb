@@ -27,17 +27,20 @@
 				  <tr>
 				    <th><%= t('activerecord.attributes.meta_survey.campaign') %></th>
 				    <th><%= t('activerecord.attributes.meta_survey.sample_size') %></th>
+				    <th><%= t('activerecord.attributes.meta_survey.collected') %></th>
 				    <th><%= t('activerecord.attributes.meta_survey.questions_number') %></th>
 				  </tr>
 
 				  <tr>
 				    <td><%= meta_survey.name %></td>
 						<td><%= meta_survey.size %></td>
+						<td><%= meta_survey.surveys.count %></td>
 						<td><%= meta_survey.meta_questions.size %></td>
 				  </tr>
 				</table>
-				<%= link_to t('administrators.show_questions_loaded'), "##{meta_survey.id}-mq", "data-toggle"=>"modal" %>
-				
+				<span class="span2">
+					<%= link_to t('administrators.show_questions_loaded'), "##{meta_survey.id}-mq", "data-toggle"=>"modal" %>
+				</span>
 				<%= render :partial => 'shared/survey_download', :locals => {:meta_survey => meta_survey} %>
 			</div>
 		</div>

@@ -2,6 +2,7 @@ es_MX:
   activerecord:
     attributes:
       meta_survey:
+        collected: "Levantadas"
         organization: "Organización"
         campaign: "Nombre de la campaña"
         survey_descriptor_file: "Descriptor de la encuesta"

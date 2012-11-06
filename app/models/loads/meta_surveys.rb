@@ -6,7 +6,7 @@ module Loads::MetaSurveys
       file=params.delete(:survey_descriptor_file)
       
       organization = Organization.find(campaign[:organization_id])
-      campaign = Campaign.create(:organization_id => organization.id, :name => "#{campaign[:name]} #{Time.now.to_s(:short)} #")
+      campaign = Campaign.create(:organization_id => organization.id, :name => campaign[:name])
       meta_survey = MetaSurvey.new(params.merge(:campaign_id => campaign.id))
       meta_survey.save if meta_survey.merge_descriptor_from(file.read)
       meta_survey
@@ -22,7 +22,14 @@ module Loads::MetaSurveys
     
     self.name=contents["name"]
     self.size=contents["size"]
-    self.merge_questions(contents["questions"])
+    
+    if MetaSurvey.find_by_identifier(contents["identifier"]).nil?
+      self.identifier=contents["identifier"]
+      self.merge_questions(contents["questions"])
+    else
+      self.errors.add(:identifier, I18n.t('meta_survey.validations.identifier'))
+      false
+    end
   end
   
   protected
